@@ -1,0 +1,231 @@
+{% extends 'base_fluid_user.html.twig' %}
+
+{% block navBarSectionTitle %}<a href="{{ path('user_mutriku') }}">MUTRIKU</a>{% endblock %}
+
+
+{% block nabBarLeftContent %}
+    <form method="post" action="{{ path('user_mutriku_search') }}" class="form-inline">
+
+        <div class="input-group mb-2 mr-sm-2">
+            <select name="formTurbines" class="form-control mr-sm-2" id="formTurbines">
+                {% for oneTurbine in turbines %}
+                    {% set selected = '' %}
+                    {% if oneTurbine.id == selectedTurbine %}
+                        {% set selected = 'selected' %}
+                    {% endif %}
+                    <option value="{{ oneTurbine.id }}" {{ selected }}>{{ oneTurbine.position }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="input-group mb-2 mr-sm-2">
+            <input type="hidden" name="daterange" id="daterange" value="" required/>
+            <div id="reportrange" class="form-control"
+                 style="cursor: pointer;">
+                <span id="selectedDates" style="display: none"></span>
+                <i class="glyphicon glyphicon-calendar">{% trans %}Fechas{% endtrans %}</i>&nbsp;
+                <span></span> <i class="fa fa-caret-down"></i>
+            </div>
+        </div>
+
+        <div class="input-group mb-2 mr-sm-2">
+            <input name="reason" class="form-control" type="text" placeholder="{% trans %}Motivo{% endtrans %}" aria-label="Search" required>
+        </div>
+
+        <div class="input-group mb-2 mr-sm-1">
+            <button type="submit" class="btn btn-primary mb-2">{% trans %}Enviar{% endtrans %}</button>
+        </div>
+
+
+        <div class="input-group mb-2 mr-sm-1 float-right">
+            <a href="{{ path('user_mutriku') }}"> <i class="fas fa-chart-line">{% trans %}Gráfica{% endtrans %}</i></a>
+        </div>
+
+        <div class="input-group mb-2 mr-sm-1 float-right">
+            <a href="{{ path('mutriku_historics_downloader') }}"> <i class="fas fa-chart-line">{% trans %}Histórico{% endtrans %}</i></a>
+        </div>
+
+
+    </form>
+{% endblock %}
+
+{% block underNavBar %}
+
+    <div class="row">
+
+
+        <div class="col-lg-12">
+            <div class="form-group row">
+                <label for="turbines" class="col-sm-1 col-form-label col-form-label-lg">{% trans %}Últimos datos de{% endtrans %}: </label>
+                <div class="col-sm-11">
+                <select name="turbines" class="form-control select2-search--inline form-control-lg" id="turbines">
+                    {% for oneTurbine in turbines %}
+                        {% set selected = '' %}
+                        {% if oneTurbine.id == selectedTurbine %}
+                            {% set selected = 'selected' %}
+                        {% endif %}
+                        <option value="{{ oneTurbine.id }}" {{ selected }}>{{ oneTurbine.position }}</option>
+                    {% endfor %}
+                </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {% if showCharts %}
+        <div class="row">
+            <div class="col-1">
+                <p><span class="badge badge-danger" style="background-color: red">MAX</span> {{ pa_max_value }} Pa</p>
+                <p><span class="badge badge-primary" style="background-color: blue"> MIN</span> {{ pa_min_value }} Pa</p>
+            </div>
+
+            <div class="col-11">
+                <div id="div_presionesChart"></div>
+            </div>
+            <div class="col-1">
+                <p><span class="badge badge-info" style="background-color: blue"> Media</span> {{ mediaResult }} Pa </p>
+            </div>
+            <div class="col-11">
+                <div id="div_area"></div>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="row">
+            <div class="col-12 align-content-center text-center" style="padding-top: 25%">
+                <h1>{% trans %}NO HAY DATOS PARA ESTA TURBINA Y PERIODO{% endtrans %}</h1>
+            </div>
+        </div>
+
+    {% endif %}
+
+    <div class="row d-flex justify-content-center">
+        <ul class="list-group list-group-horizontal-lg">
+            <li class="list-group-item">
+                <button type="button" class="view btn" id="viewDay" data-date="day">{% trans %}Día{% endtrans %}</button>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="view btn" id="viewMonth" data-date="month">{% trans %}Mes{% endtrans %}</button>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="view btn" id="viewYear" data-date="year">{% trans %}Año{% endtrans %}</button>
+            </li>
+        </ul>
+    </div>
+    <input type="hidden" name="view" id="view" value="{{ view }}">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    {% if showCharts %}
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            {{ gc_draw([presionesChart, area], ['div_presionesChart', 'div_area']) }}
+        </script>
+    {% endif %}
+
+    <script>
+        $(document).ready(function () {
+
+            $("#turbines").change(function () {
+                var turbineId = $('#turbines').val();
+                var view = $('#view').val();
+                window.location.href = '{{ path('user_mutriku') }}?turbine=' + turbineId + '&view=' + view;
+            });
+
+
+            $(".view").click(function () {
+                var turbineId = $('#turbines').val();
+                var view = $(this).data('date');
+                window.location.href = '{{ path('user_mutriku') }}?turbine=' + turbineId + '&view=' + view;
+            });
+
+
+            var actualView = '{{ view }}';
+
+            if (actualView == 'day') {
+
+                $('#viewDay').siblings('button').removeClass('btn-light, btn-primary');
+                $('#viewDay').siblings('button').addClass('btn-light');
+                $('#viewDay').addClass('btn-primary');
+                $('#view').val('day');
+
+            } else if (actualView == 'month') {
+
+                $('#viewMonth').siblings('button').removeClass('btn-light, btn-primary');
+                $('#viewMonth').siblings('button').addClass('btn-light');
+                $('#viewMonth').addClass('btn-primary');
+                $('#view').val('month');
+
+            } else {
+
+                $('#viewYear').siblings('button').removeClass('btn-light, btn-primary');
+                $('#viewYear').siblings('button').addClass('btn-light');
+                $('#viewYear').addClass('btn-primary');
+                $('#view').val('year');
+            }
+
+
+            $('#reportrange').daterangepicker({
+                opens: 'right',
+                locale: {
+                    cancelLabel: '{% trans %}Vaciar{% endtrans %}',
+                    separator: "-",
+                    applyLabel: "{% trans %}Aplicar{% endtrans %}",
+                    fromLabel: "{% trans %}Desde{% endtrans %}",
+                    toLabel: "{% trans %}Hasta{% endtrans %}",
+                    customRangeLabel: "{% trans %}Personalizado{% endtrans %}",
+                    weekLabel: "S",
+                    daysOfWeek: [
+                        "{% trans %}Do{% endtrans %}",
+                        "{% trans %}Lu{% endtrans %}",
+                        "{% trans %}Ma{% endtrans %}",
+                        "{% trans %}Mi{% endtrans %}",
+                        "{% trans %}Ju{% endtrans %}",
+                        "{% trans %}Vi{% endtrans %}",
+                        "{% trans %}Sá{% endtrans %}"
+                    ],
+                    monthNames: [
+                        "{% trans %}Enero{% endtrans %}",
+                        "{% trans %}Febrero{% endtrans %}",
+                        "{% trans %}Marzo{% endtrans %}",
+                        "{% trans %}Abil{% endtrans %}",
+                        "{% trans %}Mayo{% endtrans %}",
+                        "{% trans %}Junio{% endtrans %}",
+                        "{% trans %}Julio{% endtrans %}",
+                        "{% trans %}Agosto{% endtrans %}",
+                        "{% trans %}Septiembre{% endtrans %}",
+                        "{% trans %}Octubre{% endtrans %}",
+                        "{% trans %}Noviembre{% endtrans %}",
+                        "{% trans %}Diciembre{% endtrans %}"
+                    ],
+                    firstDay: 1,
+
+                },
+                autoUpdateInput: false,
+                autoApply: true
+            }, function (start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                $('#selectedDates').text(start.format('YYYY-MM-DD') + ' a ' + end.format('YYYY-MM-DD'));
+                $('#selectedDates').show();
+                $('.glyphicon, .fa-caret-down').remove();
+            });
+
+
+            $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                $('#daterange').val(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
+            });
+
+            $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
+                $('#daterange').val('');
+            });
+
+
+        });
+    </script>
+{% endblock %}

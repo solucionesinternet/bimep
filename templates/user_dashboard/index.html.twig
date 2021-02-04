@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% trans %}Bienvenido{% endtrans %}!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+
+        html,
+            body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+
+    </style>
+
+    {% endblock %}
+</head>
+<body class="text-center" style="background:#0075af">
+<div class="container" >
+
+
+    {% block body %}
+
+
+    <div class="col-md-6 offset-md-3">
+            <div class="h-100 row align-items-center align-middle">
+                <div class="col" >
+                    <div class="card-deck mb-3 text-center">
+                        <div class="card mb-4 shadow-sm">
+
+                            <div class="card-body">
+                                <a href="{{ path('user_bimep') }}" ><button type="button" class="btn btn-lg btn-block btn-outline-primary">BIMEP</button></a>
+                                <a href="{{ path('user_mutriku') }}" ><button type="button" class="btn btn-lg btn-block btn-outline-primary">MUTRIKU</button></a>
+                            </div>
+
+                            <div class="card-footer">
+                                <p><a href="#" data-toggle="modal" data-target="#modalCookies">{% trans %}Política de Cookies{% endtrans %}</a> | <a href="#" data-toggle="modal" data-target="#modalLegal">{% trans %}Aviso legal{% endtrans %}</a> | <a href="#" data-toggle="modal" data-target="#modalPrivacidad">{% trans %}Política de privacidad{% endtrans %}</a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        {% include 'legal.html' %}
+
+
+        {% endblock %}
+    {% block javascripts %}
+        <script
+                src="https://code.jquery.com/jquery-3.5.0.min.js"
+                integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    {% endblock %}
+</div>
+</body>
+</html>

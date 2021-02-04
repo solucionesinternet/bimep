@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Registro{% endtrans %}{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+    <div class="col-12 col-sm-12 col-md-4 offset-md-4 caja-login">
+        <div class="example-wrapper">
+            <h1>{% trans %}Registro{% endtrans %}</h1>
+
+            {{ form(form) }}
+            <div class="enlaces">
+                <a href="{{ path('app_login') }}">{% trans %}Identificación{% endtrans %}</a>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+
+    $( document ).ready(function() {
+        // Handler for .ready() called.
+
+        if($('#user_particular, .user_particular').attr('checked', true)){
+            $('.group_company').css("display", "none");
+        }else {
+            $('.group_company').css("display", "block");
+        }
+
+        $('#user_particular, .user_particular').click(function() {
+            $( ".group_company" ).toggle();
+        });
+    });
+</script>
+{% endblock %}

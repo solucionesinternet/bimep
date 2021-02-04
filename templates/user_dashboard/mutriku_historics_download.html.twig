@@ -1,0 +1,258 @@
+{% extends 'base_user.html.twig' %}
+
+{% block navBarSectionTitle %}<a href="{{ path('user_mutriku') }}">MUTRIKU</a>{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link href="/assets/css/common.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block nabBarLeftContent %}
+    <form method="post" action="{{ path('user_mutriku_search') }}" class="form-inline">
+
+        <div class="input-group mb-2 mr-sm-2">
+            <select name="formTurbines" class="form-control mr-sm-2" id="formTurbines">
+                {% for oneTurbine in turbines %}
+                    {% set selected = '' %}
+                    {% if oneTurbine.id == selectedTurbine %}
+                        {% set selected = 'selected' %}
+                    {% endif %}
+                    <option value="{{ oneTurbine.id }}" {{ selected }}>{{ oneTurbine.position }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="input-group mb-2 mr-sm-2">
+            <input type="hidden" name="daterange" id="daterange" value="" required/>
+            <div id="reportrange" class="form-control"
+                 style="cursor: pointer;">
+                <span id="selectedDates" style="display: none"></span>
+                <i class="glyphicon glyphicon-calendar">{% trans %}Fechas{% endtrans %}</i>&nbsp;
+                <span></span> <i class="fa fa-caret-down"></i>
+            </div>
+        </div>
+
+        <div class="input-group mb-2 mr-sm-2">
+            <input name="reason" class="form-control" type="text" placeholder="{% trans %}Motivo{% endtrans %}" aria-label="Search" required>
+        </div>
+
+        <div class="input-group mb-2 mr-sm-1">
+            <button type="submit" class="btn btn-primary mb-2">{% trans %}Enviar{% endtrans %}</button>
+        </div>
+
+
+    </form>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="page-loader" style="display: none">
+        <div class="loader">
+            <span>{% trans %}CARGANDO{% endtrans %}...</span>
+            <span class="dot dot_1"></span>
+            <span class="dot dot_2"></span>
+            <span class="dot dot_3"></span>
+            <span class="dot dot_4"></span>
+        </div>
+    </div>
+
+    <div class="example-wrapper">
+        <h1>{% trans %}Ficheros{% endtrans %}</h1>
+
+        <table class="table table-striped">
+            <tr>
+                {# sorting of properties based on query components #}
+                <th>{{ knp_pagination_sortable(pagination, 'NOMBRE FICHERO'|trans({nombre_fichero:'NOMBRE FICHERO'},'messages'), 'f.filename') }}</th>
+                <th{% if pagination.isSorted('f.date') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'FECHA'|trans({FECHA:'FECHA'},'messages'), 'f.date') }}</th>
+                <th{% if pagination.isSorted(['turbines']) %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'TURBINA'|trans({turbina:'TURBINA'},'messages'), ['f.turbines']) }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'TAMAÑO'|trans({tamano:'TAMAÑO'},'messages'), 'f.size') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'DESCARGAS'|trans({descargas:'DESCARGAS'},'messages'), 'f.downloads') }}</th>
+                <th scope="col"></th>
+            </tr>
+
+            {# table body #}
+            {% for article in pagination %}
+
+                {% set bytes = article.size %}
+                {% set kiloBytes = (bytes / 1024)|round(2) %}
+                {% set megaBytes = (kiloBytes / 1024)|round(2) %}
+
+                <tr {% if loop.index is odd %}class="color"{% endif %}>
+                    <td>{{ article.filename }}</td>
+                    <td>{{ article.date | date('d-m-Y') }}</td>
+                    <td>{{ article.turbines }}</td>
+                    <td>{{ megaBytes }} MB</td>
+                    <td>{{ article.downloads }}/{{ numDownloads }}</td>
+                    <td>
+                        {% if article.downloads < numDownloads %}
+                            <a href="#" data-id="{{ article.id }}"
+                               data-filename="{{ article.filename }}" class="download">
+                                <svg class="bi bi-cloud-download" width="1em" height="1em" viewBox="0 0 16 16"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.887 5.2l-.964-.165A2.5 2.5 0 103.5 10H6v1H3.5a3.5 3.5 0 11.59-6.95 5.002 5.002 0 119.804 1.98A2.501 2.501 0 0113.5 11H10v-1h3.5a1.5 1.5 0 00.237-2.981L12.7 6.854l.216-1.028a4 4 0 10-7.843-1.587l-.185.96z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M5 12.5a.5.5 0 01.707 0L8 14.793l2.293-2.293a.5.5 0 11.707.707l-2.646 2.646a.5.5 0 01-.708 0L5 13.207a.5.5 0 010-.707z"
+                                          clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd" d="M8 6a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 6z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    </div>
+
+    <input type="hidden" name="view" id="view" value="{{ view }}">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+
+    <script>
+        $(document).ready(function () {
+
+            $("#turbines").change(function () {
+                var turbineId = $('#turbines').val();
+                var view = $('#view').val();
+                window.location.href = '{{ path('user_mutriku') }}?turbine=' + turbineId + '&view=' + view;
+            });
+
+
+            $(".view").click(function () {
+                var turbineId = $('#turbines').val();
+                var view = $(this).data('date');
+                window.location.href = '{{ path('user_mutriku') }}?turbine=' + turbineId + '&view=' + view;
+            });
+
+
+            $('#reportrange').daterangepicker({
+                opens: 'right',
+                locale: {
+                    cancelLabel: '{% trans %}Vaciar{% endtrans %}',
+                    separator: "-",
+                    applyLabel: "{% trans %}Aplicar{% endtrans %}",
+                    fromLabel: "{% trans %}Desde{% endtrans %}",
+                    toLabel: "{% trans %}Hasta{% endtrans %}",
+                    customRangeLabel: "{% trans %}Personalizado{% endtrans %}",
+                    weekLabel: "S",
+                    daysOfWeek: [
+                        "{% trans %}Do{% endtrans %}",
+                        "{% trans %}Lu{% endtrans %}",
+                        "{% trans %}Ma{% endtrans %}",
+                        "{% trans %}Mi{% endtrans %}",
+                        "{% trans %}Ju{% endtrans %}",
+                        "{% trans %}Vi{% endtrans %}",
+                        "{% trans %}Sá{% endtrans %}"
+                    ],
+                    monthNames: [
+                        "{% trans %}Enero{% endtrans %}",
+                        "{% trans %}Febrero{% endtrans %}",
+                        "{% trans %}Marzo{% endtrans %}",
+                        "{% trans %}Abil{% endtrans %}",
+                        "{% trans %}Mayo{% endtrans %}",
+                        "{% trans %}Junio{% endtrans %}",
+                        "{% trans %}Julio{% endtrans %}",
+                        "{% trans %}Agosto{% endtrans %}",
+                        "{% trans %}Septiembre{% endtrans %}",
+                        "{% trans %}Octubre{% endtrans %}",
+                        "{% trans %}Noviembre{% endtrans %}",
+                        "{% trans %}Diciembre{% endtrans %}"
+                    ],
+                    firstDay: 1,
+
+                },
+                autoUpdateInput: false,
+                autoApply: true
+            }, function (start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                $('#selectedDates').text(start.format('YYYY-MM-DD') + ' a ' + end.format('YYYY-MM-DD'));
+                $('#selectedDates').show();
+                $('.glyphicon, .fa-caret-down').remove();
+            });
+
+
+            $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                $('#daterange').val(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
+            });
+
+            $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
+                $('#daterange').val('');
+            });
+
+
+        });
+    </script>
+
+    <script>
+        $(function () {
+
+            $(".download").click(function (event) {
+                event.preventDefault();
+                var id = $(this).data('id');
+                var filename = $(this).data('filename');
+
+                $('.page-loader').show();
+
+                $.ajax({
+                    url: '/user/dashboard/historicdownload/' + id,
+                    type: 'GET',
+                    dataType: 'binary',
+                    xhrFields: {
+                        'responseType': 'blob'
+                    },
+
+                }).done(function (data, textStatus, request) {
+
+
+                    var blob = new Blob([data]);
+
+                    // the file name from server.
+
+                    if (window.navigator && window.navigator.msSaveOrOpenBlob) { // for IE
+                        window.navigator.msSaveOrOpenBlob(blob, fileName);
+                    } else { // for others
+                        var url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+
+
+                    }
+
+                }).then(function () {
+
+                    $('.page-loader').hide();
+                    setTimeout(
+                        function () {
+                            //Refrescar la pagina
+                            window.location.href = '{{ path('mutriku_historics_downloader') }}';
+                        }, 5000);
+
+                })
+
+            });
+
+        });
+
+
+    </script>
+
+
+{% endblock %}

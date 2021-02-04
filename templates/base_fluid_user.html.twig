@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>{% block title %}{% trans %}Panel de control{% endtrans %}{% endblock %}</title>
+
+    {% block stylesheets %}
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+        <!-- Custom styles for this template -->
+        <link href="/assets/css/baseUser.css" rel="stylesheet">
+    {% endblock %} <!-- /.block Css -->
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top border-bottom box-shadow">
+    <a class="navbar-brand" href="{{ path('user_dashboard') }}"><img src="/assets/img/logo.png"></a>
+    <span>{% block navBarSectionTitle %}BIMEP{% endblock %}</span>
+
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        {% block nabBarLeftContent %}
+
+        {% endblock %}
+    </div>
+
+
+    {% block navBarRightDropdown %}
+        {% set currentPath = path(app.request.attributes.get('_route'),
+            app.request.attributes.get('_route_params')) %}
+
+        {%  if 'mutriku' in currentPath %}
+        <div class="iconos mb-2" style="">
+            <a href="{{ path('user_mutriku') }}"> <i class="fas fa-chart-line"></i></a>
+            <a href="{{ path('mutriku_historics_downloader') }}"> <i class="fas fa-list"></i></a>
+        </div>
+        {% endif %}
+
+        <ul class="navbar-nav justify-content-end">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <span>{{ user.name }}</span>
+                    <svg class="bi bi-three-dots-vertical" width="1em" height="1em" viewBox="0 0 16 16"
+                         fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M9.5 13a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm0-5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm0-5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="{{ path('user_mutriku') }}">
+                        <small>Mutiku</small>
+                    </a>
+                    <a class="dropdown-item" href="{{ path('user_bimep') }}">
+                        <small>BIMEP</small>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('user_dashboard_edit', {id: app.user.id}) }}">
+                        <small>{% trans %}Datos de usuario{% endtrans %}</small>
+                    </a>
+                    {% include '_locale_switcher.html.twig' %}
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLegal">
+                        <small>{% trans %}Aviso Legal{% endtrans %}</small>
+                    </a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalPrivacidad">
+                        <small>{% trans %}Política de Privacidad{% endtrans %}</small>
+                    </a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalCookies">
+                        <small>{% trans %}Política de Cookies{% endtrans %}</small>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('app_logout') }}">
+                        <small>{% trans %}Cerrar Sesión{% endtrans %}</small>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    {% endblock %}
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-left">
+        {% block underNavBar %}
+
+        {% endblock %}
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    {% for message in app.flashes('alertas') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% block content %}
+
+
+    {% endblock %} <!-- /.block content -->
+
+
+
+
+</div><!-- /.container -->
+
+{% include 'legal.html' %}
+
+{% block javascripts %}
+
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+            src="https://code.jquery.com/jquery-3.5.0.min.js"
+            integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="/assets/js/vendor/popper.min.js"></script>
+    <script src="/assets/js/vendor/holder.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script>
+        Holder.addTheme('thumb', {
+            bg: '#55595c',
+            fg: '#eceeef',
+            text: 'Thumbnail'
+        });
+    </script>
+
+{% endblock %} <!-- /.block Javascript -->
+
+
+</body>
+</html>

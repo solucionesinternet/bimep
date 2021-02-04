@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="97fb872d-a5ce-44bf-a275-739e8fd7c762" name="BIMEP" url="http://bimep.sauronz.com">
+        <fileTransfer rootFolder="/var/www/bimep.com" accessType="SFTP" host="185.118.57.3" port="27" sshConfigId="c10dfb7f-5e45-42b3-95df-6abd94cd227b" sshConfig="bimep@185.118.57.3:27 password">
+          <advancedOptions>
+            <advancedOptions maxConnections="3" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

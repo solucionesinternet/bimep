@@ -1,0 +1,44 @@
+{% trans_default_domain easyadmin_config('translation_domain') %}
+{% extends '@!EasyAdmin/default/layout.html.twig' %}
+
+{% block body_class 'page-blank' %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block content_title %}
+    Importar archivo
+{% endblock %}
+
+
+{% block main %}
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="field-group col-12">
+                <fieldset>
+                {% block entity_form %}
+                    {{ form(form) }}
+                {% endblock entity_form %}
+                </fieldset>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block body_javascript %}
+    {{ parent() }}
+
+    <script>
+        $(function() {
+
+            $('.form-group').addClass('col-4');
+
+        });
+
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,285 @@
+easy_admin:
+    site_name: '<img src="/assets/img/logo.png">'
+    formats:
+        date: 'd/m/Y'
+        time: 'H:i'
+        datetime: 'd/m/Y H:i:s'
+    user:
+        # Para obtener el nombre y appelidos llamo al getter
+        name_property_path: 'getNameSurnames'
+    design:
+        assets:
+            js:
+                - '/assets/js/custom.js'
+        menu:
+            - label: 'Gestión de usuarios'
+            - label: 'Usuarios'
+              icon: 'user'
+              children:
+                  - {entity: User, label: 'Listar usuarios', icon: 'user', default: true}
+                  - {entity: Profile, label: 'Perfiles', icon: 'th-list',}
+            - label: 'MUTRIKU'
+            - label: 'Turbinas'
+              children:
+                  - {entity: Turbines, label: 'Listar Turbinas', icon: 'th-list'}
+                  - {entity: Turbines, label: 'Alta Turbinas', icon: 'plus', params: {action: 'new'}}
+            - label: 'Inversores'
+              children:
+                  - {entity: Inverters, label: 'Listar Inversores', icon: 'th-list'}
+                  - {entity: Inverters, label: 'Alta Inversores', icon: 'plus', params: {action: 'new'}}
+            - {entity: HistoricSearches, label: 'Descargas por usuario', icon: 'download'}
+            - {entity: Queries, label: 'Descargar por archivo', icon: 'download'}
+            - label: 'BIMEP'
+            - label: 'Boyas'
+              children:
+                  - {entity: Buoys, label: 'Listar Boyas', icon: 'th-list'}
+                  - {entity: Buoys, label: 'Alta Boyas', icon: 'plus', params: {action: 'new'}}
+            - label: 'Categorías'
+              children:
+                  - {entity: FilesCategories, label: 'Listar Categorías', icon: 'th-list'}
+                  - {entity: FilesCategories, label: 'Alta Categorías', icon: 'plus', params: {action: 'new'}}
+            - {label: 'Importar', route: 'import', icon: 'upload'}
+            - {entity: BuoysFilesUsers, label: 'Nº Descargas por usuario', icon: 'download'}
+            - {entity: BuoysFiles, label: 'Nº Descargas', icon: 'download'}
+            - label: 'Idioma'
+            - { label: 'Español', url: '?_locale=es', rel: 'index', icon: 'flag' }
+            - { label: 'Euskera', url: '?_locale=eu', rel: 'index', icon: 'flag' }
+            - { label: 'Inglés', url: '?_locale=en', rel: 'index', icon: 'flag' }
+
+    entities:
+        Buoys:
+            class: App\Entity\Buoys
+            label: 'Boyas'
+            new:
+                title: 'Alta de Boyas'
+                fields:
+                    - {type: 'group', label: 'Datos de la Boya', icon: 'pencil'}
+                    - {property: 'name', label: 'Nombre de la boya:'}
+                    - {property: 'active', label: 'Activada'}
+                    - {property: 'hs', label: 'HS:'}
+                    - {property: 'tp', label: 'TP:'}
+                    - {property: 'direction', label: 'Dirección:'}
+                    - {property: 'speed', label: 'Velocidad:'}
+            edit:
+                title: 'Editar Boyas'
+                fields:
+                    - {property: 'name', label: 'Nombre de la boya:'}
+                    - {property: 'active', label: 'Activada'}
+                    - {property: 'hs', label: 'HS:'}
+                    - {property: 'tp', label: 'TP:'}
+                    - {property: 'direction', label: 'Dirección:'}
+                    - {property: 'speed', label: 'Velocidad:'}
+            list:
+                title: 'Listar Boyas'
+                fields:
+                    - {property: 'name', label: 'Nombre de la boya'}
+                    - {property: 'active', label: 'Activada'}
+                    - {property: 'hs', label: 'HS'}
+                    - {property: 'tp', label: 'TP'}
+                    - {property: 'direction', label: 'Dirección'}
+                    - {property: 'speed', label: 'Velocidad:'}
+
+        Turbines:
+            class: App\Entity\Turbines
+            label: 'Turbinas'
+            new:
+                title: 'Alta de turbinas'
+                fields:
+                    - {property: 'name', label: 'Nombre de la turbina'}
+                    - {property: 'position', label: 'Posición'}
+                    - {property: 'number', label: 'Nº de la turbina', type: 'number', help: 'Debe ser 1, 2, 3...'}
+                    - {property: 'active', label: 'Activa'}
+                    - {property: 'theMappings', label: 'Perfiles con permisos',  type_options: { class: 'App\Entity\Profile', expanded: true, multiple: true,  by_reference: false, mapped: false }}
+            edit:
+                title: 'Editar turbinas'
+                fields:
+                    - {property: 'name', label: 'Nombre de la turbina'}
+                    - {property: 'position', label: 'Posición'}
+                    - {property: 'number', label: 'Nº de la turbina', type: 'number', help: 'Debe ser 1, 2, 3...'}
+                    - {property: 'active', label: 'Activa'}
+                    - {property: 'theMappings', label: 'Perfiles con permisos',  type_options: { class: 'App\Entity\Profile', expanded: true, multiple: true,  by_reference: false, mapped: false, required: true }}
+            list:
+                title: 'Listado de turbinas'
+                fields:
+                    - {property: 'name', label: 'Nombre'}
+                    - {property: 'position', label: 'Posición'}
+                    - {property: 'active', label: 'Activa'}
+
+
+        Inverters:
+            class: App\Entity\Inverters
+            label: 'Inversores'
+            new:
+                title: 'Alta de inversor'
+                fields:
+                    - {property: 'name', label: 'Nombre del Inversor Regenerativo'}
+                    - {property: 'position', label: 'Posición'}
+                    - {property: 'number', label: 'Nº del Inversor Regenerativo', type: 'number', help: 'Debe ser 1, 2, 3...'}
+                    - {property: 'active', label: 'Activo'}
+                    - {property: 'theMappings', label: 'Perfiles con permisos',  type_options: { class: 'App\Entity\Profile', expanded: true, multiple: true,  by_reference: false, mapped: false }}
+            edit:
+                title: 'Editar inversor'
+                fields:
+                    - {property: 'name', label: 'Nombre del Inversor Regenerativo'}
+                    - {property: 'position', label: 'Posición'}
+                    - {property: 'number', label: 'Nº del Inversor Regenerativo', type: 'number', help: 'Debe ser 1, 2, 3...'}
+                    - {property: 'active', label: 'Activo'}
+                    - {property: 'theMappings', label: 'Perfiles con permisos',  type_options: { class: 'App\Entity\Profile', expanded: true, multiple: true,  by_reference: false, mapped: false, required: true }}
+            list:
+                title: 'Listado de inversores regenerativos'
+                fields:
+                    - {property: 'name', label: 'Nombre'}
+                    - {property: 'position', label: 'Posición'}
+                    - {property: 'active', label: 'Activa'}
+
+        FilesCategories:
+            class: App\Entity\FilesCategories
+            label: 'Categorías'
+            new:
+                title: 'Alta Categorías'
+                fields:
+                    - {type: 'group', label: 'Datos de la categoría', icon: 'pencil'}
+                    - {property: 'category', label: 'Nombre de la categoría'}
+            edit:
+                title: 'Editar Categoría'
+                fields:
+                    - {property: 'category', label: 'Nombre de la categoría'}
+            list:
+                title: 'Listar Categorías'
+                fields:
+                    - {property: 'category', label: 'Nombre de la categoría'}
+
+
+
+        User:
+            class: App\Entity\User
+            label: 'Usuarios'
+            new:
+                title: 'Alta de usuarios'
+                help: 'Rellene los siguientes campos para dar de alta un nuevo usuario.'
+                fields:
+                    - {type: 'group', label: 'Datos Personales', icon: 'pencil'}
+                    - {property: 'name_surnames', label: 'Nombre y Apellidos:'}
+                    - {property: 'telephone', label: 'Teléfono:'}
+                    - {property: 'email', label: 'Email:', type: 'email'}
+                    - {property: 'profile', label: 'Perfil:', type_options: { expanded: false, multiple: false, required: true }}
+                    - {property: 'particular', label: 'Soy particular'}
+                    - {type: 'group', css_class: 'group_company'}
+                    - {property: 'company', label: 'Empresa:'}
+                    - {property: 'address', label: 'Dirección:'}
+                    - {property: 'cif', label: 'C.I.F.'}
+                    - {type: 'group', label: 'Cambiar contraseña', icon: 'pencil'}
+                    - { property: 'password', type: 'repeated', type_options: { type: Symfony\Component\Form\Extension\Core\Type\PasswordType, invalid_message: 'Las dos contraseñas deben coincidir', first_options: { label: 'Contraseña:' }, second_options: { label: 'Confirmar Contraseña:' }, required: true } }
+            edit:
+                title: 'Alta de usuarios'
+                help: 'Rellene los siguientes campos para dar de alta un nuevo usuario.'
+                fields:
+                    - {type: 'group', label: 'Datos Personales', icon: 'pencil'}
+                    - {property: 'name_surnames', label: 'Nombre y Apellidos:'}
+                    - {property: 'telephone', label: 'Teléfono:'}
+                    - {property: 'email', label: 'Email:', type: 'email'}
+                    - {property: 'profile', label: 'Perfil:', type_options: { expanded: false, multiple: false, required: true }}
+                    - {property: 'particular', label: 'Soy un particular'}
+                    - {type: 'group', css_class: 'group_company'}
+                    - {property: 'company', label: 'Empresa:'}
+                    - {property: 'address', label: 'Dirección:'}
+                    - {property: 'cif', label: 'C.I.F.'}
+                    - {type: 'group', label: 'Cambiar contraseña', icon: 'pencil'}
+                    - { property: 'password', type: 'repeated', type_options: { type: Symfony\Component\Form\Extension\Core\Type\PasswordType, invalid_message: 'Las dos contraseñas deben coincidir', first_options: { label: 'Contraseña:' }, second_options: { label: 'Confirmar Contraseña:' }, required: true } }
+            list:
+                title: 'Listado de usuarios'
+                fields:
+                    - {property: 'name_surnames', label: 'Nombre y Apellidos'}
+                    - {property: 'profile', label: 'Cuenta'}
+                    - {property: 'created', label: 'Fecha de alta', format: 'd/m/Y'}
+                    - {property: 'num_access', label: 'Nº Accesos'}
+                    - {property: 'last_conection', label: 'Última conexión'}
+
+        Profile:
+            class: App\Entity\Profile
+            label: 'Perfiles'
+            new:
+                title: 'Alta de perfil'
+                fields:
+                    - {property: 'name', label: 'Nombre del perfil'}
+                    - {property: 'num_downloads', label: 'Nº de descargas', type: 'integer'}
+                    - {property: 'num_turbines_to_view', label: 'Nº de turbinas a visualizar', type: 'integer'}
+                    - {property: 'num_buoys_to_view', label: 'Nº de boyas a visualizar', type: 'integer'}
+                    - {property: 'num_inverters_to_view', label: 'Nº de inversores a visualizar', type: 'integer'}
+            edit:
+                title: 'Editar perfil'
+                fields:
+                    - {property: 'name', label: 'Nombre del perfil'}
+                    - {property: 'num_downloads', label: 'Nº de descargas', type: 'integer'}
+                    - {property: 'num_turbines_to_view', label: 'Nº de turbinas a visualizar', type: 'integer'}
+                    - {property: 'num_buoys_to_view', label: 'Nº de boyas a visualizar', type: 'integer'}
+                    - {property: 'num_inverters_to_view', label: 'Nº de inversores a visualizar', type: 'integer'}
+            show:
+                title: 'Editar perfil'
+                fields:
+                    - {property: 'name', label: 'Nombre del perfil'}
+                    - {property: 'num_downloads', label: 'Nº de descargas', type: 'integer'}
+                    - {property: 'num_turbines_to_view', label: 'Nº de turbinas a visualizar', type: 'integer'}
+                    - {property: 'num_buoys_to_view', label: 'Nº de boyas a visualizar', type: 'integer'}
+                    - {property: 'num_inverters_to_view', label: 'Nº de inversores a visualizar', type: 'integer'}
+            list:
+                title: 'Listado de Perfiles'
+                fields:
+                    - {property: 'name', label: 'Perfil'}
+                    - {property: 'num_downloads', label: 'Nº de descargas'}
+                    - {property: 'num_turbines_to_view', label: 'Nº de turbinas'}
+                    - {property: 'num_buoys_to_view', label: 'Nº de boyas'}
+                    - {property: 'num_inverters_to_view', label: 'Nº de inversores'}
+
+        HistoricSearches:
+            class: App\Entity\HistoricSearches
+            label: 'Descargas por usuario'
+            list:
+                title: 'Descargas por usuario'
+                actions: ['-new', '-edit', '-delete']
+                fields:
+                    - {property: 'user', label: 'Nombre y Apellidos', type: 'raw'}
+                    - {property: 'turbines', label: 'Turbina', type: 'raw'}
+                    - {property: 'created', label: 'Fecha', format: 'd/m/Y H:i'}
+                    - {property: 'init_date', label: 'Búsqueda inicio', format: 'd/m/Y'}
+                    - {property: 'end_date', label: 'Búsqueda fin', format: 'd/m/Y'}
+                    - {property: 'reason', label: 'Motivo'}
+
+        Queries:
+            class: App\Entity\Queries
+            label: 'Descargas por archivo'
+            list:
+                title: 'Descargas por archivo'
+                actions: ['-new', '-edit', '-delete']
+                fields:
+                    - {property: 'filename', label: 'Fichero', type: 'raw'}
+                    - {property: 'downloads', label: 'Nº de descargas', type: 'raw'}
+                    - {property: 'date', label: 'Fecha última descarga', format: 'd/m/Y H:i'}
+
+
+        BuoysFilesUsers:
+            class: App\Entity\BuoysFilesUsers
+            label: 'Nº Descargas por archivo'
+            list:
+                title: 'Nº Descargas por usuario'
+                actions: ['-new', '-edit', '-delete']
+                fields:
+                    - {property: 'user', label: 'Usuario', type: 'raw'}
+                    - {property: 'buoys_files', label: 'Fichero', type: 'raw'}
+                    - {property: 'downloads', label: 'Nº de descargas', type: 'raw'}
+                    - {property: 'modified', label: 'Fecha última descarga', format: 'd/m/Y H:i'}
+
+
+        BuoysFiles:
+            class: App\Entity\BuoysFiles
+            label: 'Nº Descargas'
+            list:
+                title: 'Nº Descargas por archivo'
+                actions: ['-new', '-edit', '-delete']
+                fields:
+                    - {property: 'filename', label: 'Fichero', type: 'raw'}
+                    - {property: 'downloads', label: 'Nº de descargas', type: 'raw'}
+                    - {property: 'modified', label: 'Fecha última descarga', format: 'd/m/Y H:i'}
+
+
+

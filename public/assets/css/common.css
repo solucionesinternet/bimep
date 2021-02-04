@@ -1,0 +1,161 @@
+.page-loader{ background: #f9f9f9 none repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9998;}
+.loader {
+    height: 8px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    top: 50%;
+    width: 44px;
+}
+.dot {
+    background: #ccc none repeat scroll 0 0;
+    border-radius: 50%;
+    display: inline-block;
+    height: 10px;
+    position: absolute;
+    width: 10px;
+}
+.dot_1 {
+    animation: 1.5s linear 0s normal none infinite running animateDot1;
+    background: #f26f29 none repeat scroll 0 0;
+    left: 12px;
+}.dot_2 {
+     animation: 1.5s linear 0.5s normal none infinite running animateDot2;
+     left: 24px;
+ }.dot_3 {
+      animation: 1.5s linear 0s normal none infinite running animateDot3;
+      left: 12px;
+  }.dot_4 {
+       animation: 1.5s linear 0.5s normal none infinite running animateDot4;
+       left: 24px;
+   }
+@keyframes animateDot1 {
+    0% {
+        transform: rotate(0deg) translateX(-12px);
+    }
+    25% {
+        transform: rotate(180deg) translateX(-12px);
+    }
+    75% {
+        transform: rotate(180deg) translateX(-12px);
+    }
+    100% {
+        transform: rotate(360deg) translateX(-12px);
+    }
+}
+@keyframes animateDot2 {
+    0% {
+        transform: rotate(0deg) translateX(-12px);
+    }
+    25% {
+        transform: rotate(-180deg) translateX(-12px);
+    }
+    75% {
+        transform: rotate(-180deg) translateX(-12px);
+    }
+    100% {
+        transform: rotate(-360deg) translateX(-12px);
+    }
+}
+@keyframes animateDot3 {
+    0% {
+        transform: rotate(0deg) translateX(12px);
+    }
+    25% {
+        transform: rotate(180deg) translateX(12px);
+    }
+    75% {
+        transform: rotate(180deg) translateX(12px);
+    }
+    100% {
+        transform: rotate(360deg) translateX(12px);
+    }
+}
+@keyframes animateDot4 {
+    0% {
+        transform: rotate(0deg) translateX(12px);
+    }
+    25% {
+        transform: rotate(-180deg) translateX(12px);
+    }
+    75% {
+        transform: rotate(-180deg) translateX(12px);
+    }
+    100% {
+        transform: rotate(-360deg) translateX(12px);
+    }
+}
+
+.container_charts {
+
+    padding-top: 70px;
+    width: 100%;
+
+}
+
+.container_charts .charts_content .charts_col_left {
+
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.container_charts .charts_content .col_chart .header_col {
+
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+
+}
+
+.container_charts .charts_content .col_chart .chart_content {
+
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom: 40px;
+
+}
+
+.container_charts .charts_content .col_chart .chart_content .chart_left {
+
+    width: 142px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.container_charts .charts_content .col_chart .chart_content .chart_right {
+
+    flex-grow: 1;
+    padding: 10px;
+
+}
+
+#downloadIcon {
+    position: absolute;
+    top: 90vh;
+    z-index: 9999;
+    right: 5vw;
+    background-color: #428bca;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #FFF;
+    border: 1px solid #357ebd;
+    font-size: 18px;
+    cursor: pointer;
+}

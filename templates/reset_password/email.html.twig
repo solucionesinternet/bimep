@@ -1,0 +1,11 @@
+<h1>{% trans %}Estimado usuario{% endtrans %}!</h1>
+
+<p>
+    {% trans %}Para reasignar su contraseña pulse{% endtrans %}
+    <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{% trans %}aquí{% endtrans %}</a>
+    {% trans %}Este enlace caduca en{% endtrans%} {{ tokenLifetime|date('g') }} {% trans %}horas{% endtrans %}.
+</p>
+
+<p>
+    Bimep
+</p>

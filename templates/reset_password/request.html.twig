@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}Recuperación de contraseña{% endtrans %}{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+
+     <!-- Favicons -->
+     <link rel="apple-touch-icon" href="/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+     <link rel="icon" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+     <link rel="icon" href="/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+     <link rel="manifest" href="/assets/img/favicons/manifest.json">
+     <link rel="mask-icon" href="/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+     <link rel="icon" href="/assets/img/favicons/favicon.ico">
+     <meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+     <meta name="theme-color" content="#563d7c">
+
+
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <!-- Custom styles for this template -->
+     <link href="/assets/css/login.css" rel="stylesheet">
+     <style>
+         .bd-placeholder-img {
+             font-size: 1.125rem;
+             text-anchor: middle;
+             -webkit-user-select: none;
+             -moz-user-select: none;
+             -ms-user-select: none;
+             user-select: none;
+         }
+
+         @media (min-width: 768px) {
+             .bd-placeholder-img-lg {
+                 font-size: 3.5rem;
+             }
+         }
+     </style>
+ {% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+
+
+    <div class="col-md-6 offset-md-3 caja-login">
+        <h1>{% trans %}Recuperación de contraseña{% endtrans %}</h1>
+    {{ form_start(requestForm) }}
+        {{ form_row(requestForm.email) }}
+        <div>
+            <small>
+                {% trans %}Introduzca su dirección de email y se le enviará un enlace para recuperar su contraseña{% endtrans %}.
+            </small>
+        </div>
+
+        <button class="btn btn-primary">{% trans %}Recuperación de contraseña{% endtrans %}</button>
+        <div class="float-right enlaces"><a href="{{ path('app_login') }}">{% trans %}Identificación{% endtrans %}</a>  |  <a href="/register">{% trans %}Crear usuario{% endtrans %}</a> </div>
+    {{ form_end(requestForm) }}
+
+    </div>
+{% endblock %}

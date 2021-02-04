@@ -1,0 +1,563 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="fechas">
+                <source>Fechas</source>
+            </trans-unit>
+            <trans-unit id="FECHA">
+                <source>FECHA</source>
+            </trans-unit>
+            <trans-unit id="fecha">
+                <source>Fecha</source>
+            </trans-unit>
+            <trans-unit id="buqueda_inicio">
+                <source>Búsqueda inicio</source>
+            </trans-unit>
+            <trans-unit id="busqueda_fin">
+                <source>Búsqueda fin</source>
+            </trans-unit>
+            <trans-unit id="motivo">
+                <source>Motivo</source>
+            </trans-unit>
+            <trans-unit id="fichero">
+                <source>Fichero</source>
+            </trans-unit>
+            <trans-unit id="fecha_ultima_descarga">
+                <source>Fecha última descarga</source>
+            </trans-unit>
+            <trans-unit id="ultimos_datos_de">
+                <source>Últimos datos de:</source>
+            </trans-unit>
+            <trans-unit id="presion">
+                <source>Presión</source>
+            </trans-unit>
+            <trans-unit id="corriente_activa">
+                <source>Corriente activa</source>
+            </trans-unit>
+            <trans-unit id="codigo_estado">
+                <source>Código estado</source>
+            </trans-unit>
+            <trans-unit id="potencia_media_1_minuto">
+                <source>Potencia media 1 min</source>
+            </trans-unit>
+            <trans-unit id="potencia_media_5_minuto">
+                <source>Potencia media 5 min</source>
+            </trans-unit>
+            <trans-unit id="posicion_valvula">
+                <source>Posición válvula</source>
+            </trans-unit>
+            <trans-unit id="good_bad">
+                <source>Bién / Mal</source>
+            </trans-unit>
+            <trans-unit id="velocidad_de_giro">
+                <source>Velocidad de giro</source>
+            </trans-unit>
+            <trans-unit id="tension">
+                <source>Tensión</source>
+            </trans-unit>
+            <trans-unit id="frecuencia">
+                <source>Frecuencia</source>
+            </trans-unit>
+            <trans-unit id="potencia_activa">
+                <source>Potencia activa</source>
+            </trans-unit>
+            <trans-unit id="presion_camara">
+                <source>Presión cámara</source>
+            </trans-unit>
+            <trans-unit id="vibraciones">
+                <source>Vibraciones</source>
+            </trans-unit>
+            <trans-unit id="caida_de_presion">
+                <source>Caída de presión</source>
+            </trans-unit>
+            <trans-unit id="presion_de_salida">
+                <source>Presión de salida</source>
+            </trans-unit>
+            <trans-unit id="temperatura_generador">
+                <source>Temperatura generador</source>
+            </trans-unit>
+            <trans-unit id="nivel_de_agua">
+                <source>Nivel de agua</source>
+            </trans-unit>
+            <trans-unit id="datos_de_usuario">
+                <source>Datos de usuario</source>
+            </trans-unit>
+            <trans-unit id="legal_advise">
+                <source>Aviso Legal</source>
+            </trans-unit>
+            <trans-unit id="politica_de_privacidad">
+                <source>Política de Privacidad</source>
+            </trans-unit>
+            <trans-unit id="cookie_policy">
+                <source>Política de Cookies</source>
+            </trans-unit>
+            <trans-unit id="cerrar_sesion">
+                <source>Cerrar Sesión</source>
+            </trans-unit>
+            <trans-unit id="panel_de_control">
+                <source>Panel de control</source>
+            </trans-unit>
+            <trans-unit id="gracias_por_registrarse_en_nuestro_sistema">
+                <source>Gracias por registrarse en nuestro sistema.</source>
+            </trans-unit>
+            <trans-unit id="para_acceder_a_la_pagina">
+                <source>Para acceder a la página de identificación pulse en el siguiente</source>
+            </trans-unit>
+            <trans-unit id="enlace">
+                <source>enlace</source>
+            </trans-unit>
+            <trans-unit id="un_saludo">
+                <source>Un saludo</source>
+            </trans-unit>
+            <trans-unit id="registro">
+                <source>Registro</source>
+             </trans-unit>
+            <trans-unit id="identificacion">
+                <source>Identificación</source>
+            </trans-unit>
+            <trans-unit id="recuperacion_de_contrasena">
+                <source>Recuperación de contraseña</source>
+            </trans-unit>
+            <trans-unit id="se_le_ha_enviado_un_email_recuperacion_clave">
+                <source>Se le ha enviado un email con un enlace para resetear la contraseña de acceso. Este enlace caducara en </source>
+            </trans-unit>
+            <trans-unit id="horas">
+                <source>horas</source>
+            </trans-unit>
+            <trans-unit id="si_no_recibe_este_email">
+                <source>Si no recibe este email compruebe su bandeja de spam o vuelva a</source>
+            </trans-unit>
+            <trans-unit id="solicitarlo_de_nuevo">
+                <source>solicitarlo de nuevo</source>
+            </trans-unit>
+            <trans-unit id="volver_a_la_pagina_de">
+                <source>Volver a la página de</source>
+            </trans-unit>
+            <trans-unit id="estimado_usuario">
+                <source>Estimado usuario</source>
+            </trans-unit>
+            <trans-unit id="para_reasignar_contrasena">
+                <source>Para reasignar su contraseña pulse</source>
+            </trans-unit>
+            <trans-unit id="aqui">
+                <source>aquí</source>
+            </trans-unit>
+            <trans-unit id="este_enlace_caduca_en">
+                <source>Este enlace caduca en</source>
+            </trans-unit>
+            <trans-unit id="introduzca_email_contraena">
+                <source>Introduzca su dirección de email y se le enviará un enlace para recuperar su contraseña</source>
+            </trans-unit>
+            <trans-unit id="crear_usuario">
+                <source>Crear usuario</source>
+            </trans-unit>
+            <trans-unit id="contraena">
+                <source>contraseña</source>
+            </trans-unit>
+            <trans-unit id="cargando">
+                <source>CARGANDO</source>
+            </trans-unit>
+            <trans-unit id="dicgeros">
+                <source>Ficheros</source>
+            </trans-unit>
+            <trans-unit id="bienvenido">
+                <source>Bienvenido</source>
+            </trans-unit>
+            <trans-unit id="enviar">
+                <source>Enviar</source>
+            </trans-unit>
+            <trans-unit id="grafica">
+                <source>Gráfica</source>
+            </trans-unit>
+            <trans-unit id="historico">
+                <source>Histórico</source>
+            </trans-unit>
+            <trans-unit id="no_hay_datos_para_esta_turbina">
+                <source>NO HAY DATOS PARA ESTA TURBINA Y PERIODO</source>
+            </trans-unit>
+            <trans-unit id="dia">
+                <source>Día</source>
+            </trans-unit>
+            <trans-unit id="mes">
+                <source>Mes</source>
+            </trans-unit>
+            <trans-unit id="ano">
+                <source>Año</source>
+            </trans-unit>
+            <trans-unit id="vaciar">
+                <source>Vaciar</source>
+            </trans-unit>
+            <trans-unit id="aplicar">
+                <source>Aplicar</source>
+            </trans-unit>
+            <trans-unit id="desde">
+                <source>Desde</source>
+            </trans-unit>
+            <trans-unit id="hasta">
+                <source>Hasta</source>
+            </trans-unit>
+            <trans-unit id="personalizado">
+                <source>Personalizado</source>
+            </trans-unit>
+            <trans-unit id="Do">
+                <source>Do</source>
+            </trans-unit>
+            <trans-unit id="Lu">
+                <source>Lu</source>
+            </trans-unit>
+            <trans-unit id="Ma">
+                <source>Ma</source>
+            </trans-unit>
+            <trans-unit id="Mi">
+                <source>Mi</source>
+            </trans-unit>
+            <trans-unit id="Ju">
+                <source>Ju</source>
+            </trans-unit>
+            <trans-unit id="Vi">
+                <source>Vi</source>
+            </trans-unit>
+            <trans-unit id="Sa">
+                <source>Sa</source>
+            </trans-unit>
+            <trans-unit id="Enero">
+                <source>Enero</source>
+            </trans-unit>
+            <trans-unit id="Febrero">
+                <source>Febrero</source>
+            </trans-unit>
+            <trans-unit id="Marzo">
+                <source>Marzo</source>
+            </trans-unit>
+            <trans-unit id="Abil">
+                <source>Abil</source>
+            </trans-unit>
+            <trans-unit id="Mayo">
+                <source>Mayo</source>
+            </trans-unit>
+            <trans-unit id="Junio">
+                <source>Junio</source>
+            </trans-unit>
+            <trans-unit id="Julio">
+                <source>Julio</source>
+            </trans-unit>
+            <trans-unit id="Agosto">
+                <source>Agosto</source>
+            </trans-unit>
+            <trans-unit id="Septiembre">
+                <source>Septiembre</source>
+            </trans-unit>
+            <trans-unit id="Octubre">
+                <source>Octubre</source>
+            </trans-unit>
+            <trans-unit id="Noviembre">
+                <source>Noviembre</source>
+            </trans-unit>
+            <trans-unit id="Diciembre">
+                <source>Diciembre</source>
+            </trans-unit>
+            <trans-unit id="presion_media">
+                <source>Presión Media</source>
+            </trans-unit>
+            <trans-unit id="media">
+                <source>MEDIA</source>
+            </trans-unit>
+            <trans-unit id="nombre_fichero">
+                <source>NOMBRE FICHERO</source>
+            </trans-unit>
+            <trans-unit id="nombre_fichero_minusculas">
+                <source>Nombre Fichero</source>
+            </trans-unit>
+            <trans-unit id="turbina">
+                <source>TURBINA</source>
+            </trans-unit>
+            <trans-unit id="turbina_minusculas">
+                <source>Turbina</source>
+            </trans-unit>
+            <trans-unit id="tamano">
+                <source>TAMAÑO</source>
+            </trans-unit>
+            <trans-unit id="descargas">
+                <source>DESCARGAS</source>
+            </trans-unit>
+            <trans-unit id="cerrar">
+                <source>Cerrar</source>
+            </trans-unit>
+            <trans-unit id="listado_de_descargas">
+                <source>Listado de decargas</source>
+            </trans-unit>
+            <trans-unit id="gestion_de_usuarios">
+                <source>Gestión de usuarios</source>
+            </trans-unit>
+            <trans-unit id="usuarios">
+                <source>Usuarios</source>
+            </trans-unit>
+            <trans-unit id="usuario">
+                <source>Usuario</source>
+            </trans-unit>
+            <trans-unit id="listar_usuarios">
+                <source>Listar usuarios</source>
+            </trans-unit>
+            <trans-unit id="perfiles">
+                <source>Perfiles</source>
+            </trans-unit>
+            <trans-unit id="turbines">
+                <source>Turbinas</source>
+            </trans-unit>
+            <trans-unit id="listar_turbinas">
+                <source>Listar Turbinas</source>
+            </trans-unit>
+            <trans-unit id="alta_turbinas">
+                <source>Alta Turbinas</source>
+            </trans-unit>
+            <trans-unit id="descargas_por_usuario">
+                <source>Descargas por usuario</source>
+            </trans-unit>
+            <trans-unit id="descargas_por_archivo">
+                <source>Descargar por archivo</source>
+            </trans-unit>
+            <trans-unit id="boyas">
+                <source>Boyas</source>
+            </trans-unit>
+            <trans-unit id="listar_boyas">
+                <source>Listar Boyas</source>
+            </trans-unit>
+            <trans-unit id="alta_boyas">
+                <source>Alta Boyas</source>
+            </trans-unit>
+            <trans-unit id="categoria">
+                <source>Categoría</source>
+            </trans-unit>
+            <trans-unit id="categorias">
+                <source>Categorías</source>
+            </trans-unit>
+            <trans-unit id="listar_categorias">
+                <source>Listar Categorías</source>
+            </trans-unit>
+            <trans-unit id="alta_categorias">
+                <source>Alta Categorías</source>
+            </trans-unit>
+            <trans-unit id="importar">
+                <source>Importar</source>
+            </trans-unit>
+            <trans-unit id="num_descargas_usuario">
+                <source>Nº Descargas por usuario</source>
+            </trans-unit>
+            <trans-unit id="num_descargas">
+                <source>Nº Descargas</source>
+            </trans-unit>
+            <trans-unit id="alta_de_boyas">
+                <source>Alta de Boyas</source>
+            </trans-unit>
+            <trans-unit id="datos_de_la_boya">
+                <source>Datos de la Boya</source>
+            </trans-unit>
+            <trans-unit id="nombre_de_la_boya">
+                <source>Nombre de la boya:</source>
+            </trans-unit>
+            <trans-unit id="activada">
+                <source>Activada</source>
+            </trans-unit>
+            <trans-unit id="direccion">
+                <source>Dirección:</source>
+            </trans-unit>
+            <trans-unit id="velocidad">
+                <source>Velocidad:</source>
+            </trans-unit>
+            <trans-unit id="nombre_de_la_boya_sin_dospuntos">
+                <source>Nombre de la boya</source>
+            </trans-unit>
+            <trans-unit id="alta_de_turbinas">
+                <source>Alta de turbinas</source>
+            </trans-unit>
+            <trans-unit id="nombre_de_la_turbina">
+                <source>Nombre de la turbina</source>
+            </trans-unit>
+            <trans-unit id="posicion">
+                <source>Posición</source>
+            </trans-unit>
+            <trans-unit id="num_turbina">
+                <source>Nº de la turbina</source>
+            </trans-unit>
+            <trans-unit id="activa">
+                <source>Activa</source>
+            </trans-unit>
+            <trans-unit id="must be">
+                <source>Debe ser 1, 2, 3...</source>
+            </trans-unit>
+            <trans-unit id="perfines_con_permisos">
+                <source>Perfiles con permisos</source>
+            </trans-unit>
+            <trans-unit id="editar_turbinas">
+                <source>Editar turbinas</source>
+            </trans-unit>
+            <trans-unit id="listado_de_turbinas">
+                <source>Listado de turbinas</source>
+            </trans-unit>
+            <trans-unit id="nombre">
+                <source>Nombre</source>
+            </trans-unit>
+            <trans-unit id="datos_categoria">
+                <source>Datos de la categoría</source>
+            </trans-unit>
+            <trans-unit id="nombre_categoria">
+                <source>Nombre de la categoría</source>
+            </trans-unit>
+            <trans-unit id="editar_categoria">
+                <source>Editar Categoría</source>
+            </trans-unit>
+            <trans-unit id="alta_de_usuarios">
+                <source>Alta de usuarios</source>
+            </trans-unit>
+            <trans-unit id="rellene_los_siguientes">
+                <source>Rellene los siguientes campos para dar de alta un nuevo usuario.</source>
+            </trans-unit>
+            <trans-unit id="datos_Personales">
+                <source>Datos Personales</source>
+            </trans-unit>
+            <trans-unit id="datos_personales">
+                <source>Datos personales</source>
+            </trans-unit>
+            <trans-unit id="datos_empresa">
+                <source>Datos empresa</source>
+            </trans-unit>
+            <trans-unit id="empresa">
+                <source>Empresa:</source>
+            </trans-unit>
+            <trans-unit id="nombre_y_apellido">
+                <source>Nombre y Apellidos:</source>
+            </trans-unit>
+            <trans-unit id="telefono">
+                <source>Teléfono:</source>
+            </trans-unit>
+            <trans-unit id="perfil">
+                <source>Perfil</source>
+            </trans-unit>
+            <trans-unit id="perfil:">
+                <source>Perfil:</source>
+            </trans-unit>
+            <trans-unit id="soy_particular">
+                <source>Soy un particular</source>
+            </trans-unit>
+            <trans-unit id="direccion_postal">
+                <source>Dirección:</source>
+            </trans-unit>
+            <trans-unit id="cif">
+                <source>C.I.F.</source>
+            </trans-unit>
+            <trans-unit id="Cif">
+                <source>Cif:</source>
+            </trans-unit>
+            <trans-unit id="cambiar_contrasena">
+                <source>Cambiar contraseña</source>
+            </trans-unit>
+            <trans-unit id="contrasena">
+                <source>Contraseña:</source>
+            </trans-unit>
+            <trans-unit id="confirmar_contrasena">
+                <source>Confirmar Contraseña:</source>
+            </trans-unit>
+            <trans-unit id="passwords_must">
+                <source>Las dos contraseñas deben coincidir</source>
+            </trans-unit>
+            <trans-unit id="listado_de_usuarios">
+                <source>Listado de usuarios</source>
+            </trans-unit>
+            <trans-unit id="nombre_y_apellidos">
+                <source>Nombre y Apellidos</source>
+            </trans-unit>
+            <trans-unit id="cuenta">
+                <source>Cuenta</source>
+            </trans-unit>
+            <trans-unit id="fecha_de_alta">
+                <source>Fecha de alta</source>
+            </trans-unit>
+            <trans-unit id="numero_de_accesos">
+                <source>Nº Accesos</source>
+            </trans-unit>
+            <trans-unit id="ultima_conexion">
+                <source>Última conexión</source>
+            </trans-unit>
+            <trans-unit id="alta_de_perfil">
+                <source>Alta de perfil</source>
+            </trans-unit>
+            <trans-unit id="nombre_del_perfil">
+                <source>Nombre del perfil</source>
+            </trans-unit>
+            <trans-unit id="numero_de_descargar">
+                <source>Nº de descargas</source>
+            </trans-unit>
+            <trans-unit id="editar_perfil">
+                <source>Editar perfil</source>
+            </trans-unit>
+            <trans-unit id="listado_de_perfiles">
+                <source>Listado de Perfiles</source>
+            </trans-unit>
+            <trans-unit id="numero_descargas_por_archivo">
+                <source>Nº Descargas por archivo</source>
+            </trans-unit>
+            <trans-unit id="numero_turbinas_ver">
+                <source>Nº de turbinas a visualizar</source>
+            </trans-unit>
+            <trans-unit id="numero_turbinas">
+                <source>Nº de turbinas</source>
+            </trans-unit>
+            <trans-unit id="numero_boyas_ver">
+                <source>Nº de boyas a visualizar</source>
+            </trans-unit>
+            <trans-unit id="numero_boyas">
+                <source>Nº de boyas</source>
+            </trans-unit>
+            <trans-unit id="numero_inversores_ver">
+                <source>Nº de inversores a visualizar</source>
+            </trans-unit>
+            <trans-unit id="numero_inversores">
+                <source>Nº de inversores</source>
+            </trans-unit>
+            <trans-unit id="inversores">
+                <source>Inversores</source>
+            </trans-unit>
+            <trans-unit id="listar_inversores">
+                <source>Listar Inversores</source>
+            </trans-unit>
+            <trans-unit id="alta_inversores">
+                <source>Alta Inversores</source>
+            </trans-unit>
+            <trans-unit id="alta_de_inversores">
+                <source>Alta de inversor</source>
+            </trans-unit>
+            <trans-unit id="nombre_inversor">
+                <source>Nombre del Inversor Regenerativo</source>
+            </trans-unit>
+            <trans-unit id="numero_inveersor">
+                <source>Nº del Inversor Regenerativo</source>
+            </trans-unit>
+            <trans-unit id="activo">
+                <source>Activo</source>
+            </trans-unit>
+             <trans-unit id="Guardar">
+                <source>Guardar</source>
+            </trans-unit>
+             <trans-unit id="repetir_contrasena">
+                <source>Repetir contraseña:</source>
+            </trans-unit>
+             <trans-unit id="acepto_condiciones">
+                <source>Acepto las Política de Cookies ,  Aviso legal  y  Política de privacidad</source>
+            </trans-unit>
+             <trans-unit id="registrarse">
+                <source>Registrarse</source>
+            </trans-unit>
+             <trans-unit id="fecha_inicio">
+                <source>Fecha Inicio</source>
+            </trans-unit>
+             <trans-unit id="fecha_fin">
+                <source>Fecha Fin</source>
+            </trans-unit>
+             <trans-unit id="magnitud_actual">
+                <source>Magnitud Actual</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

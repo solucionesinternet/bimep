@@ -1,0 +1,139 @@
+{% extends 'base_user.html.twig' %}
+
+{% block navBarSectionTitle %}<a href="{{ path('user_bimep') }}">BIMEP</a>{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+    <link href="/assets/css/common.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="example-wrapper">
+
+        <div class="page-loader" style="display: none">
+            <div class="loader">
+                <span>{% trans %}CARGANDO{% endtrans %}...</span>
+                <span class="dot dot_1"></span>
+                <span class="dot dot_2"></span>
+                <span class="dot dot_3"></span>
+                <span class="dot dot_4"></span>
+            </div>
+        </div>
+
+        <h1>{% trans %}Ficheros{% endtrans %}</h1>
+
+        <table class="table table-striped">
+            <tr>
+                {# sorting of properties based on query components #}
+                <th>{{ knp_pagination_sortable(pagination, 'Nombre Fichero'|trans({nombre_fichero:'Nombre Fichero'},'messages'), 'f.filename') }}</th>
+                <th{% if pagination.isSorted('f.date_start') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Fecha Inicio'|trans({fecha_inicio:'Fecha Inicio'},'messages'), 'f.date_start') }}</th>
+                <th{% if pagination.isSorted(['date_end']) %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Fecha Fin'|trans({fecha_fin:'Fecha Fin'},'messages'), ['f.date_end']) }}</th>
+                <th{% if pagination.isSorted(['date_end']) %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Categoría'|trans({categoria:'Categoría'},'messages'), ['f.files_categories	']) }}</th>
+                <th scope="col"></th>
+            </tr>
+
+            {# table body #}
+            {% for article in pagination %}
+                <tr {% if loop.index is odd %}class="color"{% endif %}>
+                    <td>{{ article.filename }}</td>
+                    <td>{{ article.date_start | date('d-m-Y') }}</td>
+                    <td>{{ article.date_end | date('d-m-Y') }}</td>
+                    <td>{{ article.category }}</td>
+                    <td>
+                        {% if article.numDownloads < numDownloads %}
+                            <a href="#" data-id="{{ article.id }}"
+                               data-filename="{{ article.filename }}" class="download">
+                                <svg class="bi bi-cloud-download" width="1em" height="1em" viewBox="0 0 16 16"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.887 5.2l-.964-.165A2.5 2.5 0 103.5 10H6v1H3.5a3.5 3.5 0 11.59-6.95 5.002 5.002 0 119.804 1.98A2.501 2.501 0 0113.5 11H10v-1h3.5a1.5 1.5 0 00.237-2.981L12.7 6.854l.216-1.028a4 4 0 10-7.843-1.587l-.185.96z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M5 12.5a.5.5 0 01.707 0L8 14.793l2.293-2.293a.5.5 0 11.707.707l-2.646 2.646a.5.5 0 01-.708 0L5 13.207a.5.5 0 010-.707z"
+                                          clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd" d="M8 6a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 6z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+
+            $(".download").click(function (event) {
+                event.preventDefault();
+                var id = $(this).data('id');
+                var filename = $(this).data('filename');
+
+                url: '/user/dashboard/bimep/download/' + id,
+
+                    $('.page-loader').show();
+
+                    $.ajax({
+                        url: '/user/dashboard/bimep/download/' + id,
+                        type: 'GET',
+                        dataType: 'binary',
+                        xhrFields: {
+                            'responseType': 'blob'
+                        },
+
+                    }).done(function (data, textStatus, request) {
+
+                        var blob = new Blob([data]);
+
+                        // the file name from server.
+
+                        if (window.navigator && window.navigator.msSaveOrOpenBlob) { // for IE
+                            window.navigator.msSaveOrOpenBlob(blob, fileName);
+                        } else { // for others
+                            var url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.style.display = 'none';
+                            a.href = url;
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                            window.URL.revokeObjectURL(url);
+
+
+                        }
+
+                    }).then(function () {
+
+                        $('.page-loader').hide();
+                        setTimeout(
+                            function () {
+                                //Refrescar la pagina
+                                window.location.href = '{{ path('user_bimep') }}';
+                            }, 5000);
+
+                    })
+
+            });
+
+        });
+
+
+    </script>
+{% endblock %}
+

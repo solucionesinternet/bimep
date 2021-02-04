@@ -1,0 +1,71 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}{% trans %}identificacion{% endtrans %}!{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+
+     <!-- Favicons -->
+     <link rel="apple-touch-icon" href="/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+     <link rel="icon" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+     <link rel="icon" href="/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+     <link rel="manifest" href="/assets/img/favicons/manifest.json">
+     <link rel="mask-icon" href="/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+     <link rel="icon" href="/assets/img/favicons/favicon.ico">
+     <meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+     <meta name="theme-color" content="#563d7c">
+
+
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <!-- Custom styles for this template -->
+     <link href="/assets/css/login.css" rel="stylesheet">
+ {% endblock %}
+
+{% block body %}
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <div class="col-12 col-sm-12 col-md-4 offset-md-4 caja-login">
+
+            <form class="form-signin">
+                <img class="mb-4" src="/assets/img/logo.png" alt="BIMEP">
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input type="email" id="inputEmail" class="form-control" value="{{ last_username }}" name="email"
+                       placeholder="email" required autofocus>
+                <label for="inputPassword" class="sr-only">{% trans %}contraseña{% endtrans %}</label>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="{% trans %}contraseña{% endtrans %}"
+                       required>
+                <button class="btn btn-lg btn-primary" type="submit">{% trans %}Identificacion{% endtrans %}</button>
+                <hr>
+                <div class="enlaces">
+                <a href="/register">{% trans %}Crear usuario{%  endtrans %}</a>  <a href="/reset-password">{% trans %}Recuperación de contraseña{% endtrans %}</a>
+                </div>
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}">
+
+            </form>
+
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-4 offset-md-4 legal">
+            <a href="#" data-toggle="modal" data-target="#modalCookies">{% trans %}Política de Cookies{% endtrans %}</a>  <a href="#" data-toggle="modal" data-target="#modalLegal">{% trans %}Aviso Legal{% endtrans %}</a>  <a href="#" data-toggle="modal" data-target="#modalPrivacidad">{% trans %}Política de Privacidad{% endtrans %}</a>
+        </div>
+        <div class="col-12 col-sm-12 col-md-4 offset-md-4 legal">
+            <a href="?_locale=es" >{% trans %}Español{% endtrans %}</a>  <a href="?_locale=eu" >{% trans %}Euskera{% endtrans %}</a>  <a href="?_locale=en" >{% trans %}Inglés{% endtrans %}</a>
+        </div>
+        {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
+        #}
+
+    </form>
+{% endblock %}
