@@ -91,32 +91,32 @@ class User implements UserInterface
     private $buoys_files_users;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\HistoricSearches", mappedBy="historic_searches")
+     * @ORM\OneToMany(targetEntity="App\Entity\HistoricSearches", mappedBy="user")
      */
     private $historic_searches;
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\InvertersHistoricSearches", mappedBy="inverters_historic_searches")
+     * @ORM\OneToMany(targetEntity="App\Entity\InvertersHistoricSearches", mappedBy="user")
      */
     private $inverters_historic_searches;
 
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Queries", mappedBy="queries")
+     * @ORM\OneToMany(targetEntity="App\Entity\Queries", mappedBy="user")
      */
     private $queries;
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\InvertersQueries", mappedBy="inverters_queries")
+     * @ORM\OneToMany(targetEntity="App\Entity\InvertersQueries", mappedBy="user")
      */
     private $inverters_queries;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profile", inversedBy="profile")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profile", inversedBy="user")
      */
     private $profile;
 

@@ -47,16 +47,16 @@ class Queries
     private $active;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Turbines", inversedBy="turbines", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Turbines", inversedBy="queries", cascade={"persist"})
      */
     private $turbines;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="user", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="queries", cascade={"persist"})
      */
     private $user;
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\HistoricSearches", inversedBy="historic_search", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\HistoricSearches", inversedBy="queries", cascade={"persist"})
      */
     private $historic_search;
 

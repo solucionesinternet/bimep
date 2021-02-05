@@ -49,14 +49,14 @@ class InvertersHistoricSearches
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="user", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="inverters_historic_searches", cascade={"persist"})
      */
     private $user;
 
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\InvertersQueries", mappedBy="inverters_queries")
+     * @ORM\OneToMany(targetEntity="App\Entity\InvertersQueries", mappedBy="inverters_historic_search")
      */
     private $inverters_queries;
 

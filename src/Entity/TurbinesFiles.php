@@ -37,7 +37,7 @@ class TurbinesFiles
     private $created;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Turbines", inversedBy="turbines")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Turbines", inversedBy="turbines_files")
      */
     private $turbines;
 

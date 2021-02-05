@@ -44,12 +44,12 @@ class HistoricSearches
      */
     private $turbines;
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="user", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="historic_searches", cascade={"persist"})
      */
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Queries", mappedBy="queries")
+     * @ORM\OneToMany(targetEntity="App\Entity\Queries", mappedBy="historic_search")
      */
     private $queries;
 

@@ -32,7 +32,7 @@ class FilesCategories
     private $modified;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\BuoysFiles", mappedBy="buoys_files")
+     * @ORM\OneToMany(targetEntity="App\Entity\BuoysFiles", mappedBy="files_categories")
      */
     private $buoys_files;
 
@@ -86,6 +86,22 @@ class FilesCategories
         $this->modified = $modified;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBuoysFiles()
+    {
+        return $this->buoys_files;
+    }
+
+    /**
+     * @param mixed $buoys_files
+     */
+    public function setBuoysFiles($buoys_files): void
+    {
+        $this->buoys_files = $buoys_files;
     }
 
 

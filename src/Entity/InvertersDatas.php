@@ -104,7 +104,7 @@ class InvertersDatas
     private $RoomTemperature;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Inverters", inversedBy="inverters")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Inverters", inversedBy="inverters_datas")
      */
     private $inverters;
 

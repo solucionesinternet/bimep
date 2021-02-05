@@ -43,23 +43,23 @@ class Turbines
     private $created;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\HistoricSearches", mappedBy="turbines")
+     * @ORM\OneToMany(targetEntity="App\Entity\HistoricSearches", mappedBy="turbines", cascade="remove")
      */
     private $turbines;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Queries", mappedBy="turbines")
+     * @ORM\OneToMany(targetEntity="App\Entity\Queries", mappedBy="turbines", cascade="remove")
      */
     private $queries;
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\TurbinesFiles", mappedBy="turbines")
+     * @ORM\OneToMany(targetEntity="App\Entity\TurbinesFiles", mappedBy="turbines", cascade="remove")
      */
     private $turbines_files;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\TurbinesDatas", mappedBy="turbines")
+     * @ORM\OneToMany(targetEntity="App\Entity\TurbinesDatas", mappedBy="turbines", cascade="remove")
      */
     private $turbines_datas;
 

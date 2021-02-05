@@ -49,20 +49,20 @@ class InvertersQueries
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Inverters", inversedBy="inverters", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Inverters", inversedBy="inverters_queries", cascade={"persist"})
      */
     private $inverters;
 
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="user", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="inverters_queries", cascade={"persist"})
      */
     private $user;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\InvertersHistoricSearches", inversedBy="inverters_historic_search", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\InvertersHistoricSearches", inversedBy="inverters_queries", cascade={"persist"})
      */
     private $inverters_historic_search;
 

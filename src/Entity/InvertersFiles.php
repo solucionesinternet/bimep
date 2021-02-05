@@ -39,7 +39,7 @@ class InvertersFiles
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Inverters", inversedBy="inverters")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Inverters", inversedBy="inverters_files")
      */
     private $inverters;
 

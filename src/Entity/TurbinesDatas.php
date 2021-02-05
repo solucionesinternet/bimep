@@ -171,7 +171,7 @@ class TurbinesDatas
     private $created;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Turbines", inversedBy="turbines")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Turbines", inversedBy="turbines_datas")
      */
     private $turbines;
 
