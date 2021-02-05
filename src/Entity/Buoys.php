@@ -51,6 +51,11 @@ class Buoys
      */
     private $modified;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\BuoysFiles", mappedBy="buoys", cascade="remove")
+     */
+    private $buoys_files;
+
 
 
     /**
