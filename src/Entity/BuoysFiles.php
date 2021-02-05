@@ -59,18 +59,18 @@ class BuoysFiles
     private $modified;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Buoys", inversedBy="buoys")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Buoys", inversedBy="buoys_files")
      */
     private $buoys;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\FilesCategories", inversedBy="files_categories")
+     * @ORM\ManyToOne(targetEntity="App\Entity\FilesCategories", inversedBy="buoys_files")
      */
     private $files_categories;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\BuoysFilesUsers", mappedBy="buoys_files_users")
+     * @ORM\OneToMany(targetEntity="App\Entity\BuoysFilesUsers", mappedBy="buoys_files")
      */
     private $buoys_files_users;
 
