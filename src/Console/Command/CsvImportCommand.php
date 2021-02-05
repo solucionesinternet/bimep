@@ -107,7 +107,6 @@ class CsvImportCommand extends Command
                         $turbines->setCreated(new \DateTime());
                         $turbines->setNumber($turbineNumber);
                         $this->em->persist($turbines);
-                        //dump($turbines);
                         $this->em->flush();
 
                         // Obtengo el perfil tecnologo
@@ -115,6 +114,8 @@ class CsvImportCommand extends Command
                         $turbinesToProfile = new TurbineToProfile();
                         $turbinesToProfile->setTurbines($turbines);
                         $turbinesToProfile->setProfile($profile);
+                        $this->em->persist($turbinesToProfile);
+                        $this->em->flush();
                     }
 
 
@@ -135,6 +136,11 @@ class CsvImportCommand extends Command
                     $contador = 0;
                     $linecount = exec('perl -pe \'s/\r\n|\n|\r/\n/g\' ' . escapeshellarg($absoluteFilePath) . ' | wc -l');
                     //die('lineas: '.$linecount);
+                    // Cmprobamos si esta vacio y si lo está eliminamos el archivo y la palmamos
+                    if($linecount < 3){
+                        unlink($absoluteFilePath);
+                        die('El archivo esta vacio, por lo cual procedemos a eliminarlo y cortar el proceso de importación.');
+                    }
                     if (($fp = fopen($absoluteFilePath, "r")) !== FALSE) {
                         while (($row = fgetcsv($fp, $linecount, "\t")) !== FALSE) {
                             if ($contador != 0) {
