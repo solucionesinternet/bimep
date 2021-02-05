@@ -41,7 +41,7 @@ class UserMutrikuController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         // Obtenermos el listado de turbinas activas
-        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('position' => 'ASC'));
+        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
         $turbine = end($turbines);
 
 
@@ -377,7 +377,8 @@ class UserMutrikuController extends AbstractController
         $zip->open($zipName, ZipArchive::CREATE);
         $filesPath = $this->getParameter('turbines_data_historic_folder');
         foreach ($filesToCompres as $file) {
-            $zip->addFromString(basename($filesPath . $file), file_get_contents($filesPath . $file));
+            $completeTurbineNumber = substr($file, 0, 3);
+            $zip->addFromString(basename($filesPath . $completeTurbineNumber . "/". $file), file_get_contents($filesPath . $file));
         }
         $zip->close();
         $response = new Response(file_get_contents($zipName));
