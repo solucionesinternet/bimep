@@ -377,6 +377,7 @@ class UserMutrikuController extends AbstractController
         $zip->open($zipName, ZipArchive::CREATE);
         $filesPath = $this->getParameter('turbines_data_historic_folder');
         foreach ($filesToCompres as $file) {
+            //Obtengo la carpeta del historico correspondiente a esta turbina
             $completeTurbineNumber = substr($file, 0, 3);
             $zip->addFromString(basename($filesPath . $completeTurbineNumber . "/". $file), file_get_contents($filesPath . $file));
         }
