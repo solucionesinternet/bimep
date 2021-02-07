@@ -20,7 +20,7 @@
                     {% if oneTurbine.id == selectedTurbine %}
                         {% set selected = 'selected' %}
                     {% endif %}
-                    <option value="{{ oneTurbine.id }}" {{ selected }}>{{ oneTurbine.position }}</option>
+                    <option value="{{ oneTurbine.id }}" >{{ oneTurbine.position }}</option>
                 {% endfor %}
             </select>
         </div>
