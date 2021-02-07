@@ -299,7 +299,8 @@ class UserMutrikuController extends AbstractController
 
         return $this->render('user_dashboard/mutrikuCalendarResults.html.twig', [
             'user' => $user,
-            'historic_searches' => $historic_searches
+            'historic_searches' => $historic_searches,
+            'selectedTurbineId' => $turbinesId
         ]);
     }
 
@@ -379,7 +380,7 @@ class UserMutrikuController extends AbstractController
         foreach ($filesToCompres as $file) {
             //Obtengo la carpeta del historico correspondiente a esta turbina
             $completeTurbineNumber = substr($file, 0, 3);
-            $zip->addFromString(basename($filesPath . $completeTurbineNumber . "/". $file), file_get_contents($filesPath . $file));
+            $zip->addFromString(basename($filesPath . $completeTurbineNumber . "/". $file), file_get_contents($filesPath . $completeTurbineNumber . "/". $file));
         }
         $zip->close();
         $response = new Response(file_get_contents($zipName));
@@ -411,7 +412,7 @@ class UserMutrikuController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         // Obtenermos el listado de turbinas activas
-        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('position' => 'ASC'));
+        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
         $turbine = end($turbines);
 
         // Compruebo si han solicitado ver alguna turbina en concreto y algun periodo en concreto
@@ -488,7 +489,8 @@ class UserMutrikuController extends AbstractController
 
 
             // Mando el archivo a descargar
-            $file = $this->getParameter('turbines_data_historic_folder') . $queries->getFilename();
+            $completeTurbineNumber = substr($queries->getFilename(), 0, 3);
+            $file = $this->getParameter('turbines_data_historic_folder') . $completeTurbineNumber . '/' . $queries->getFilename();
             $response = new Response();
             $response->headers->set('Cache-Control', 'private');
             $response->headers->set('Content-type', mime_content_type($file));
