@@ -38,28 +38,24 @@
             <select name="fieldType" class="form-control select2-search--inline form-control-lg"
                     id="fieldType">
                 <option value="active_current_a">{% trans %}Corriente activa{% endtrans %}</option>
-                <option value="automatic">{% trans %}Código estado{% endtrans %}</option>
-                <option value="av_power1min_w">{% trans %}Potencia media 1 min{% endtrans %}</option>
-                <option value="av_power5min_w">{% trans %}Potencia media 5 min{% endtrans %}</option>
-                <option value="current_magnitude_a">{% trans %}Magnitud Actual{% endtrans %}</option>
+                <option value="automatic">{% trans %}Modo funcionamiento{% endtrans %}</option>
+                <option value="av_power1min_w">{% trans %}Potencia media 1 min{% endtrans %} (W)</option>
+                <option value="av_power5min_w">{% trans %}Potencia media 5 min{% endtrans %} (W)</option>
                 <option value="damper_actual_position_deg">{% trans %}Posición válvula{% endtrans %}</option>
-                <option value="drive_active">DriveActive</option>
-                <option value="drive_healthy">{% trans %}Bién / Mal{% endtrans %}</option>
-                <option value="flow_coefficient">FlowCoefficient</option>
-                <option value="motor_rpm">{% trans %}Velocidad de giro{% endtrans %}</option>
-                <option value="ouput_voltage_v">{% trans %}Tensión{% endtrans %}</option>
-                <option value="output_frequency_hz">{% trans %}Frecuencia{% endtrans %}</option>
-                <option value="percentage_load">PercentageLoad</option>
+                <option value="drive_healthy">{% trans %}Disponible / operativo{% endtrans %}</option>
+                <option value="motor_rpm">{% trans %}Velocidad de giro{% endtrans %} (rpm)</option>
+                <option value="ouput_voltage_v">{% trans %}Tensión{% endtrans %} (V)</option>
+                <option value="output_frequency_hz">{% trans %}Frecuencia{% endtrans %} (Hz)</option>
                 <option value="power_k_w">{% trans %}Potencia activa{% endtrans %}</option>
                 <option value="pressure_pa">{% trans %}Presión cámara{% endtrans %}</option>
-                <option value="rmspressure_pa">{% trans %}Presión cámara{% endtrans %} (RMS)</option>
-                <option value="set_speed_hz">SetSpeed_Hz</option>
-                <option value="vibration_mmps">{% trans %}Vibraciones{% endtrans %}</option>
-                <option value="flow1_pa">{% trans %}Caída de presión{% endtrans %}</option>
-                <option value="flow2_pa">WFlow2_Pa</option>
-                <option value="static_pressure_pa">{% trans %}Presión de salida{% endtrans %}</option>
-                <option value="temperature1">{% trans %}Temperatura generador{% endtrans %}</option>
-                <option value="waterlevel">Nivel de agua</option>
+                <option value="reactive_current_a">{% trans %}Corriente reactiva{% endtrans %} (Ar)</option>
+                <option value="rmspressure_pa">{% trans %}Presión Media{% endtrans %} (Pa)</option>
+                <option value="vibration_mmps">{% trans %}Vibraciones{% endtrans %} (mmps)</option>
+                <option value="flow1_pa">{% trans %}Caída de presión{% endtrans %} (Pa)</option>
+                <option value="flow2_pa">{% trans %}Caída de presión{% endtrans %} (Pa)</option>
+                <option value="wstatic_pressure_pa">{% trans %}Presión de salida{% endtrans %} (Pa)</option>
+                <option value="temperature1">{% trans %}Temperatura generador{% endtrans %} (ºC)</option>
+                <option value="waterlevel">{% trans %}Nivel de agua{% endtrans %}</option>
             </select>
         </div>
 
@@ -213,6 +209,14 @@
             $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
                 $('#daterange').val('');
             });
+
+
+            {%  if selectedDaterange %}
+            //change the selected date range of that picker
+            $('#daterange').val('{{ selectedDaterange }}');
+            $('#selectedDates').text(start.format('YYYY-MM-DD') + ' a ' + end.format('YYYY-MM-DD'));
+            $('#selectedDates').show();
+            {% endif %}
 
 
 
