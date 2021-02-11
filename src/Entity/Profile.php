@@ -52,6 +52,12 @@ class Profile
     private $user;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TurbineToProfile", mappedBy="profile", cascade={"persist","remove"}, orphanRemoval=true)
+     */
+    private $theMappings;
+
+
 
     public function getId(): ?int
     {
@@ -148,6 +154,22 @@ class Profile
     public function setUser($user): void
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTheMappings()
+    {
+        return $this->theMappings;
+    }
+
+    /**
+     * @param mixed $theMappings
+     */
+    public function setTheMappings($theMappings): void
+    {
+        $this->theMappings = $theMappings;
     }
 
 
