@@ -13,13 +13,16 @@ use CalendarBundle\CalendarEvents;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\AreaChart;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\LineChart;
 use Knp\Component\Pager\PaginatorInterface;
+use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\Time;
 use ZipArchive;
 
@@ -316,88 +319,197 @@ class UserMutrikuController extends AbstractController
 
         // Recogo los objetos
         $filesToDownload = explode(',', $request->request->get('filesToDownload'));
+        $customFields = explode(',', $request->request->get('CustomFieldsfilesToDownload'));
+        $numCustomFields = count($customFields);
         $historic_searches = $session->get('historic_searches');
         $turbines = $session->get('turbine');
         $turbine = $em->getRepository(Turbines::class)->find($turbines->getId());
 
-        // Recorro los elementos a entregar
-        foreach ($filesToDownload as $file) {
+        // Si quieren campos personalizados hacemos una consulta a BBDD
+        if ($numCustomFields > 1) {
 
-            // Obtengo el nombre del archivo y el tamaño del mismo
-            $turbinesFiles = $em->getRepository(TurbinesFiles::class)->find($file);
-            $fileName = $turbinesFiles->getName();
-            $fileSize = $turbinesFiles->getSize();
-            $filesToCompres[] = $fileName;
-            // Compruebo si ha sido descargado previamente
-            $queriesForThisFile = $em->getRepository(Queries::class)->findOneBy(
-                array(
-                    'turbines' => $turbine->getId(),
-                    'user' => $user->getId(),
-                    'filename' => $fileName,
-                    'historic_search' => $historic_searches->getId()
-                )
-            );
+            // Recorro los archivos seleccionados para obtener las fechas
+            foreach ($filesToDownload as $file) {
+
+                $turbinesFiles = $em->getRepository(TurbinesFiles::class)->find($file);
+                $fileName = $turbinesFiles->getName();
+                $turbinesName = $turbinesFiles->getTurbines();
+                $turbinesId = $turbines->getId();
+                $completeTurbineNumber = substr($fileName, 0, 3);
+                $DateWithoutFormat = substr($fileName, 4, 8);
+
+                // En base a la fecha de la cadena del nombre del archivo genero un array con las fechas en las que buscar
+                $datetime = \DateTime::createFromFormat("Ymd",$DateWithoutFormat);
+                $selectedDates[] = $datetime->format('Y/m/d');
+
+            }
+            //echo print_r($selectedDates);
+
+            // Ejecuto la consulta
+            $fields = $request->request->get('CustomFieldsfilesToDownload');
+            $datesStr = implode("', '", $selectedDates);
+
+            // Gereno la ruta de a donde exportar el archivo desde el propio MySql
+            $mysqExportTmpCsvFile = $this->getParameter('mysql_export_csv_folder').$this->getParameter('mysql_export_csv_file');
+
+            // Genero la cabecera del CSV en la propia consulta de MySql
+            $fieldsArray = explode(",",$fields);
+            $fieldsTxt = implode("', '", $fieldsArray);
+            $fieldsHeaser = "SELECT 'tuebine_name','date','hour','".$fieldsTxt."' UNION ALL ";
+            $RAW_QUERY = $fieldsHeaser."SELECT '$turbines' AS tuebine_name, date, hour, $fields INTO OUTFILE '".$mysqExportTmpCsvFile."' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' FROM turbines_datas WHERE turbines_id = ".$turbinesId." AND date IN ('$datesStr')  ";
+ //           $RAW_QUERY = "SELECT '$turbines' AS tuebine_name, date, hour, $fields  FROM turbines_datas WHERE turbines_id = ".$turbinesId." AND date IN ('$datesStr') ";
+
+            //echo $RAW_QUERY;
+            $statement = $em->getConnection()->prepare($RAW_QUERY);
+            $statement->execute();
+
+            // Una vez generado el archivo lo muevo para reaignarle el propietario
+            $mysqExportTmpCsvFile2 = $this->getParameter('mysql_export_csv_folder')."tmpcsv.csv";
+            copy($mysqExportTmpCsvFile, $mysqExportTmpCsvFile2);
+            @unlink($mysqExportTmpCsvFile);
+            rename($mysqExportTmpCsvFile2, $mysqExportTmpCsvFile);
+
+            // Esto lo comento porque ahora genero el CSV desde MySql y lo guardo directamente en la carpeta /tmp/mysql_export/
+//            // Le paso el parametro fetch_num para que no meta el nombre de la colunma dentro del array
+//            $result_data = $statement->fetchAll(\PDO::FETCH_NUM);
+//
+//            $fieldsArray1 = array('tuebine_name','date','hour');
+//            $fieldsArray2 = explode(",",$fields);
+//            for($i = 0; $i < count($fieldsArray2); $i++){
+//                array_push($fieldsArray1, trim($fieldsArray2[$i]));
+//            }
+//            $fieldsArray = $fieldsArray1;
+//            // Set the content type
+//            header('Content-type: text/csv');
+//            header('Content-Disposition: attachment; filename=Turbine.csv');
+//            header("Content-Transfer-Encoding: UTF-8");
+//
+//            $output = fopen("php://output",'a') or die("Can't open php://output");
+//
+//            fputcsv($output, $fieldsArray);
+//            foreach($result_data as $product) {
+//                $arraydatos = array();
+//                for($i = 0; $i < count($fieldsArray); $i++){
+//                    array_push($arraydatos, $product[$i]);
+//                }
+//                fputcsv($output, $arraydatos);
+//                unset($arraydatos);
+//
+//            }
+//
+//            fclose($output) or die("Can't close php://output");
+//            die();
+
+            // Comprimo los archivos
+            $zip = new \ZipArchive();
+            $zipName = 'CustomFieldsCsv.zip';
+            $zip->open($zipName, ZipArchive::CREATE);
+            $filesPath = $this->getParameter('mysql_export_csv_folder');
+                $zip->addFromString(basename($mysqExportTmpCsvFile), file_get_contents($mysqExportTmpCsvFile));
+            $zip->close();
+            $response = new Response(file_get_contents($zipName));
+            $response = new Response(file_get_contents($zipName));
+            $response->headers->set('Cache-Control', 'private');
+            $response->headers->set('Content-Type', 'application/zip');
+            $response->headers->set('Content-Disposition', 'attachment;filename="' . $zipName . '"');
+            $response->headers->set('Content-length', filesize($zipName));
+            $response->headers->set('Pragma', "no-cache");
+            $response->headers->set('Expires', "0");
+            $response->headers->set('Content-Transfer-Encoding', "binary");
+            $response->sendHeaders();
+            $response->setContent(file_get_contents($zipName));
+
+            @unlink($zipName);
+            @unlink($this->getParameter('mysql_export_csv_folder')."turbine.csv");
+
+            return $response;
 
 
-            // Si esta vacio creo uno nuevo
-            if (!$queriesForThisFile) {
+
+        } else {
+            // En caso de no querer campos personalizados descargamos los archivos comprimidos
+
+            // Recorro los elementos a entregar
+            foreach ($filesToDownload as $file) {
+
+                // Obtengo el nombre del archivo y el tamaño del mismo
+                $turbinesFiles = $em->getRepository(TurbinesFiles::class)->find($file);
+                $fileName = $turbinesFiles->getName();
+                $fileSize = $turbinesFiles->getSize();
+                $filesToCompres[] = $fileName;
+                // Compruebo si ha sido descargado previamente
+                $queriesForThisFile = $em->getRepository(Queries::class)->findOneBy(
+                    array(
+                        'turbines' => $turbine->getId(),
+                        'user' => $user->getId(),
+                        'filename' => $fileName,
+                        'historic_search' => $historic_searches->getId()
+                    )
+                );
 
 
-                $turbineId = $turbine->getId();
-                $turbineDate = 'NOW()';
-                $turbineDownloads = 1;
-                $turbineFilename = $fileName;
-                $turbineSize = $fileSize;
-                $turbineActive = 1;
-                $turbineCreated = 'NOW()';
-                $turbineUserId = $user->getId();
-                $TurbinesHistoricSearchId = $historic_searches->getId();
-
-                $RAW_QUERY = "INSERT INTO queries  (turbines_id, date, downloads, filename, size, active, created, user_id, historic_search_id) VALUES  ($turbineId, $turbineDate, $turbineDownloads, '$turbineFilename', $turbineSize, $turbineActive, $turbineCreated, $turbineUserId, $TurbinesHistoricSearchId)";
+                // Si esta vacio creo uno nuevo
+                if (!$queriesForThisFile) {
 
 
-                $statement = $em->getConnection()->prepare($RAW_QUERY);
-                $statement->execute();
+                    $turbineId = $turbine->getId();
+                    $turbineDate = 'NOW()';
+                    $turbineDownloads = 1;
+                    $turbineFilename = $fileName;
+                    $turbineSize = $fileSize;
+                    $turbineActive = 1;
+                    $turbineCreated = 'NOW()';
+                    $turbineUserId = $user->getId();
+                    $TurbinesHistoricSearchId = $historic_searches->getId();
 
-            } else {
-                // En caso contrario actualizo el numero de descargas
+                    $RAW_QUERY = "INSERT INTO queries  (turbines_id, date, downloads, filename, size, active, created, user_id, historic_search_id) VALUES  ($turbineId, $turbineDate, $turbineDownloads, '$turbineFilename', $turbineSize, $turbineActive, $turbineCreated, $turbineUserId, $TurbinesHistoricSearchId)";
 
-                $queriesForThisFile->setDownloads($queriesForThisFile->getDownloads() + 1);
-                $em->persist($queriesForThisFile);
-                $em->flush();
+
+                    $statement = $em->getConnection()->prepare($RAW_QUERY);
+                    $statement->execute();
+
+                } else {
+                    // En caso contrario actualizo el numero de descargas
+
+                    $queriesForThisFile->setDownloads($queriesForThisFile->getDownloads() + 1);
+                    $em->persist($queriesForThisFile);
+                    $em->flush();
+
+                }
+
+                $em->clear();
 
             }
 
-            $em->clear();
+            // Comprimo los archivos
+            $zip = new \ZipArchive();
+            $zipName = 'Documents.zip';
+            $zip->open($zipName, ZipArchive::CREATE);
+            $filesPath = $this->getParameter('turbines_data_historic_folder');
+            foreach ($filesToCompres as $file) {
+                //Obtengo la carpeta del historico correspondiente a esta turbina
+                $completeTurbineNumber = substr($file, 0, 3);
+                $zip->addFromString(basename($filesPath . $completeTurbineNumber . "/" . $file), file_get_contents($filesPath . $completeTurbineNumber . "/" . $file));
+            }
+            $zip->close();
+            $response = new Response(file_get_contents($zipName));
+            $response = new Response(file_get_contents($zipName));
+            $response->headers->set('Cache-Control', 'private');
+            $response->headers->set('Content-Type', 'application/zip');
+            $response->headers->set('Content-Disposition', 'attachment;filename="' . $zipName . '"');
+            $response->headers->set('Content-length', filesize($zipName));
+            $response->headers->set('Pragma', "no-cache");
+            $response->headers->set('Expires', "0");
+            $response->headers->set('Content-Transfer-Encoding', "binary");
+            $response->sendHeaders();
+            $response->setContent(file_get_contents($zipName));
+
+            @unlink($zipName);
+
+            return $response;
 
         }
 
-        // Comprimo los archivos
-        $zip = new \ZipArchive();
-        $zipName = 'Documents.zip';
-        $zip->open($zipName, ZipArchive::CREATE);
-        $filesPath = $this->getParameter('turbines_data_historic_folder');
-        foreach ($filesToCompres as $file) {
-            //Obtengo la carpeta del historico correspondiente a esta turbina
-            $completeTurbineNumber = substr($file, 0, 3);
-            $zip->addFromString(basename($filesPath . $completeTurbineNumber . "/". $file), file_get_contents($filesPath . $completeTurbineNumber . "/". $file));
-        }
-        $zip->close();
-        $response = new Response(file_get_contents($zipName));
-        $response = new Response(file_get_contents($zipName));
-        $response->headers->set('Cache-Control', 'private');
-        $response->headers->set('Content-Type', 'application/zip');
-        $response->headers->set('Content-Disposition', 'attachment;filename="' . $zipName . '"');
-        $response->headers->set('Content-length', filesize($zipName));
-        $response->headers->set('Pragma', "no-cache");
-        $response->headers->set('Expires', "0");
-        $response->headers->set('Content-Transfer-Encoding', "binary");
-        $response->sendHeaders();
-        $response->setContent(file_get_contents($zipName));
-
-        @unlink($zipName);
-
-        return $response;
 
     }
 
