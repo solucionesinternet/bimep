@@ -15,7 +15,7 @@
         <div class="input-group mb-2 mr-2">
             <select name="formTurbines" class="form-control mr-2" id="formTurbines">
                 {% for oneTurbine in turbines %}
-                    {% set selected = '' %}
+                    {% set selected = oneTurbine.id.first() %}
                     {% if oneTurbine.id == selectedTurbine %}
                         {% set selected = 'selected' %}
                     {% endif %}
