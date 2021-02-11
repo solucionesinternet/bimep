@@ -18,6 +18,8 @@
     {% endblock %}
 
 
+
+
     {% block content %}
 
         <div class="page-loader" style="display: none">
@@ -33,9 +35,12 @@
 
         </div>
 
+
+
         <div id="downloadIcon">
             <form method="post" action="/user/dashboard/mutriku/zipdownload" id="filesForm">
                 <input type="hidden" name="filesToDownload" id="filesToDownload">
+                <input type="hidden" name="CustomFieldsfilesToDownload" id="CustomFieldsfilesToDownload">
                 <i class="glyphicon glyphicon-download-alt"></i>
             </form>
         </div>
@@ -43,7 +48,129 @@
         <div class="row">
             <div id="calendar-holder" class="col-10"></div>
             <div id="" class="col-2">
-                <h5>{% trans %}Listado de decargas{% endtrans %}</h5>
+                <h4>{% trans %}Listado de decargas{% endtrans %}</h4>
+                <h7><input type="checkbox" name="CustomFields" id="CustomFields"> {% trans %}Campos personalizados{% endtrans %}</h7>
+                <div id="customFieldsList" style="display: none;">
+                    <span>Selecciona y ordena los campos deseados.</span>
+                    <table class="table" id="customFieldsTable">
+                        <tbody>
+                        <tr id="1">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="active_current_a" id="active_current_a">
+                                </div></td>
+                            <td>{% trans %}Corriente activa{% endtrans %}</td>
+                        </tr>
+                        <tr id="2">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="automatic" id="automatic">
+                                </div></td>
+                            <td>{% trans %}Modo funcionamiento{% endtrans %}</td>
+                        </tr>
+                        <tr  id="3">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="av_power1min_w" id="av_power1min_w">
+                                </div></td>
+                            <td>{% trans %}Potencia media 1 min{% endtrans %} (W)</td>
+                        </tr>
+                        <tr  id="4">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="av_power5min_w" id="av_power5min_w">
+                                </div></td>
+                            <td>{% trans %}Potencia media 5 min{% endtrans %} (W)</td>
+                        </tr>
+                        <tr  id="5">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="damper_actual_position_deg" id="damper_actual_position_deg">
+                                </div></td>
+                            <td>{% trans %}Posición válvula{% endtrans %}</td>
+                        </tr>
+                        <tr  id="6">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="drive_healthy" id="drive_healthy">
+                                </div></td>
+                            <td>{% trans %}Disponible / operativo{% endtrans %}</td>
+                        </tr>
+                        <tr  id="7">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="motor_rpm" id="motor_rpm">
+                                </div></td>
+                            <td>{% trans %}Velocidad de giro{% endtrans %} (rpm)</td>
+                        </tr>
+                        <tr  id="8">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="ouput_voltage_v" id="ouput_voltage_v">
+                                </div></td>
+                            <td>{% trans %}Tensión{% endtrans %} (V)</td>
+                        </tr>
+                        <tr  id="9">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="output_frequency_hz" id="output_frequency_hz">
+                                </div></td>
+                            <td>{% trans %}Frecuencia{% endtrans %} (Hz)</td>
+                        </tr>
+                        <tr  id="10">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="power_k_w" id="power_k_w">
+                                </div></td>
+                            <td>{% trans %}Potencia activa{% endtrans %}</td>
+                        </tr>
+                        <tr  id="11">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="pressure_pa" id="pressure_pa">
+                                </div></td>
+                            <td>{% trans %}Presión cámara{% endtrans %}</td>
+                        </tr>
+                        <tr  id="12">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="reactive_current_a" id="reactive_current_a">
+                                </div></td>
+                            <td>{% trans %}Corriente reactiva{% endtrans %} (Ar)</td>
+                        </tr>
+                        <tr  id="13">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="rmspressure_pa" id="rmspressure_pa">
+                                </div></td>
+                            <td>{% trans %}Presión Media{% endtrans %} (Pa)</td>
+                        </tr>
+                        <tr  id="14">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="vibration_mmps" id="vibration_mmps">
+                                </div></td>
+                            <td>{% trans %}Vibraciones{% endtrans %} (mmps)</td>
+                        </tr>
+                        <tr  id="15">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="flow1_pa" id="flow1_pa">
+                                </div></td>
+                            <td>{% trans %}Caída de presión{% endtrans %} 1 (Pa)</td>
+                        </tr>
+                        <tr  id="16">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="flow2_pa" id="flow2_pa">
+                                </div></td>
+                            <td>{% trans %}Caída de presión{% endtrans %} 2 (Pa)</td>
+                        </tr>
+                        <tr  id="17">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="wstatic_pressure_pa" id="wstatic_pressure_pa">
+                                </div></td>
+                            <td>{% trans %}Presión de salida{% endtrans %} (Pa)</td>
+                        </tr>
+                        <tr  id="18">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="temperature1" id="temperature1">
+                                </div></td>
+                            <td>{% trans %}Temperatura generador{% endtrans %} (ºC)</td>
+                        </tr>
+                        <tr  id="19">
+                            <td><div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="selectedCustomFields" value="waterlevel" id="waterlevel">
+                                </div></td>
+                            <td>{% trans %}Nivel de agua{% endtrans %}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <hr />
                 <ul class="list-group" id="downloadsList">
 
@@ -63,9 +190,12 @@
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@4.1.0/main.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.1.0/main.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.1.0/main.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/TableDnD/0.9.1/jquery.tablednd.js" integrity="sha256-d3rtug+Hg1GZPB7Y/yTcRixO/wlI78+2m08tosoRn7A=" crossorigin="anonymous"></script>
 
         <script type="text/javascript">
+
             document.addEventListener('DOMContentLoaded', () => {
+
                 var calendarEl = document.getElementById('calendar-holder');
 
                 var current_locale = '{{ app.request.getLocale() }}';
@@ -90,7 +220,7 @@
                             method: "POST",
 
                             extraParams: {
-                                filters: JSON.stringify({})
+                                filters: JSON.stringify({"turbineId": '{{ selectedTurbineId }}'})
                             },
                             failure: () => {
                                 alert("There was an error while fetching FullCalendar!");
@@ -149,12 +279,27 @@
                 $("#downloadIcon").click(function (event) {
                     event.preventDefault();
 
+                    // Ontengo los campos seleccionados, los meto en un array y asigno al campo oculto separado por comas.
+                    var selectedFields = [];
+                    $.each($("input[name='selectedCustomFields']:checked"), function(){
+                        selectedFields.push($(this).val());
+                    });
+                    $('#CustomFieldsfilesToDownload').val(selectedFields.join(", "));
+                    //alert("My favourite fields are: " + selectedFields.join(", "));
+
                     $('.page-loader').show();
 
                     // var datos = {
                     //     filesToDownload: filesToDownload
                     // }
                     $('#filesToDownload').val(filesToDownload);
+
+                    // Contar numero de elementos para saber si está vacio
+                    if(filesToDownload.length <= 0) {
+                        $('.page-loader').hide();
+                        alert('{% trans %}Debe seleccionar al menos un archivo para descargar{% endtrans %}');
+                        return false;
+                    }
 
                     $("#filesForm").submit(); // Submit the form
                     return false;
@@ -196,6 +341,14 @@
                         })
 
                 });
+
+                // Mostrar área de campos personalizados
+                $("#CustomFields").click(function(){
+                    $('#customFieldsList').toggle('slow');
+                });
+
+                // Inicializar ordenacion de la tabla de campos personalizados
+                $("#customFieldsTable").tableDnD();
 
             });
 
