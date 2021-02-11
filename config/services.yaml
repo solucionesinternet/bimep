@@ -10,6 +10,8 @@ parameters:
     regenerators_data_historic_folder: '%kernel.project_dir%/src/DATA/regenerators/HISTORIC/'
     turbines_data_folder: '%kernel.project_dir%/src/DATA/turbines/'
     turbines_data_historic_folder: '%kernel.project_dir%/src/DATA/turbines/HISTORIC/'
+    mysql_export_csv_folder: '/tmp/mysql_export/'
+    mysql_export_csv_file: 'turbine.csv'
     mutriku_dsn_host:   'mutriku.eve.eus'
     mutriku_dsn_username:   'ftp_mutriku'
     mutriku_dsn_password:   'mutriku.linube240412'
