@@ -35,8 +35,8 @@
             <trans-unit id="corriente_activa">
                 <source>Corriente activa</source>
             </trans-unit>
-            <trans-unit id="codigo_estado">
-                <source>Código estado</source>
+            <trans-unit id="modo_funcionamiento">
+                <source>Modo funcionamiento</source>
             </trans-unit>
             <trans-unit id="potencia_media_1_minuto">
                 <source>Potencia media 1 min</source>
@@ -48,7 +48,10 @@
                 <source>Posición válvula</source>
             </trans-unit>
             <trans-unit id="good_bad">
-                <source>Bién / Mal</source>
+                <source>Disponible / operativo</source>
+            </trans-unit>
+            <trans-unit id="corriente_reactiva">
+                <source>Corriente reactiva</source>
             </trans-unit>
             <trans-unit id="velocidad_de_giro">
                 <source>Velocidad de giro</source>
@@ -556,6 +559,12 @@
             </trans-unit>
              <trans-unit id="magnitud_actual">
                 <source>Magnitud Actual</source>
+            </trans-unit>
+             <trans-unit id="User">
+                <source>Usuario</source>
+            </trans-unit>
+             <trans-unit id="debe_seleccionar_al_menos_un_archivo">
+                <source>Debe seleccionar al menos un archivo para descargar</source>
             </trans-unit>
 
         </body>

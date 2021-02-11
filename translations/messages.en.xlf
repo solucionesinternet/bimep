@@ -46,8 +46,8 @@
                 <source>Corriente activa</source>
                 <target>Active current</target>
             </trans-unit>
-            <trans-unit id="codigo_estado">
-                <source>Código estado</source>
+            <trans-unit id="modo_funcionamiento">
+                <source>Modo funcionamiento</source>
                 <target>Status code</target>
             </trans-unit>
             <trans-unit id="potencia_media_1_minuto">
@@ -63,8 +63,12 @@
                 <target>Damper position</target>
             </trans-unit>
             <trans-unit id="good_bad">
-                <source>Bién / Mal</source>
+                <source>Disponible / operativo</source>
                 <target>Good / Bad</target>
+            </trans-unit>
+            <trans-unit id="corriente_reactiva">
+                <source>Corriente reactiva</source>
+                <target>Corriente reactiva</target>
             </trans-unit>
             <trans-unit id="velocidad_de_giro">
                 <source>Velocidad de giro</source>
@@ -745,6 +749,14 @@
              <trans-unit id="magnitud_actual">
                 <source>Magnitud Actual</source>
                 <target>Current Magnitude</target>
+            </trans-unit>
+             <trans-unit id="User">
+                <source>Usuario</source>
+                <target>User</target>
+            </trans-unit>
+             <trans-unit id="debe_seleccionar_al_menos_un_archivo">
+                <source>Debe seleccionar al menos un archivo para descargar</source>
+                <target>You must choose at least one file to download</target>
             </trans-unit>
         </body>
     </file>
