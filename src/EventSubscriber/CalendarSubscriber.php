@@ -35,17 +35,22 @@ class CalendarSubscriber implements EventSubscriberInterface
         $start = $calendar->getStart();
         $end = $calendar->getEnd();
         $filters = $calendar->getFilters();
+        // Obtengo el ID de la turbina sobre la que hacer la consulta que lo he mandado previamente como un paratmetro extra
+        $selectedTurbineId = $filters["turbineId"];
 
         // Modify the query to fit to your entity and needs
         // Change booking.beginAt by your start date property
         $bookings = $this->turbinesFilesRepository
             ->createQueryBuilder('TurbinesFiles')
-            ->where('TurbinesFiles.date BETWEEN :start and :end OR TurbinesFiles.date BETWEEN :start and :end')
+            ->where('TurbinesFiles.turbines = :turbinesId AND TurbinesFiles.date BETWEEN :start AND :end ')
             ->setParameter('start', $start->format('Y-m-d H:i:s'))
             ->setParameter('end', $end->format('Y-m-d H:i:s'))
+            ->setParameter('turbinesId', intval($selectedTurbineId))
             ->getQuery()
             ->getResult()
         ;
+
+
 
         foreach ($bookings as $booking) {
             // this create the events with your data (here booking data) to fill calendar
