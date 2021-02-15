@@ -91,11 +91,23 @@
     "egulias/email-validator": {
         "version": "2.1.17"
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.3"
+    },
     "knplabs/knp-components": {
         "version": "v2.3.4"
     },
     "knplabs/knp-paginator-bundle": {
         "version": "v5.2.0"
+    },
+    "laminas/laminas-code": {
+        "version": "3.4.1"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.3.0"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.1.1"
     },
     "league/csv": {
         "version": "9.6.0"
