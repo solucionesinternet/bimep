@@ -60,32 +60,32 @@ class FtpImportCommand extends Command
 
             $csvType = "turbines";
             // Comprobamos que exista el directorio
-            if (!(is_dir("src/DATA/" . $csvType)))
-                mkdir("src/DATA/" . $csvType);
+            if (!(is_dir("var/DATA/" . $csvType)))
+                mkdir("var/DATA/" . $csvType);
             $current_file_name = $input->getArgument('turbina') . "_" . $date->format('Ymd') . "_S1.csv";
 
         } elseif (strpos($input->getArgument('turbina'), "RegenA") !== false) {
 
             $csvType = "regenerators";
             // Comprobamos que exista el directorio
-            if (!(is_dir("src/DATA/" . $csvType)))
-                mkdir("src/DATA/" . $csvType);
+            if (!(is_dir("var/DATA/" . $csvType)))
+                mkdir("var/DATA/" . $csvType);
             $current_file_name = "RegenA_" . $date->format('Ymd') . "_S1.csv";
 
         } elseif (strpos($input->getArgument('turbina'), "RegenB") !== false) {
 
             $csvType = "regenerators";
             // Comprobamos que exista el directorio
-            if (!(is_dir("src/DATA/" . $csvType)))
-                mkdir("src/DATA/" . $csvType);
+            if (!(is_dir("var/DATA/" . $csvType)))
+                mkdir("var/DATA/" . $csvType);
             $current_file_name = "RegenB_" . $date->format('Ymd') . "_S1.csv";
 
         } elseif (strpos($input->getArgument('turbina'), "Buoy") !== false) {
 
             $csvType = "buoys";
             // Comprobamos que exista el directorio
-            if (!(is_dir("src/DATA/" . $csvType)))
-                mkdir("src/DATA/" . $csvType);
+            if (!(is_dir("var/DATA/" . $csvType)))
+                mkdir("var/DATA/" . $csvType);
             $current_file_name = $input->getArgument('turbina') . "_" . $date->format('Ymd') . "_S1.csv";
 
         } else {
@@ -93,7 +93,7 @@ class FtpImportCommand extends Command
         }
 
         $folder = $input->getArgument('turbina');
-        $destination_folder = "src/DATA/" . $csvType . "/";
+        $destination_folder = "var/DATA/" . $csvType . "/";
 
         // Comprobamos que exista el directorio
         if (!(is_dir($destination_folder)))
