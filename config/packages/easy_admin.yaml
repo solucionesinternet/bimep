@@ -171,7 +171,7 @@ easy_admin:
                     - {type: 'group', label: 'Cambiar contraseña', icon: 'pencil'}
                     - { property: 'password', type: 'repeated', type_options: { type: Symfony\Component\Form\Extension\Core\Type\PasswordType, invalid_message: 'Las dos contraseñas deben coincidir', first_options: { label: 'Contraseña:' }, second_options: { label: 'Confirmar Contraseña:' }, required: true } }
             edit:
-                title: 'Alta de usuarios'
+                title: 'Editar usuarios'
                 help: 'Rellene los siguientes campos para dar de alta un nuevo usuario.'
                 fields:
                     - {type: 'group', label: 'Datos Personales', icon: 'pencil'}
