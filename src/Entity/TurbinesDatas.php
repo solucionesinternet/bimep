@@ -1,11 +1,39 @@
 <?php
-
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Index;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TurbinesDatasRepository")
+ * @ORM\Table(name="turbines_datas", indexes={
+ *     @ORM\Index(name="idx_date", columns={"date"}),
+ *     @ORM\Index(name="idx_turbines_id", columns={"turbines_id"}),
+ *     @ORM\Index(name="idx_active_current_a", columns={"active_current_a"}),
+ *     @ORM\Index(name="idx_av_power1min_w", columns={"av_power1min_w"}),
+ *     @ORM\Index(name="idx_av_power5min_w", columns={"av_power5min_w"}),
+ *     @ORM\Index(name="idx_current_magnitude_a", columns={"current_magnitude_a"}),
+ *     @ORM\Index(name="idx_damper_actual_position_deg", columns={"damper_actual_position_deg"}),
+ *     @ORM\Index(name="idx_drive_healthy", columns={"drive_healthy"}),
+ *     @ORM\Index(name="idx_flow_coefficient", columns={"flow_coefficient"}),
+ *     @ORM\Index(name="idx_motor_rpm", columns={"motor_rpm"}),
+ *     @ORM\Index(name="idx_ouput_voltage_v", columns={"ouput_voltage_v"}),
+ *     @ORM\Index(name="idx_output_frequency_hz", columns={"output_frequency_hz"}),
+ *     @ORM\Index(name="idx_percentage_load", columns={"percentage_load"}),
+ *     @ORM\Index(name="idx_power_k_w", columns={"power_k_w"}),
+ *     @ORM\Index(name="idx_pressure_pa", columns={"pressure_pa"}),
+ *     @ORM\Index(name="idx_rmspressure_pa", columns={"rmspressure_pa"}),
+ *     @ORM\Index(name="idx_set_speed_hz", columns={"set_speed_hz"}),
+ *     @ORM\Index(name="idx_vibration_mmps", columns={"vibration_mmps"}),
+ *     @ORM\Index(name="idx_flow1_pa", columns={"flow1_pa"}),
+ *     @ORM\Index(name="idx_flow2_pa", columns={"flow2_pa"}),
+ *     @ORM\Index(name="idx_temperature1", columns={"temperature1"}),
+ *     @ORM\Index(name="idx_waterlevel", columns={"waterlevel"}),
+ *     @ORM\Index(name="idx_automatic", columns={"automatic"}),
+ *     @ORM\Index(name="idx_drive_active", columns={"drive_active"}),
+ *     @ORM\Index(name="idx_wstatic_pressure_pa", columns={"wstatic_pressure_pa"}),
+ *     @ORM\Index(name="idx_reactive_current_a", columns={"reactive_current_a"}),
+ * })
  */
 class TurbinesDatas
 {
@@ -22,7 +50,7 @@ class TurbinesDatas
     private $timestamp;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date" )
      */
     private $date;
 
