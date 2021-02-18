@@ -32,6 +32,7 @@ use Doctrine\ORM\Mapping\Index;
  *     @ORM\Index(name="idx_automatic", columns={"automatic"}),
  *     @ORM\Index(name="idx_drive_active", columns={"drive_active"}),
  *     @ORM\Index(name="idx_wstatic_pressure_pa", columns={"wstatic_pressure_pa"}),
+ *     @ORM\Index(name="idx_reactive_current_a", columns={"reactive_current_a"}),
  *     @ORM\Index(name="idx_timestamp", columns={"timestamp"}),
  * })
  */
