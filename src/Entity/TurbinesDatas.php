@@ -36,6 +36,7 @@ use Doctrine\ORM\Mapping\Index;
  *     @ORM\Index(name="idx_timestamp", columns={"timestamp"}),
  * })
  */
+
 class TurbinesDatas
 {
     /**
