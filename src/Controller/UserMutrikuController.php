@@ -45,7 +45,7 @@ class UserMutrikuController extends AbstractController
 
         // Obtenermos el listado de turbinas activas
         $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
-        $turbine = end($turbines);
+        $turbine = reset($turbines);
 
 
         if (isset($_POST["formTurbines"])) {
@@ -159,22 +159,23 @@ class UserMutrikuController extends AbstractController
 
             switch ($view) {
                 case 'day':
-                    $RAW_QUERY = 'select hour AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha from turbines_datas  WHERE date(date) = CURDATE() AND turbines_id = ' . $default_turbine_id . ' group by hour(timestamp)';
+//                    $RAW_QUERY = 'select hour AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha from turbines_datas  WHERE date(date) = CURDATE() AND turbines_id = ' . $default_turbine_id . ' group by hour(timestamp)';
+                    $RAW_QUERY = 'select DISTINCT hour AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha from turbines_datas  WHERE date(date) = CURDATE() AND turbines_id = ' . $default_turbine_id . ' group by hour(timestamp) ORDER BY ID ASC  ';
                     $dateFormat = 'H:i';
                     $period = new \DateTime();
                     $period = $period->format('d/m/Y');
                     break;
                 case 'month':
-                    $RAW_QUERY = 'select date AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha, MIN(date) AS fecha_inicio, MAX(date) AS fecha_fin from turbines_datas WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() AND turbines_id = ' . $default_turbine_id . ' group by day(timestamp)';
+                    $RAW_QUERY = 'select date AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha, MIN(date) AS fecha_inicio, MAX(date) AS fecha_fin from turbines_datas WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() AND turbines_id = ' . $default_turbine_id . ' group by day(timestamp) ORDER BY ID ASC  ';
                     $dateFormat = 'd';
                     break;
                 case 'year':
-                    $RAW_QUERY = 'select date AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha, MIN(date) AS fecha_inicio, MAX(date) AS fecha_fin from turbines_datas WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 1 YEAR) AND NOW() AND turbines_id = ' . $default_turbine_id . ' group by month(timestamp)';
+                    $RAW_QUERY = 'select date AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha, MIN(date) AS fecha_inicio, MAX(date) AS fecha_fin from turbines_datas WHERE date BETWEEN DATE_SUB(NOW(), INTERVAL 1 YEAR) AND NOW() AND turbines_id = ' . $default_turbine_id . ' group by month(timestamp) ORDER BY ID ASC  ';
                     $dateFormat = 'm';
                     break;
                 default:
 //                    $RAW_QUERY = 'select DISTINCT hour AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha from turbines_datas  WHERE date(date) = CURDATE() AND turbines_id = ' . $default_turbine_id . ' group by hour(timestamp)';
-                    $RAW_QUERY = 'select DISTINCT hour AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $default_turbine_id . ' group by hour(timestamp)';
+                    $RAW_QUERY = 'select DISTINCT hour AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $default_turbine_id . ' group by hour(timestamp) ORDER BY ID ASC  ';
                     $dateFormat = 'H:i';
                     $period = new \DateTime();
                     $period = $period->format('d/m/Y');
