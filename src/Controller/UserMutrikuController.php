@@ -173,7 +173,8 @@ class UserMutrikuController extends AbstractController
                     $dateFormat = 'm';
                     break;
                 default:
-                    $RAW_QUERY = 'select DISTINCT hour AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha from turbines_datas  WHERE date(date) = CURDATE() AND turbines_id = ' . $default_turbine_id . ' group by hour(timestamp)';
+//                    $RAW_QUERY = 'select DISTINCT hour AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha from turbines_datas  WHERE date(date) = CURDATE() AND turbines_id = ' . $default_turbine_id . ' group by hour(timestamp)';
+                    $RAW_QUERY = 'select DISTINCT hour AS hora,  min(pressure_pa) AS minimo, max(pressure_pa) AS maximo, date(date) AS fecha from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $default_turbine_id . ' group by hour(timestamp)';
                     $dateFormat = 'H:i';
                     $period = new \DateTime();
                     $period = $period->format('d/m/Y');
