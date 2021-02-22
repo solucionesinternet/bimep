@@ -8,7 +8,6 @@ use Doctrine\ORM\Mapping\Index;
  * @ORM\Entity(repositoryClass="App\Repository\TurbinesDatasRepository")
  * @ORM\Table(name="turbines_datas", indexes={
  *     @ORM\Index(name="idx_date", columns={"date"}),
- *     @ORM\Index(name="idx_hor", columns={"hour"}),
  *     @ORM\Index(name="idx_turbines_id", columns={"turbines_id"}),
  *     @ORM\Index(name="idx_timestamp", columns={"timestamp"}),
  * })
