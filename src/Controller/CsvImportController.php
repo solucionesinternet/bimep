@@ -211,7 +211,7 @@ class CsvImportController extends AbstractController
                                 $em->persist($turbines_datas);
                             }
 
-//                            if ($this->nimutosDiferencia($ultimo_registro_hora, $Time) == 1) {
+                            if ($this->nimutosDiferencia($ultimo_registro_hora, $Time) == 1) {
                             // Guardo la hora de este elememto del bucle como buena
                             $ultimo_registro_hora = $Time;
 
@@ -250,7 +250,7 @@ class CsvImportController extends AbstractController
                             $turbines_datas->setTurbines($turbines);
 
                             $em->persist($turbines_datas);
-//                            }
+                            }
 
 
                             if ($contador % 2500 == 0) {
