@@ -88,6 +88,19 @@ class CsvImportController extends AbstractController
                 dump($turbines_files);
                 $em->flush();
 
+                // Compruebo si está activa o no lo esta
+                $turbineActive = $turbines->getActive();
+                // Si no stá activa muevo el archivo a su ubicación y termino el proceso.
+                if ($turbineActive == 0) {
+                    // Mover el archivo a la carpeta HISTORIC
+                    $mover = rename($absoluteFilePath, $this->getParameter('turbines_data_folder') . 'HISTORIC/' . $fileNameWithExtension);
+
+                    return $this->render('csv_import/index.html.twig', [
+                        'controller_name' => 'CsvImportController',
+                    ]);
+                    die();
+
+                }
 
                 // Importo el archivo
                 $rowNo = 1;
@@ -132,38 +145,38 @@ class CsvImportController extends AbstractController
 
                             // Solo algunas turbinas tienen las filas de la 16 a l 20, así que ponemos el condicional
                             // Si no existe creo la variable con valor cero
-                            if(isset($row[16])){
+                            if (isset($row[16])) {
                                 $Flow1_pa = trim($row[16]);
                                 if ($Flow1_pa == '') $Flow1_pa = 0;
-                            }else{
+                            } else {
                                 $Flow1_pa = 0;
                             }
 
-                            if(isset($row[17])) {
+                            if (isset($row[17])) {
                                 $Flow2_pa = trim($row[17]);
                                 if ($Flow2_pa == '') $Flow2_pa = 0;
-                            }else{
+                            } else {
                                 $Flow2_pa = 0;
                             }
 
-                            if(isset($row[18])) {
+                            if (isset($row[18])) {
                                 $Static_pressure_pa = trim($row[18]);
                                 if ($Static_pressure_pa == '') $Static_pressure_pa = 0;
-                            }else{
+                            } else {
                                 $Static_pressure_pa = 0;
                             }
 
-                            if(isset($row[19])) {
+                            if (isset($row[19])) {
                                 $Temperature1 = trim($row[19]);
                                 if ($Temperature1 == '') $Temperature1 = 0;
-                            }else{
+                            } else {
                                 $Temperature1 = 0;
                             }
 
-                            if(isset($row[20])) {
+                            if (isset($row[20])) {
                                 $Waterlevel = trim($row[20]);
-                                if ($Waterlevel == '' ) $Waterlevel = 0;
-                            }else{
+                                if ($Waterlevel == '') $Waterlevel = 0;
+                            } else {
                                 $Waterlevel = 0;
                             }
 
@@ -212,44 +225,44 @@ class CsvImportController extends AbstractController
                             }
 
                             if ($this->nimutosDiferencia($ultimo_registro_hora, $Time) == 1) {
-                            // Guardo la hora de este elememto del bucle como buena
-                            $ultimo_registro_hora = $Time;
+                                // Guardo la hora de este elememto del bucle como buena
+                                $ultimo_registro_hora = $Time;
 
-                            // Guardamos los datos en BBDD
-                            // Creo ls entidad y la voy rellenando
-                            list($day, $month, $year) = explode('/', $Date);
-                            list($hour, $minute, $second) = explode(':', $Time);
-                            list($single_second, $milisecond) = explode(',', $second);
-                            $timestamp = new \DateTime();
-                            $timestamp->setDate($year, $month, $day);
-                            $timestamp->setTime($hour, $minute, $single_second, $milisecond);
-                            $turbines_datas = new TurbinesDatas();
-                            $turbines_datas->setCreated(new \DateTime());
-                            $turbines_datas->setTimestamp($timestamp);
-                            $turbines_datas->setDate($timestamp);
-                            $turbines_datas->setHour($Time);
-                            $turbines_datas->setActiveCurrentA(intval($ActiveCurrent_A));
-                            $turbines_datas->setAUTOMATIC(intval($AUTOMATIC));
-                            $turbines_datas->setAvPower1minW(intval($AvPower1min_W));
-                            $turbines_datas->setAvPower5minW(intval($AvPower5min_W));
-                            $turbines_datas->setDamperActualPositionDeg(intval($DamperActualPosition_Deg));
-                            $turbines_datas->setDriveHealthy(intval($DriveHealthy));
-                            $turbines_datas->setMotorRpm(intval($Motor_rpm));
-                            $turbines_datas->setOuputVoltageV(intval($OuputVoltage_V));
-                            $turbines_datas->setOutputFrequencyHz(intval($OutputFrequency_Hz));
-                            $turbines_datas->setPowerKW(intval($Power_kW));
-                            $turbines_datas->setPressurePa(intval($Pressure_Pa));
-                            $turbines_datas->setReactiveCurrentA(intval($reactiveCurrent_A));
-                            $turbines_datas->setRMSPressurePa(intval($RMSPressure_Pa));
-                            $turbines_datas->setVibrationMmps(intval($Vibration_mmps));
-                            $turbines_datas->setFlow1Pa($Flow1_pa);
-                            $turbines_datas->setFlow2Pa($Flow2_pa);
-                            $turbines_datas->setWStaticPressurePa($Static_pressure_pa);
-                            $turbines_datas->setTemperature1(intval($Temperature1));
-                            $turbines_datas->setWaterlevel(intval($Waterlevel));
-                            $turbines_datas->setTurbines($turbines);
+                                // Guardamos los datos en BBDD
+                                // Creo ls entidad y la voy rellenando
+                                list($day, $month, $year) = explode('/', $Date);
+                                list($hour, $minute, $second) = explode(':', $Time);
+                                list($single_second, $milisecond) = explode(',', $second);
+                                $timestamp = new \DateTime();
+                                $timestamp->setDate($year, $month, $day);
+                                $timestamp->setTime($hour, $minute, $single_second, $milisecond);
+                                $turbines_datas = new TurbinesDatas();
+                                $turbines_datas->setCreated(new \DateTime());
+                                $turbines_datas->setTimestamp($timestamp);
+                                $turbines_datas->setDate($timestamp);
+                                $turbines_datas->setHour($Time);
+                                $turbines_datas->setActiveCurrentA(intval($ActiveCurrent_A));
+                                $turbines_datas->setAUTOMATIC(intval($AUTOMATIC));
+                                $turbines_datas->setAvPower1minW(intval($AvPower1min_W));
+                                $turbines_datas->setAvPower5minW(intval($AvPower5min_W));
+                                $turbines_datas->setDamperActualPositionDeg(intval($DamperActualPosition_Deg));
+                                $turbines_datas->setDriveHealthy(intval($DriveHealthy));
+                                $turbines_datas->setMotorRpm(intval($Motor_rpm));
+                                $turbines_datas->setOuputVoltageV(intval($OuputVoltage_V));
+                                $turbines_datas->setOutputFrequencyHz(intval($OutputFrequency_Hz));
+                                $turbines_datas->setPowerKW(intval($Power_kW));
+                                $turbines_datas->setPressurePa(intval($Pressure_Pa));
+                                $turbines_datas->setReactiveCurrentA(intval($reactiveCurrent_A));
+                                $turbines_datas->setRMSPressurePa(intval($RMSPressure_Pa));
+                                $turbines_datas->setVibrationMmps(intval($Vibration_mmps));
+                                $turbines_datas->setFlow1Pa($Flow1_pa);
+                                $turbines_datas->setFlow2Pa($Flow2_pa);
+                                $turbines_datas->setWStaticPressurePa($Static_pressure_pa);
+                                $turbines_datas->setTemperature1(intval($Temperature1));
+                                $turbines_datas->setWaterlevel(intval($Waterlevel));
+                                $turbines_datas->setTurbines($turbines);
 
-                            $em->persist($turbines_datas);
+                                $em->persist($turbines_datas);
                             }
 
 
