@@ -58,6 +58,24 @@ class CsvImportController extends AbstractController
                     [
                         'number' => $turbineNumber
                     ]);
+
+
+                // Compruebo si está activa o no lo esta
+                $turbineActive = $turbines->getActive();
+                echo "Turbina Activa: ".$turbineActive;
+                // Si no stá activa muevo el archivo a su ubicación y termino el proceso.
+                if ($turbineActive == 0) {
+                    // Mover el archivo a la carpeta HISTORIC
+                    $mover = rename($absoluteFilePath, $this->getParameter('turbines_data_folder') . 'HISTORIC/' . $fileNameWithExtension);
+
+                    return $this->render('csv_import/index.html.twig', [
+                        'controller_name' => 'CsvImportController',
+                    ]);
+                    die();
+
+                }
+
+
                 if ($turbines === null) {
                     $turbines = new Turbines();
                     $turbines->setName('Turbina ' . $turbineNumber);
@@ -88,19 +106,7 @@ class CsvImportController extends AbstractController
                 dump($turbines_files);
                 $em->flush();
 
-                // Compruebo si está activa o no lo esta
-                $turbineActive = $turbines->getActive();
-                // Si no stá activa muevo el archivo a su ubicación y termino el proceso.
-                if ($turbineActive == 0) {
-                    // Mover el archivo a la carpeta HISTORIC
-                    $mover = rename($absoluteFilePath, $this->getParameter('turbines_data_folder') . 'HISTORIC/' . $fileNameWithExtension);
 
-                    return $this->render('csv_import/index.html.twig', [
-                        'controller_name' => 'CsvImportController',
-                    ]);
-                    die();
-
-                }
 
                 // Importo el archivo
                 $rowNo = 1;
