@@ -116,7 +116,7 @@
             <trans-unit id="registro">
                 <source>Registro</source>
              </trans-unit>
-            <trans-unit id="identificacion">
+            <trans-unit id="Identificación">
                 <source>Identificación</source>
             </trans-unit>
             <trans-unit id="recuperacion_de_contrasena">
