@@ -154,7 +154,7 @@
                 <source>Registro</source>
                 <target>Registration</target>
              </trans-unit>
-            <trans-unit id="identificacion">
+            <trans-unit id="Identificación">
                 <source>Identificación</source>
                 <target>Login</target>
             </trans-unit>
