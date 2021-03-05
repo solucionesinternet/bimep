@@ -52,14 +52,15 @@ class UserMutrikuController extends AbstractController
         $qb
             ->select('t', 'tp')
             ->from('App\Entity\Turbines', 't')
-            ->leftJoin(
-                'App\Entity\TurbineToProfile',
-                'tp',
-                Expr\Join::WITH,
-                'tp.profile = :profile_id'
-            )
-            ->where('t.active = :active')
-            ->setParameter('active', 1)
+            ->from('App\Entity\TurbineToProfile', 'tp')
+//            ->leftJoin(
+//                'App\Entity\TurbineToProfile',
+//                'tp',
+//                Expr\Join::WITH,
+//                'tp.profile = :profile_id'
+//            )
+            ->where('t.active = 1')
+            ->where('tp.profile = :profile_id')
             ->setParameter('profile_id', $user->getProfile())
             ->orderBy('t.number', 'ASC');
         $turbines = $qb->getQuery()->getResult();
