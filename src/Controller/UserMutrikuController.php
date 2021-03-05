@@ -50,7 +50,7 @@ class UserMutrikuController extends AbstractController
         $query = $em->createQuery("SELECT Turbines.* FROM Turbines, TurbineToProfile WHERE active = :active AND TurbineToProfile.profile_id");
         $qb = $em->createQueryBuilder();
         $qb
-            ->select('t', 'tp')
+            ->select('t')
             ->from('App\Entity\Turbines', 't')
             ->from('App\Entity\TurbineToProfile', 'tp')
 //            ->leftJoin(
