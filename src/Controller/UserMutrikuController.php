@@ -53,11 +53,12 @@ class UserMutrikuController extends AbstractController
         $turbinesList = array();
         foreach ($turbinesToProfile as $data){
             $currentTurbine = $data->getTurbines();
+            $currentTurbinesArray[] = $data->getTurbines();
             $currentTurbineId = $currentTurbine->getId();
             array_push($turbinesList, $currentTurbineId);
         }
         $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1, 'id' => $turbinesList), array('number' => 'ASC'));
-        $turbine = reset($turbines);
+        $turbine = reset($currentTurbinesArray);
 
 
         if (isset($_POST["formTurbines"])) {
