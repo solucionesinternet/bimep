@@ -52,7 +52,6 @@ class UserMutrikuController extends AbstractController
         $qb
             ->select('t', 'tp')
             ->from('App\Entity\Turbines', 't')
-            ->from('App\Entity\TurbineToProfile', 'tp')
             ->leftJoin(
                 'App\Entity\TurbineToProfile',
                 'tp',
