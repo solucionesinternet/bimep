@@ -8,6 +8,7 @@ use App\Entity\Queries;
 use App\Entity\Turbines;
 use App\Entity\TurbinesDatas;
 use App\Entity\TurbinesFiles;
+use App\Entity\TurbineToProfile;
 use App\Repository\TurbinesDatasRepository;
 use CalendarBundle\CalendarEvents;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\AreaChart;
@@ -25,6 +26,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\Time;
 use ZipArchive;
+use Doctrine\ORM\Query\Expr;
 
 
 class UserMutrikuController extends AbstractController
@@ -39,12 +41,30 @@ class UserMutrikuController extends AbstractController
 
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
+        $profileId = $user->getProfile();
 
         // Obtener el doctrine manager
         $em = $this->getDoctrine()->getManager();
 
-        // Obtenermos el listado de turbinas activas
-        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
+        // Obtenermos el listado de turbinas activas para este tipo de perfil
+        $query = $em->createQuery("SELECT Turbines.* FROM Turbines, TurbineToProfile WHERE active = :active AND TurbineToProfile.profile_id");
+        $qb = $em->createQueryBuilder();
+        $qb
+            ->select('t', 'tp')
+            ->from('App\Entity\Turbines', 't')
+            ->from('App\Entity\TurbineToProfile', 'tp')
+            ->leftJoin(
+                'App\Entity\TurbineToProfile',
+                'tp',
+                Expr\Join::WITH,
+                'tp.profile = :profile_id'
+            )
+            ->where('t.active = :active')
+            ->setParameter('active', 1)
+            ->setParameter('profile_id', $user->getProfile())
+            ->orderBy('t.number', 'ASC');
+        $turbines = $qb->getQuery()->getResult();
+//        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
         $turbine = reset($turbines);
 
 
