@@ -43,28 +43,32 @@ class UserMutrikuController extends AbstractController
         $user = $this->getUser();
         $profileId = $user->getProfile();
 
+
+
         // Obtener el doctrine manager
         $em = $this->getDoctrine()->getManager();
 
+        // Obtenemos el listado de turbinas a las que tiene acceso este prfil
+        $turbinesToProfile = $em->getRepository(TurbineToProfile::class)->findBy(array('profile' => $profileId));
+
         // Obtenermos el listado de turbinas activas para este tipo de perfil
-        $query = $em->createQuery("SELECT Turbines.* FROM Turbines, TurbineToProfile WHERE active = :active AND TurbineToProfile.profile_id");
-        $qb = $em->createQueryBuilder();
-        $qb
-            ->select('t')
-            ->from('App\Entity\Turbines', 't')
-            ->from('App\Entity\TurbineToProfile', 'tp')
-//            ->leftJoin(
-//                'App\Entity\TurbineToProfile',
-//                'tp',
-//                Expr\Join::WITH,
-//                'tp.profile = :profile_id'
-//            )
-            ->where('t.active = 1')
-            ->where('tp.profile = :profile_id')
-            ->setParameter('profile_id', $user->getProfile())
-            ->orderBy('t.number', 'ASC');
-        $turbines = $qb->getQuery()->getResult();
-//        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
+//        $qb = $em->createQueryBuilder();
+//        $qb
+//            ->select('t')
+//            ->from('App\Entity\Turbines', 't')
+//            ->from('App\Entity\TurbineToProfile', 'tp')
+////            ->leftJoin(
+////                'App\Entity\TurbineToProfile',
+////                'tp',
+////                Expr\Join::WITH,
+////                'tp.profile = :profile_id'
+////            )
+//            ->where('t.active = 1')
+//            ->where('tp.profile = :profile_id')
+//            ->setParameter('profile_id', $user->getProfile())
+//            ->orderBy('t.number', 'ASC');
+//        $turbines = $qb->getQuery()->getResult();
+        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'), array('ID' => $turbinesToProfile));
         $turbine = reset($turbines);
 
 
