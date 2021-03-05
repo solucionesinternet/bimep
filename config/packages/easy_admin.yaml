@@ -204,6 +204,7 @@ easy_admin:
                     - {property: 'name', label: 'Nombre del perfil'}
                     - {property: 'num_downloads', label: 'Nº de descargas', type: 'integer'}
                     - {property: 'num_turbines_to_view', label: 'Nº de turbinas a visualizar', type: 'integer'}
+                    - {property: 'turbines', label: 'Turbinas:', type_options: { expanded: false, multiple: true, required: true }}
                     - {property: 'num_buoys_to_view', label: 'Nº de boyas a visualizar', type: 'integer'}
                     - {property: 'num_inverters_to_view', label: 'Nº de inversores a visualizar', type: 'integer'}
             edit:
@@ -212,6 +213,7 @@ easy_admin:
                     - {property: 'name', label: 'Nombre del perfil'}
                     - {property: 'num_downloads', label: 'Nº de descargas', type: 'integer'}
                     - {property: 'num_turbines_to_view', label: 'Nº de turbinas a visualizar', type: 'integer'}
+                    - {property: 'turbines', label: 'Turbinas:', type_options: { expanded: false, multiple: true, required: true }}
                     - {property: 'num_buoys_to_view', label: 'Nº de boyas a visualizar', type: 'integer'}
                     - {property: 'num_inverters_to_view', label: 'Nº de inversores a visualizar', type: 'integer'}
             show:
