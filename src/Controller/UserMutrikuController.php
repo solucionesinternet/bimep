@@ -50,25 +50,11 @@ class UserMutrikuController extends AbstractController
 
         // Obtenemos el listado de turbinas a las que tiene acceso este prfil
         $turbinesToProfile = $em->getRepository(TurbineToProfile::class)->findBy(array('profile' => $profileId));
-
-        // Obtenermos el listado de turbinas activas para este tipo de perfil
-//        $qb = $em->createQueryBuilder();
-//        $qb
-//            ->select('t')
-//            ->from('App\Entity\Turbines', 't')
-//            ->from('App\Entity\TurbineToProfile', 'tp')
-////            ->leftJoin(
-////                'App\Entity\TurbineToProfile',
-////                'tp',
-////                Expr\Join::WITH,
-////                'tp.profile = :profile_id'
-////            )
-//            ->where('t.active = 1')
-//            ->where('tp.profile = :profile_id')
-//            ->setParameter('profile_id', $user->getProfile())
-//            ->orderBy('t.number', 'ASC');
-//        $turbines = $qb->getQuery()->getResult();
-        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'), array('ID' => $turbinesToProfile));
+        $turbinesList = array();
+        foreach ($turbinesToProfile as $data){
+            array_push($turbinesList, $data->getId());
+        }
+        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'), array('ID' => $turbinesList));
         $turbine = reset($turbines);
 
 
