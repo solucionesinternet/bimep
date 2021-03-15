@@ -64,6 +64,11 @@ class Turbines
     private $turbines_datas;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TurbinesMedias", mappedBy="turbines", cascade="remove")
+     */
+    private $turbines_media;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\TurbineToProfile", mappedBy="turbines", cascade={"persist"}, orphanRemoval=true)
      *
      */
@@ -201,6 +206,24 @@ class Turbines
     {
         $this->turbines_datas = $turbines_datas;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTurbinesMedia()
+    {
+        return $this->turbines_media;
+    }
+
+    /**
+     * @param mixed $turbines_media
+     */
+    public function setTurbinesMedia($turbines_media): void
+    {
+        $this->turbines_media = $turbines_media;
+    }
+
+
 
     /**
      * @return mixed
