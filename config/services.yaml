@@ -28,6 +28,10 @@ services:
         class:  App\Console\Command\FtpImportCommand
         tags:
             -   {name:  console.command}
+    app.command.data_media:
+        class:  App\Console\Command\DataMediaCommand
+        tags:
+            -   {name:  console.command}
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
