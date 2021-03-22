@@ -1,0 +1,94 @@
+<?php
+
+// Uso del comando:
+// php bin/console data:media T01   <-- Donde T01 es el archivo de la turbina de ayer a importar
+// Tambien puede ser RegenA o RegenB . Recordar que las turbinas 1 y 9 son de prueba y no tienen datos
+// Así como el RegenB que también es de pruebas
+
+namespace App\Console\Command;
+
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use App\Entity\Turbines;
+use App\Entity\TurbinesDatas;
+use App\Entity\TurbinesMedias;
+use DateTime;
+use DateInterval;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
+class DataMediaCommand extends Command
+{
+
+    private $params;
+
+    // Creo un constructor y le paso la instancia de  ParameterBagInterface para tener acceso a los parametros del services.yml
+
+    public function __construct(ParameterBagInterface $params, EntityManagerInterface $em)
+    {
+        parent::__construct();
+        $this->em = $em;
+        $this->params = $params;
+
+
+    }
+
+    protected function configure()
+    {
+        $this
+            ->setName('data:media')
+            ->setDescription('Generar valores medios, maximos de ciertos valores')
+            ->addArgument(
+                'turbina',
+                InputArgument::OPTIONAL,
+                '¿Que rurbina deseas calcular?'
+            );
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+
+        $resultado = "";
+
+        // Obtener el doctrine manager
+        $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
+
+
+        $turbines = $this->em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
+
+        foreach ($turbines as $data){
+            $resultado .= "Turbine ID: ".$data->getId();
+            $turbine_id = $data->getId();
+            $RAW_QUERY_POWER_KW = 'select DISTINCT TIME(hour) AS hora, max(power_k_w * -1000) AS maximo_power, AVG(power_k_w * -1000 ) AS media_power, max(rmspressure_pa) AS maximo_rms, AVG(rmspressure_pa) AS media_rms, date(date) AS fecha, turbines_id from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $turbine_id . ' AND automatic = 10 group by hour(timestamp) ORDER BY ID ASC  ';
+            $statement = $this->em->getConnection()->prepare($RAW_QUERY_POWER_KW);
+            $statement->execute();
+            $medias = $statement->fetchAllAssociative();
+            print_r($medias);
+
+        }
+
+//        $turbine_id = 17;
+//
+//        $RAW_QUERY_POWER_KW = 'select DISTINCT TIME(hour) AS hora, max(power_k_w * -1000) AS maximo, AVG(power_k_w * -1000 ), date(date) AS fecha, turbines_id from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $turbine_id . ' AND automatic = 10 group by hour(timestamp) ORDER BY ID ASC  ';
+//        $RAW_QUERY_POWER_KW = 'select DISTINCT TIME(hour) AS hora, max(power_k_w * -1000) AS maximo_power, AVG(power_k_w * -1000 ) AS media_power, max(rmspressure_pa) AS maximo_rms, AVG(rmspressure_pa) AS media_rms, date(date) AS fecha, turbines_id from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $turbine_id . ' AND automatic = 10 group by hour(timestamp) ORDER BY ID ASC  ';
+//        $RAW_QUERY_RMS_PRESSURE_PA = 'select DISTINCT TIME(hour) AS hora, max(rmspressure_pa) AS maximo, AVG(rmspressure_pa), date(date) AS fecha, turbines_id from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $turbine_id . ' AND automatic = 10 group by hour(timestamp) ORDER BY ID ASC  ';
+//
+//        $dateFormat = 'H:i';
+//        $period = new \DateTime();
+//        $period = $period->format('d/m/Y');
+//
+//        $statement = $this->em->getConnection()->prepare($RAW_QUERY_POWER_KW);
+//        $statement->execute();
+//        $presiones = $statement->fetchAll();
+//        $numPresiones = count($presiones);
+
+
+
+        $output->writeln($resultado);
+        // Siempre debemos devolver 0 para que la consola no de error
+        return 0;
+    }
+}
