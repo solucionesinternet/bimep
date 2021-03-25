@@ -29,7 +29,7 @@ services:
         tags:
             -   {name:  console.command}
     app.command.data_media:
-        class:  App\Console\Command\DataMediaCommand
+        class:  App\Console\Command\DataMediaGenerator
         tags:
             -   {name:  console.command}
     _defaults:
