@@ -250,6 +250,22 @@ class TurbinesMedias
         $this->Power_kW_max = $Power_kW_max;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRMSPressurePaMax()
+    {
+        return $this->RMSPressure_Pa_max;
+    }
+
+    /**
+     * @param mixed $RMSPressure_Pa_max
+     */
+    public function setRMSPressurePaMax($RMSPressure_Pa_max): void
+    {
+        $this->RMSPressure_Pa_max = $RMSPressure_Pa_max;
+    }
+
 
 
 }
