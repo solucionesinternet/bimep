@@ -69,6 +69,7 @@ class DataMediaCommand extends Command
             print_r($medias);
 
             $hora = $data->hora;
+            echo "hora: ".$hora;
             $maximo_power = $data->maximo_power;
             $media_power = $data->media_power;
             $maximo_rms = $data->maximo_rms;
@@ -90,7 +91,7 @@ class DataMediaCommand extends Command
 
             $this->em->persist($turbinesMedias);
 
-
+            die();
         }
 
 //        $turbine_id = 17;
