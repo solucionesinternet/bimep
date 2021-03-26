@@ -68,10 +68,10 @@ class DataMediaCommand extends Command
             $medias = $statement->fetchAllAssociative();
             print_r($medias);
 
-            echo "hora: ".$data->hora;
-            die();
             $hora = $data[$i]["hora"];
             echo "hora: ".$hora;
+            die();
+
             $maximo_power = $data->maximo_power;
             $media_power = $data->media_power;
             $maximo_rms = $data->maximo_rms;
