@@ -68,6 +68,29 @@ class DataMediaCommand extends Command
             $medias = $statement->fetchAllAssociative();
             print_r($medias);
 
+            $hora = $data->hora;
+            $maximo_power = $data->maximo_power;
+            $media_power = $data->media_power;
+            $maximo_rms = $data->maximo_rms;
+            $media_rms = $data->media_rms;
+            $fecha = $data->fecha;
+            $turbines_id = $data->turbines_id;
+            $timestamp = new DateTime();
+
+            $turbinesMedias = new TurbinesMedias();
+            $turbinesMedias->setTurbines($turbines_id);
+            $turbinesMedias->setTimestamp($timestamp);
+            $turbinesMedias->setDate($fecha);
+            $turbinesMedias->setHour($hora);
+            $turbinesMedias->setPowerKWMedia($media_power);
+            $turbinesMedias->setRMSPressurePaMedia($media_rms);
+            $turbinesMedias->setPowerKWMax($maximo_power);
+            $turbinesMedias->setRMSPressurePaMax($maximo_rms);
+            $turbinesMedias->setCreated(new DateTime());
+
+            $this->em->persist($turbinesMedias);
+
+
         }
 
 //        $turbine_id = 17;
