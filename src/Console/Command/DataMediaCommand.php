@@ -58,7 +58,7 @@ class DataMediaCommand extends Command
 
 
         $turbines = $this->em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
-
+        $i = 0;
         foreach ($turbines as $data){
             $resultado .= "Turbine ID: ".$data->getId();
             $turbine_id = $data->getId();
@@ -70,7 +70,7 @@ class DataMediaCommand extends Command
 
             echo "hora: ".$data->hora;
             die();
-            $hora = $data->hora;
+            $hora = $data[$i]["hora"];
             echo "hora: ".$hora;
             $maximo_power = $data->maximo_power;
             $media_power = $data->media_power;
