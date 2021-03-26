@@ -37,7 +37,7 @@ class TurbinesMedias
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $ActiveCurrent_A;
+    private $ActiveCurrent_A_media;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -48,13 +48,27 @@ class TurbinesMedias
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $Power_kW;
+    private $Power_kW_media;
 
 
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $RMSPressure_Pa;
+    private $Power_kW_max;
+
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $RMSPressure_Pa_media;
+
+
+
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $RMSPressure_Pa_max;
 
 
 
@@ -127,17 +141,17 @@ class TurbinesMedias
     /**
      * @return mixed
      */
-    public function getActiveCurrentA()
+    public function getActiveCurrentAMedia()
     {
-        return $this->ActiveCurrent_A;
+        return $this->ActiveCurrent_A_media;
     }
 
     /**
-     * @param mixed $ActiveCurrent_A
+     * @param mixed $ActiveCurrent_A_media
      */
-    public function setActiveCurrentA($ActiveCurrent_A): void
+    public function setActiveCurrentAMedia($ActiveCurrent_A_media): void
     {
-        $this->ActiveCurrent_A = $ActiveCurrent_A;
+        $this->ActiveCurrent_A_media = $ActiveCurrent_A_media;
     }
 
     /**
@@ -159,33 +173,33 @@ class TurbinesMedias
     /**
      * @return mixed
      */
-    public function getPowerKW()
+    public function getPowerKWMedia()
     {
-        return $this->Power_kW;
+        return $this->Power_kW_media;
     }
 
     /**
-     * @param mixed $Power_kW
+     * @param mixed $Power_kW_media
      */
-    public function setPowerKW($Power_kW): void
+    public function setPowerKWMedia($Power_kW_media): void
     {
-        $this->Power_kW = $Power_kW;
+        $this->Power_kW_media = $Power_kW_media;
     }
 
     /**
      * @return mixed
      */
-    public function getRMSPressurePa()
+    public function getRMSPressurePaMedia()
     {
-        return $this->RMSPressure_Pa;
+        return $this->RMSPressure_Pa_media;
     }
 
     /**
-     * @param mixed $RMSPressure_Pa
+     * @param mixed $RMSPressure_Pa_media
      */
-    public function setRMSPressurePa($RMSPressure_Pa): void
+    public function setRMSPressurePaMedia($RMSPressure_Pa_media): void
     {
-        $this->RMSPressure_Pa = $RMSPressure_Pa;
+        $this->RMSPressure_Pa_media = $RMSPressure_Pa_media;
     }
 
     /**
@@ -218,6 +232,22 @@ class TurbinesMedias
     public function setTurbines($turbines): void
     {
         $this->turbines = $turbines;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPowerKWMax()
+    {
+        return $this->Power_kW_max;
+    }
+
+    /**
+     * @param mixed $Power_kW_max
+     */
+    public function setPowerKWMax($Power_kW_max): void
+    {
+        $this->Power_kW_max = $Power_kW_max;
     }
 
 
