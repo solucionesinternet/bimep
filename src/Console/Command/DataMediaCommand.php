@@ -68,28 +68,33 @@ class DataMediaCommand extends Command
             $medias = $statement->fetchAllAssociative();
             print_r($medias);
 
-            echo "Turbine: ".$medias->maximo_power;
+            fir($i = 0; $i < count($medias); $i++){
 
-            $maximo_power = $medias->maximo_power;
-            $media_power = $medias->media_power;
-            $maximo_rms = $medias->maximo_rms;
-            $media_rms = $medias->media_rms;
-            $fecha = $medias->fecha;
-            $turbines_id = $medias->turbines_id;
-            $timestamp = new DateTime();
+                $hora = $medias[$i]["hora"];
+                $maximo_power = $medias[$i]["maximo_power"];
+                $media_power = $medias[$i]["media_power"];
+                $maximo_rms = $medias[$i]["maximo_rms"];
+                $media_rms = $medias[$i]["media_rms"];
+                $fecha = $medias[$i]["fecha"];
+                $turbines_id = $medias[$i]["turbines_id"];
+                $timestamp = new DateTime();
 
-            $turbinesMedias = new TurbinesMedias();
-            $turbinesMedias->setTurbines($turbines_id);
-            $turbinesMedias->setTimestamp($timestamp);
-            $turbinesMedias->setDate($fecha);
-            $turbinesMedias->setHour($hora);
-            $turbinesMedias->setPowerKWMedia($media_power);
-            $turbinesMedias->setRMSPressurePaMedia($media_rms);
-            $turbinesMedias->setPowerKWMax($maximo_power);
-            $turbinesMedias->setRMSPressurePaMax($maximo_rms);
-            $turbinesMedias->setCreated(new DateTime());
+                $turbinesMedias = new TurbinesMedias();
+                $turbinesMedias->setTurbines($turbines_id);
+                $turbinesMedias->setTimestamp($timestamp);
+                $turbinesMedias->setDate($fecha);
+                $turbinesMedias->setHour($hora);
+                $turbinesMedias->setPowerKWMedia($media_power);
+                $turbinesMedias->setRMSPressurePaMedia($media_rms);
+                $turbinesMedias->setPowerKWMax($maximo_power);
+                $turbinesMedias->setRMSPressurePaMax($maximo_rms);
+                $turbinesMedias->setCreated(new DateTime());
 
-            $this->em->persist($turbinesMedias);
+                $this->em->persist($turbinesMedias);
+
+            }
+
+
 
             die();
         }
