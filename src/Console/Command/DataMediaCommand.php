@@ -79,6 +79,8 @@ class DataMediaCommand extends Command
                 $turbines_id = $medias[$i]["turbines_id"];
                 $timestamp = new DateTime();
 
+                echo "Hora: ".$hora;
+
                 $turbinesMedias = new TurbinesMedias();
                 $turbinesMedias->setTurbines($turbines_id);
                 $turbinesMedias->setTimestamp($timestamp);
