@@ -70,7 +70,6 @@ class DataMediaCommand extends Command
 
             $hora = $data[$i]["hora"];
             echo "hora: ".$hora;
-            die();
 
             $maximo_power = $data->maximo_power;
             $media_power = $data->media_power;
