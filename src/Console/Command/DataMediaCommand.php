@@ -68,15 +68,14 @@ class DataMediaCommand extends Command
             $medias = $statement->fetchAllAssociative();
             print_r($medias);
 
-            $hora = $data[$i]["hora"];
-            echo "hora: ".$hora;
+            echo "Turbine: ".$medias->maximo_power;
 
-            $maximo_power = $data->maximo_power;
-            $media_power = $data->media_power;
-            $maximo_rms = $data->maximo_rms;
-            $media_rms = $data->media_rms;
-            $fecha = $data->fecha;
-            $turbines_id = $data->turbines_id;
+            $maximo_power = $medias->maximo_power;
+            $media_power = $medias->media_power;
+            $maximo_rms = $medias->maximo_rms;
+            $media_rms = $medias->media_rms;
+            $fecha = $medias->fecha;
+            $turbines_id = $medias->turbines_id;
             $timestamp = new DateTime();
 
             $turbinesMedias = new TurbinesMedias();
