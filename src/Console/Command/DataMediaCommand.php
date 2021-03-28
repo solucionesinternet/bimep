@@ -68,7 +68,7 @@ class DataMediaCommand extends Command
             $medias = $statement->fetchAllAssociative();
             print_r($medias);
 
-            fir($i = 0; $i < count($medias); $i++){
+            for($i = 0; $i < count($medias); $i++){
 
                 $hora = $medias[$i]["hora"];
                 $maximo_power = $medias[$i]["maximo_power"];
