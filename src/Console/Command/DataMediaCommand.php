@@ -61,7 +61,7 @@ class DataMediaCommand extends Command
         $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
 
 
-        $turbines = $this->em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => $turbineNumber));
+        $turbines = $this->em->getRepository(Turbines::class)->findBy(array('active' => 1, 'number' => $turbineNumber), array('number' => 'ASC'));
         $i = 0;
         foreach ($turbines as $data){
             $resultado .= "Turbine ID: ".$data->getId();
