@@ -75,7 +75,7 @@ class DataMediaCommand extends Command
             echo "Turbine Id: " . $turbine_id;
             $RAW_QUERY_POWER_KW = 'select DISTINCT TIME(hour) AS hora, max(power_k_w * -1000) AS maximo_power, AVG(power_k_w * -1000 ) AS media_power, max(rmspressure_pa) AS maximo_rms, AVG(rmspressure_pa) AS media_rms, date(date) AS fecha, turbines_id from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 2 DAY) AND turbines_id = ' . $turbine_id . ' AND automatic = 10 group by hour(timestamp) ORDER BY ID ASC  ';
 
-            echo $RAW_QUERY_POWER_KW;
+//            echo $RAW_QUERY_POWER_KW;
 
             $statement = $this->em->getConnection()->prepare($RAW_QUERY_POWER_KW);
             $statement->execute();
@@ -106,6 +106,8 @@ class DataMediaCommand extends Command
                 $turbinesMedias->setPowerKWMax($maximo_power);
                 $turbinesMedias->setRMSPressurePaMax($maximo_rms);
                 $turbinesMedias->setCreated(new DateTime());
+
+                echo print_r($turbinesMedias);
 
                 $this->em->persist($turbinesMedias);
 
