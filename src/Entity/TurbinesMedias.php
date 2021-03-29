@@ -79,7 +79,7 @@ class TurbinesMedias
     private $created;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Turbines", inversedBy="turbines_datas")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Turbines", inversedBy="turbines_media")
      */
     private $turbines;
 
