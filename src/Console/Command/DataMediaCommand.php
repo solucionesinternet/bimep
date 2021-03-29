@@ -51,13 +51,17 @@ class DataMediaCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
+        $Turbine = $input->getArgument('turbina');
+        $turbineNumber = str_replace("T", "", $Turbine);
+        $turbineNumber = intval($turbineNumber);
+
         $resultado = "";
 
         // Obtener el doctrine manager
         $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
 
 
-        $turbines = $this->em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
+        $turbines = $this->em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => $turbineNumber));
         $i = 0;
         foreach ($turbines as $data){
             $resultado .= "Turbine ID: ".$data->getId();
@@ -98,7 +102,6 @@ class DataMediaCommand extends Command
 
 
 
-            die();
         }
 
 //        $turbine_id = 17;
