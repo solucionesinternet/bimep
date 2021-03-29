@@ -94,7 +94,7 @@ class DataMediaCommand extends Command
 
 
                 $turbinesMedias = new TurbinesMedias();
-                $turbinesMedias->setTurbines($turbines_id);
+                $turbinesMedias->setTurbines($turbines);
                 $turbinesMedias->setTimestamp($timestamp);
                 $turbinesMedias->setDate($fecha);
                 $turbinesMedias->setHour($hora);
