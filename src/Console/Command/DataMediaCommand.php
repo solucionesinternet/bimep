@@ -55,6 +55,8 @@ class DataMediaCommand extends Command
         $turbineNumber = str_replace("T", "", $Turbine);
         $turbineNumber = intval($turbineNumber);
 
+        echo "Turbine Numer: ".$turbineNumber;
+
         $resultado = "";
 
         // Obtener el doctrine manager
@@ -67,6 +69,10 @@ class DataMediaCommand extends Command
             $resultado .= "Turbine ID: ".$data->getId();
             $turbine_id = $data->getId();
             $RAW_QUERY_POWER_KW = 'select DISTINCT TIME(hour) AS hora, max(power_k_w * -1000) AS maximo_power, AVG(power_k_w * -1000 ) AS media_power, max(rmspressure_pa) AS maximo_rms, AVG(rmspressure_pa) AS media_rms, date(date) AS fecha, turbines_id from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $turbine_id . ' AND automatic = 10 group by hour(timestamp) ORDER BY ID ASC  ';
+
+            echo "<br />";
+            echo $RAW_QUERY_POWER_KW;
+
             $statement = $this->em->getConnection()->prepare($RAW_QUERY_POWER_KW);
             $statement->execute();
             $medias = $statement->fetchAllAssociative();
