@@ -80,7 +80,7 @@ class DataMediaCommand extends Command
             $statement = $this->em->getConnection()->prepare($RAW_QUERY_POWER_KW);
             $statement->execute();
             $medias = $statement->fetchAllAssociative();
-            echo "num medias: ".count($medias);
+//            echo "num medias: ".count($medias);
 
             for ($i = 0; $i < count($medias); $i++) {
 
@@ -93,7 +93,7 @@ class DataMediaCommand extends Command
                 $turbines_id = $medias[$i]["turbines_id"];
                 $timestamp = new DateTime();
 
-                print_r($medias[$i]);
+//                print_r($medias[$i]);
 
 
                 $turbinesMedias = new TurbinesMedias();
@@ -116,7 +116,7 @@ class DataMediaCommand extends Command
 
         }
 
-
+        $resultado = "Turbina Procesada";
         $output->writeln($resultado);
         // Siempre debemos devolver 0 para que la consola no de error
         return 0;
