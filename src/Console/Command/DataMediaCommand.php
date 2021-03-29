@@ -55,7 +55,7 @@ class DataMediaCommand extends Command
         $turbineNumber = str_replace("T", "", $Turbine);
         $turbineNumber = intval($turbineNumber);
 
-        echo "Turbine Numer: ".$turbineNumber;
+        echo "Turbine Numer: " . $turbineNumber;
 
         $resultado = "";
 
@@ -63,22 +63,23 @@ class DataMediaCommand extends Command
         $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
 
 
-        $turbines = $this->em->getRepository(Turbines::class)->findBy(array('active' => 1, 'number' => $turbineNumber), array('number' => 'ASC'));
-        $i = 0;
-        foreach ($turbines as $data){
-            $resultado .= "Turbine ID: ".$data->getId();
-            $turbine_id = $data->getId();
+        // $turbines = $this->em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
+        $turbines = $this->em->getRepository(Turbines::class)->findOneBy(
+            array('number' => $turbineNumber,
+                'active' => 1)
+        );
+        if ($turbines === null) {
+            echo "Turbina no existe o no está activa";
+        } else {
+            $turbine_id = $turbines->getId();
+            echo "Turbine Id: " . $turbine_id;
             $RAW_QUERY_POWER_KW = 'select DISTINCT TIME(hour) AS hora, max(power_k_w * -1000) AS maximo_power, AVG(power_k_w * -1000 ) AS media_power, max(rmspressure_pa) AS maximo_rms, AVG(rmspressure_pa) AS media_rms, date(date) AS fecha, turbines_id from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $turbine_id . ' AND automatic = 10 group by hour(timestamp) ORDER BY ID ASC  ';
-
-            echo "<br />";
-            echo $RAW_QUERY_POWER_KW;
 
             $statement = $this->em->getConnection()->prepare($RAW_QUERY_POWER_KW);
             $statement->execute();
             $medias = $statement->fetchAllAssociative();
-            print_r($medias);
 
-            for($i = 0; $i < count($medias); $i++){
+            for ($i = 0; $i < count($medias); $i++) {
 
                 $hora = $medias[$i]["hora"];
                 $maximo_power = $medias[$i]["maximo_power"];
@@ -89,7 +90,6 @@ class DataMediaCommand extends Command
                 $turbines_id = $medias[$i]["turbines_id"];
                 $timestamp = new DateTime();
 
-                echo "Hora: ".$hora;
 
                 $turbinesMedias = new TurbinesMedias();
                 $turbinesMedias->setTurbines($turbines_id);
@@ -106,25 +106,7 @@ class DataMediaCommand extends Command
 
             }
 
-
-
         }
-
-//        $turbine_id = 17;
-//
-//        $RAW_QUERY_POWER_KW = 'select DISTINCT TIME(hour) AS hora, max(power_k_w * -1000) AS maximo, AVG(power_k_w * -1000 ), date(date) AS fecha, turbines_id from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $turbine_id . ' AND automatic = 10 group by hour(timestamp) ORDER BY ID ASC  ';
-//        $RAW_QUERY_POWER_KW = 'select DISTINCT TIME(hour) AS hora, max(power_k_w * -1000) AS maximo_power, AVG(power_k_w * -1000 ) AS media_power, max(rmspressure_pa) AS maximo_rms, AVG(rmspressure_pa) AS media_rms, date(date) AS fecha, turbines_id from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $turbine_id . ' AND automatic = 10 group by hour(timestamp) ORDER BY ID ASC  ';
-//        $RAW_QUERY_RMS_PRESSURE_PA = 'select DISTINCT TIME(hour) AS hora, max(rmspressure_pa) AS maximo, AVG(rmspressure_pa), date(date) AS fecha, turbines_id from turbines_datas  WHERE date(date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND turbines_id = ' . $turbine_id . ' AND automatic = 10 group by hour(timestamp) ORDER BY ID ASC  ';
-//
-//        $dateFormat = 'H:i';
-//        $period = new \DateTime();
-//        $period = $period->format('d/m/Y');
-//
-//        $statement = $this->em->getConnection()->prepare($RAW_QUERY_POWER_KW);
-//        $statement->execute();
-//        $presiones = $statement->fetchAll();
-//        $numPresiones = count($presiones);
-
 
 
         $output->writeln($resultado);
