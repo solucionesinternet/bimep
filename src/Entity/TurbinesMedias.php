@@ -33,7 +33,6 @@ class TurbinesMedias
     private $hour;
 
 
-
     /**
      * @ORM\Column(type="float", nullable=true)
      */
@@ -63,14 +62,10 @@ class TurbinesMedias
     private $RMSPressure_Pa_media;
 
 
-
-
     /**
      * @ORM\Column(type="float", nullable=true)
      */
     private $RMSPressure_Pa_max;
-
-
 
 
     /**
@@ -82,7 +77,6 @@ class TurbinesMedias
      * @ORM\ManyToOne(targetEntity="App\Entity\Turbines", inversedBy="turbines_media")
      */
     private $turbines;
-
 
 
     public function getId(): ?int
@@ -265,7 +259,6 @@ class TurbinesMedias
     {
         $this->RMSPressure_Pa_max = $RMSPressure_Pa_max;
     }
-
 
 
 }
