@@ -107,10 +107,10 @@ class DataMediaCommand extends Command
                 $turbinesMedias->setRMSPressurePaMax($maximo_rms);
                 $turbinesMedias->setCreated(new DateTime());
 
-                echo print_r($turbinesMedias);
 
 
                 $this->em->persist($turbinesMedias);
+                $this->em->flush();
 
             }
 
