@@ -89,7 +89,7 @@ class DataMediaCommand extends Command
                 $media_power = $medias[$i]["media_power"];
                 $maximo_rms = $medias[$i]["maximo_rms"];
                 $media_rms = $medias[$i]["media_rms"];
-                $fecha = $medias[$i]["fecha"];
+                $fecha = new DateTime($medias[$i]["fecha"]);
                 $turbines_id = $medias[$i]["turbines_id"];
                 $timestamp = new DateTime();
 
