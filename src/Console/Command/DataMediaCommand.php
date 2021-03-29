@@ -109,6 +109,7 @@ class DataMediaCommand extends Command
 
                 echo print_r($turbinesMedias);
 
+
                 $this->em->persist($turbinesMedias);
 
             }
