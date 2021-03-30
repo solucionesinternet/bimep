@@ -96,7 +96,7 @@ class DataMediaCommand extends Command
                 $turbines_id = $medias[$i]["turbines_id"];
                 $timestamp = new DateTime();
 
-//                print_r($medias[$i]);
+                print_r($medias[$i]);
 
 
                 $turbinesMedias = new TurbinesMedias();
