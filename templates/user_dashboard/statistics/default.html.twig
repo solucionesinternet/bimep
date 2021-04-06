@@ -272,7 +272,6 @@
         var pressureText = 'Presión';
         console.log(pressureText);
         var minPressureText = 'Presión MIN';
-        var maxPressureText = 'Presión MAX';
 
         var elevationText = "Elevation";
         var minElevationText = "MIN Elevation";
@@ -291,7 +290,6 @@
 
 
             $('.presure-max').text(maxPressure + ' Pa');
-            $('.presure-min').text(minPressure + ' Pa');
 
 
             $('.sound-average').text(aveSoundPressure + ' Pa');
@@ -402,26 +400,6 @@
 							enabled: false*/
                             },
                             data: minPressureArray
-                        },
-                        {
-                            name: maxPressureText,
-                            color: '#F03861',
-                            type: "area",
-                            //dashStyle: 'longdash',
-                            fillColor: {
-                                color: '#F03861',
-                                // linearGradient : [0, 0, 0, 300],
-                                // stops : [
-                                //	 [0, 'rgba(255,112,67,0.8)'],
-                                //	 [1, 'rgba(255,112,67,0)']
-                                // ]
-                            },
-                            marker: {
-                                width: 5,
-                                height: 5/*,
-							enabled: false*/
-                            },
-                            data: maxPressureArray
                         }
                     ]
                 });

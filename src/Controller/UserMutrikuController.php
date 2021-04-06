@@ -95,7 +95,7 @@ class UserMutrikuController extends AbstractController
                 $RAW_QUERY = 'SELECT hour AS hora,  '.$fields.' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . '  ORDER BY hour ASC';
                 $dateFormat = 'd/m/Y H:i';
             }
-//            echo $RAW_QUERY;
+            echo $RAW_QUERY;
 //            die();
 
             $statement = $em->getConnection()->prepare($RAW_QUERY);
