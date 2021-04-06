@@ -37,25 +37,25 @@
         <div class="input-group mb-2 mr-2">
             <select name="fieldType" class="form-control select2-search--inline form-control-lg"
                     id="fieldType">
-                <option value="active_current_a">{% trans %}Corriente activa{% endtrans %}</option>
-                <option value="automatic">{% trans %}Modo funcionamiento{% endtrans %}</option>
-                <option value="av_power1min_w">{% trans %}Potencia media 1 min{% endtrans %} (W)</option>
-                <option value="av_power5min_w">{% trans %}Potencia media 5 min{% endtrans %} (W)</option>
-                <option value="damper_actual_position_deg">{% trans %}Posición válvula{% endtrans %}</option>
-                <option value="drive_healthy">{% trans %}Disponible / operativo{% endtrans %}</option>
-                <option value="motor_rpm">{% trans %}Velocidad de giro{% endtrans %} (rpm)</option>
-                <option value="ouput_voltage_v">{% trans %}Tensión{% endtrans %} (V)</option>
-                <option value="output_frequency_hz">{% trans %}Frecuencia{% endtrans %} (Hz)</option>
+{#                <option value="active_current_a">{% trans %}Corriente activa{% endtrans %}</option>#}
+{#                <option value="automatic">{% trans %}Modo funcionamiento{% endtrans %}</option>#}
+{#                <option value="av_power1min_w">{% trans %}Potencia media 1 min{% endtrans %} (W)</option>#}
+{#                <option value="av_power5min_w">{% trans %}Potencia media 5 min{% endtrans %} (W)</option>#}
+{#                <option value="damper_actual_position_deg">{% trans %}Posición válvula{% endtrans %}</option>#}
+{#                <option value="drive_healthy">{% trans %}Disponible / operativo{% endtrans %}</option>#}
+{#                <option value="motor_rpm">{% trans %}Velocidad de giro{% endtrans %} (rpm)</option>#}
+{#                <option value="ouput_voltage_v">{% trans %}Tensión{% endtrans %} (V)</option>#}
+{#                <option value="output_frequency_hz">{% trans %}Frecuencia{% endtrans %} (Hz)</option>#}
                 <option value="power_k_w">{% trans %}Potencia activa{% endtrans %}</option>
-                <option value="pressure_pa">{% trans %}Presión cámara{% endtrans %}</option>
-                <option value="reactive_current_a">{% trans %}Corriente reactiva{% endtrans %} (Ar)</option>
+{#                <option value="pressure_pa">{% trans %}Presión cámara{% endtrans %}</option>#}
+{#                <option value="reactive_current_a">{% trans %}Corriente reactiva{% endtrans %} (Ar)</option>#}
                 <option value="rmspressure_pa">{% trans %}Presión Media{% endtrans %} (Pa)</option>
-                <option value="vibration_mmps">{% trans %}Vibraciones{% endtrans %} (mmps)</option>
-                <option value="flow1_pa">{% trans %}Caída de presión{% endtrans %} (Pa)</option>
-                <option value="flow2_pa">{% trans %}Caída de presión{% endtrans %} (Pa)</option>
-                <option value="wstatic_pressure_pa">{% trans %}Presión de salida{% endtrans %} (Pa)</option>
-                <option value="temperature1">{% trans %}Temperatura generador{% endtrans %} (ºC)</option>
-                <option value="waterlevel">{% trans %}Nivel de agua{% endtrans %}</option>
+{#                <option value="vibration_mmps">{% trans %}Vibraciones{% endtrans %} (mmps)</option>#}
+{#                <option value="flow1_pa">{% trans %}Caída de presión{% endtrans %} (Pa)</option>#}
+{#                <option value="flow2_pa">{% trans %}Caída de presión{% endtrans %} (Pa)</option>#}
+{#                <option value="wstatic_pressure_pa">{% trans %}Presión de salida{% endtrans %} (Pa)</option>#}
+{#                <option value="temperature1">{% trans %}Temperatura generador{% endtrans %} (ºC)</option>#}
+{#                <option value="waterlevel">{% trans %}Nivel de agua{% endtrans %}</option>#}
             </select>
         </div>
 
@@ -153,6 +153,8 @@
                 $('#fieldType').val('{{ selectedFieldType }}');
                 $('#selectedDates').text('{{ selectedDaterange }}');
                 $('#selectedDates').show();
+            {% else %}
+            $('#formTurbines').val('{{ turbines[0].id }}');
             {% endif %}
 
 
