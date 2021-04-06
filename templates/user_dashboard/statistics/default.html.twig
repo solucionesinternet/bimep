@@ -239,9 +239,9 @@
         {% if numPresiones > 0 %}
         var pressure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var maxPressureArray = [{{ maximos|join(', ') }}];
-        var minPressureArray = [{{ minimos|join(', ') }}];
+        var minPressureArray = [{{ medias|join(', ') }}];
         var maxPressure = {{ pa_max_value }};
-        var minPressure = {{ pa_min_value }};
+        var minPressure = {{ pa_media_value }};
         {% else %}
         var pressure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var maxPressureArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
