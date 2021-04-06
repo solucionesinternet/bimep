@@ -89,10 +89,10 @@ class UserMutrikuController extends AbstractController
 //            }
 
             if ($dDiff->format("%a") > 1) {
-                $RAW_QUERY = 'select hour AS hora,  $fields date(date) AS fecha, DATE(timestamp) AS timestamp from turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' group by DAY(timestamp) ORDER BY DAY(timestamp)';
+                $RAW_QUERY = 'select hour AS hora,  '.$fields.' date(date) AS fecha, DATE(timestamp) AS timestamp from turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' group by DAY(timestamp) ORDER BY DAY(timestamp)';
                 $dateFormat = 'd/m/Y';
             } else {
-                $RAW_QUERY = 'select hour AS hora,  $fields date(date) AS fecha, timestamp from turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' group by hour(timestamp), day(timestamp) ORDER BY DAY(timestamp), HOUR(timestamp)';
+                $RAW_QUERY = 'select hour AS hora,  '.$fields.' date(date) AS fecha, timestamp from turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' group by hour(timestamp), day(timestamp) ORDER BY DAY(timestamp), HOUR(timestamp)';
                 $dateFormat = 'd/m/Y H:i';
             }
             echo $RAW_QUERY;
