@@ -72,17 +72,31 @@ class UserMutrikuController extends AbstractController
             $dEnd = new \DateTime($dateEnd);
             $dDiff = $dStart->diff($dEnd);
 
+            if($fieldType == 'power_k_w'){
+                $fields = " power_k_w_media AS media, power_k_w_max AS maximo, ";
+            }else{
+                $fields = " rmspressure_pa_media AS media, rmspressure_pa_max AS maximo, ";
+            }
+
             // Si el número de dias es mayor de 1 ejecuto una consulta y lo ordeno por dias
             // Si es menor o igual a 1 lo muestro por horas
+//            if ($dDiff->format("%a") > 1) {
+//                $RAW_QUERY = 'select hour AS hora,  min(' . $fieldType . ') AS minimo, max(' . $fieldType . ') AS maximo, date(date) AS fecha, DATE(timestamp) AS timestamp from turbines_datas  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' group by DAY(timestamp) ORDER BY DAY(timestamp)';
+//                $dateFormat = 'd/m/Y';
+//            } else {
+//                $RAW_QUERY = 'select hour AS hora,  min(' . $fieldType . ') AS minimo, max(' . $fieldType . ') AS maximo, date(date) AS fecha, timestamp from turbines_datas  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' group by hour(timestamp), day(timestamp) ORDER BY DAY(timestamp), HOUR(timestamp)';
+//                $dateFormat = 'd/m/Y H:i';
+//            }
+
             if ($dDiff->format("%a") > 1) {
-                $RAW_QUERY = 'select hour AS hora,  min(' . $fieldType . ') AS minimo, max(' . $fieldType . ') AS maximo, date(date) AS fecha, DATE(timestamp) AS timestamp from turbines_datas  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' group by DAY(timestamp) ORDER BY DAY(timestamp)';
+                $RAW_QUERY = 'select hour AS hora,  $fields date(date) AS fecha, DATE(timestamp) AS timestamp from turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' group by DAY(timestamp) ORDER BY DAY(timestamp)';
                 $dateFormat = 'd/m/Y';
             } else {
-                $RAW_QUERY = 'select hour AS hora,  min(' . $fieldType . ') AS minimo, max(' . $fieldType . ') AS maximo, date(date) AS fecha, timestamp from turbines_datas  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' group by hour(timestamp), day(timestamp) ORDER BY DAY(timestamp), HOUR(timestamp)';
+                $RAW_QUERY = 'select hour AS hora,  $fields date(date) AS fecha, timestamp from turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' group by hour(timestamp), day(timestamp) ORDER BY DAY(timestamp), HOUR(timestamp)';
                 $dateFormat = 'd/m/Y H:i';
             }
-//            echo $RAW_QUERY;
-//            die();
+            echo $RAW_QUERY;
+            die();
 
             $statement = $em->getConnection()->prepare($RAW_QUERY);
             $statement->execute();
