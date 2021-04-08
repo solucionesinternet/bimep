@@ -123,8 +123,9 @@ class UserMutrikuController extends AbstractController
                 $horas[] = $hora;
                 $medias[] = intval($media_pa);
                 $maximos[] = intval($max_pa);
-                $medias[] = (intval($media_pa) + intval($max_pa)) / 2;
-                $total_media += ((intval($media_pa) + intval($max_pa)) / 2);
+//                $medias[] = (intval($media_pa) + intval($max_pa)) / 2;
+                $medias[] = $media_pa;
+                $total_media += intval($media_pa) ;
             }
 
             if ($presiones)

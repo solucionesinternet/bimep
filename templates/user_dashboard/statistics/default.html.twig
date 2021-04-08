@@ -90,11 +90,6 @@
                             <p class="title" style="color: #F03861; border-color: #F03861;">MAX</p>
                             <p class="date presure-max">000000 Pa</p>
                         </div>
-
-                        <div class="chart_detail  p-4 text-center align-middle">
-                            <p class="title" style="color: #3498DB; border-color: #3498DB;">MIN</p>
-                            <p class="date presure-min">-000000 Pa</p>
-                        </div>
                     </div>
 
                     <div class="chart_right">
@@ -239,15 +234,15 @@
         {% if numPresiones > 0 %}
         var pressure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var maxPressureArray = [{{ maximos|join(', ') }}];
-        var mediaPressureArray = [{{ medias|join(', ') }}];
+        var minPressureArray = [{{ medias|join(', ') }}];
         var maxPressure = {{ pa_max_value }};
-        var mediaPressure = {{ pa_media_value }};
+        var minPressure = {{ pa_min_value }};
         {% else %}
         var pressure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var maxPressureArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        var mediaPressureArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var minPressureArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var maxPressure = 0;
-        var mediaPressure = 0;
+        var minPressure = 0;
         {% endif %}
 
 
@@ -271,6 +266,8 @@
 
         var pressureText = 'Presión';
         console.log(pressureText);
+        var minPressureText = 'Presión MIN';
+        var maxPressureText = 'Presión MAX';
 
         var elevationText = "Elevation";
         var minElevationText = "MIN Elevation";
@@ -289,6 +286,7 @@
 
 
             $('.presure-max').text(maxPressure + ' Pa');
+            $('.presure-min').text(minPressure + ' Pa');
 
 
             $('.sound-average').text(aveSoundPressure + ' Pa');
@@ -380,6 +378,45 @@
                             // that in JavaScript, months start at 0 for January, 1 for February etc.
                             data : //[ 31, 40, 33, 46, 48, 53, 67, 45, 51, 43, 60, 52 , 31, 40, 33, 46, 48, 53, 67, 45, 51, 43, 60, 52 ]
                                     pressure
+                        },*/ {
+                            name: minPressureText,
+                            color: '#3498DB',
+                            type: "area",
+                            //dashStyle: 'longdash',
+                            fillColor: {
+                                color: '#3498DB',
+                                // linearGradient : [0, 0, 0, 300],
+                                // stops : [
+                                //	 [0, 'rgba(255,112,67,0.8)'],
+                                //	 [1, 'rgba(255,112,67,0)']
+                                // ]
+                            },
+                            marker: {
+                                width: 5,
+                                height: 5/*,
+							enabled: false*/
+                            },
+                            data: minPressureArray
+                        },
+                        {
+                            name: maxPressureText,
+                            color: '#F03861',
+                            type: "area",
+                            //dashStyle: 'longdash',
+                            fillColor: {
+                                color: '#F03861',
+                                // linearGradient : [0, 0, 0, 300],
+                                // stops : [
+                                //	 [0, 'rgba(255,112,67,0.8)'],
+                                //	 [1, 'rgba(255,112,67,0)']
+                                // ]
+                            },
+                            marker: {
+                                width: 5,
+                                height: 5/*,
+							enabled: false*/
+                            },
+                            data: maxPressureArray
                         }
                     ]
                 });
