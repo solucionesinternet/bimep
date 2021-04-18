@@ -252,14 +252,14 @@
 
         var categories = categoriesHoras;
 
-        var pressureText = '{% trans %}Presión{% endtrans %}';
+        var pressureText = '{{fieldTXT}}';
         console.log(pressureText);
-        var minPressureText = '{% trans %}Presión{% endtrans %} MIN';
-        var maxPressureText = '{% trans %}Presión{% endtrans %} MAX';
+        var minPressureText = '{{fieldTXT}} MIN';
+        var maxPressureText = '{{fieldTXT}} MAX';
 
 
-        var soundPressureText = '{% trans %}Presión Eficaz{% endtrans %}';
-        var aveSoundPressureText = '{% trans %}Presión Media{% endtrans %}';
+        var soundPressureText = '{{fieldTXT}}';
+        var aveSoundPressureText = '';
 
         $(document).ready(function () {
 
