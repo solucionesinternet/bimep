@@ -96,7 +96,7 @@ class UserMutrikuController extends AbstractController
 //            }
 
             if ($dDiff->format("%a") > 1) {
-                $RAW_QUERY = 'SELECT hour AS hora,  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' GROUP BY date  ORDER BY date ASC';
+                $RAW_QUERY = 'SELECT  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' GROUP BY date  ORDER BY date ASC';
                 $dateFormat = 'd/m/Y';
             } else {
                 $RAW_QUERY = 'SELECT hour AS hora,  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' ORDER BY hour ASC ';
@@ -110,70 +110,27 @@ class UserMutrikuController extends AbstractController
             $presiones = $statement->fetchAll();
             $numPresiones = count($presiones);
 
-            // Recorro el objeto y genero el array
-            $total_media = null;
-            $horas = null;
-            $maximos = null;
-            $medias = null;
-            $medias = null;
-            $totalAverage = null;
-            $linea_medias = null;
-            $period = null;
 
-            foreach ($presiones as $item) {
-                //$hora = substr($item['hora'], 0, -3);
-                $hora = new \DateTime($item['fecha'] . ' ' . $item['hora']);
-                $hora = $hora->format($dateFormat);
-                $media_pa = $item['media'];
-                $max_pa = $item['maximo'];
-
-                $horas[] = $hora;
-                $medias[] = intval($media_pa);
-                $maximos[] = intval($max_pa);
-//                $medias[] = (intval($media_pa) + intval($max_pa)) / 2;
-                $medias[] = $media_pa;
-                $total_media += intval($media_pa);
-            }
-
-            if ($presiones)
-                $totalAverage = number_format(array_sum($medias) / $numPresiones, 2, '.', '');
-            else
-                $presiones = null;
 
 
             if ($presiones != null) {
                 $showCharts = 1;
-                // Obtener el valor minimo y el maximo
-                $medias = array_filter($medias);
-                $pa_media_value = array_sum($medias) / count($medias);
-                $pa_max_value = max($maximos);
 
             } else {
                 $showCharts = 0;
-                $medias = array();
-                $pa_media_value = null;
-                $pa_max_value = null;
             }
 
 
             // El original que funciona es user_dashboard/mutriku2
             return $this->render('user_dashboard/statistics/default.html.twig', [
                 'user' => $user,
-                'pa_media_value' => $pa_media_value,
-                'pa_max_value' => $pa_max_value,
                 'turbines' => $turbines,
                 'selectedTurbine' => $turbinesId,
                 'selectedFieldType' => $fieldType,
                 'selectedDaterange' => $daterange,
                 'showCharts' => $showCharts,
-                'horas' => $horas,
-                'medias' => $medias,
-                'maximos' => $maximos,
-                'period' => $period,
-                'average' => $medias,
-                'totalAverage' => $totalAverage,
-                'arrayAverage' => $linea_medias,
-                'numPresiones' => $numPresiones
+                'numPresiones' => $numPresiones,
+                'presiones' => $presiones
             ]);
 
 
