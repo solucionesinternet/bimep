@@ -148,7 +148,8 @@ class UserMutrikuController extends AbstractController
                 'medias' => $medias,
                 'maximos' => $maximos,
                 'average' => $medias,
-                'numPresiones' => $numPresiones
+                'numPresiones' => $numPresiones,
+                'fieldTXT' => $fieldTXT
             ]);
 
 
