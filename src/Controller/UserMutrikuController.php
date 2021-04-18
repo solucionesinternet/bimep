@@ -44,14 +44,13 @@ class UserMutrikuController extends AbstractController
         $profileId = $user->getProfile();
 
 
-
         // Obtener el doctrine manager
         $em = $this->getDoctrine()->getManager();
 
         // Obtenemos el listado de turbinas a las que tiene acceso este prfil
         $turbinesToProfile = $em->getRepository(TurbineToProfile::class)->findBy(array('profile' => $profileId));
         $turbinesList = array();
-        foreach ($turbinesToProfile as $data){
+        foreach ($turbinesToProfile as $data) {
             $currentTurbine = $data->getTurbines();
             $currentTurbinesArray[] = $data->getTurbines();
             $currentTurbineId = $currentTurbine->getId();
@@ -72,10 +71,18 @@ class UserMutrikuController extends AbstractController
             $dEnd = new \DateTime($dateEnd);
             $dDiff = $dStart->diff($dEnd);
 
-            if($fieldType == 'power_k_w'){
-                $fields = " power_k_w_media AS media, power_k_w_max AS maximo, ";
-            }else{
-                $fields = " rmspressure_pa_media AS media, rmspressure_pa_max AS maximo, ";
+            if ($fieldType == 'power_k_w') {
+                if ($dDiff->format("%a") > 1) {
+                    $fields = " AVG(power_k_w_media) AS media, MAX(power_k_w_max) AS maximo, ";
+                } else {
+                    $fields = " power_k_w_media AS media, power_k_w_max AS maximo, ";
+                }
+            } else {
+                if ($dDiff->format("%a") > 1) {
+                    $fields = " AVG(rmspressure_pa_media) AS media, MAX(rmspressure_pa_max) AS maximo, ";
+                } else {
+                    $fields = " rmspressure_pa_media AS media, rmspressure_pa_max AS maximo, ";
+                }
             }
 
             // Si el número de dias es mayor de 1 ejecuto una consulta y lo ordeno por dias
@@ -89,10 +96,10 @@ class UserMutrikuController extends AbstractController
 //            }
 
             if ($dDiff->format("%a") > 1) {
-                $RAW_QUERY = 'SELECT hour AS hora,  '.$fields.' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' ORDER BY date, hour ASC ';
+                $RAW_QUERY = 'SELECT hour AS hora,  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' ORDER BY date, hour ASC ';
                 $dateFormat = 'd/m/Y';
             } else {
-                $RAW_QUERY = 'SELECT hour AS hora,  '.$fields.' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . '  ORDER BY hour ASC';
+                $RAW_QUERY = 'SELECT hour AS hora,  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . '  ORDER BY hour ASC';
                 $dateFormat = 'd/m/Y H:i';
             }
             echo $RAW_QUERY;
@@ -115,7 +122,7 @@ class UserMutrikuController extends AbstractController
 
             foreach ($presiones as $item) {
                 //$hora = substr($item['hora'], 0, -3);
-                $hora = new \DateTime($item['fecha'].' '.$item['hora']);
+                $hora = new \DateTime($item['fecha'] . ' ' . $item['hora']);
                 $hora = $hora->format($dateFormat);
                 $media_pa = $item['media'];
                 $max_pa = $item['maximo'];
@@ -125,7 +132,7 @@ class UserMutrikuController extends AbstractController
                 $maximos[] = intval($max_pa);
 //                $medias[] = (intval($media_pa) + intval($max_pa)) / 2;
                 $medias[] = $media_pa;
-                $total_media += intval($media_pa) ;
+                $total_media += intval($media_pa);
             }
 
             if ($presiones)
@@ -138,7 +145,7 @@ class UserMutrikuController extends AbstractController
                 $showCharts = 1;
                 // Obtener el valor minimo y el maximo
                 $medias = array_filter($medias);
-                $pa_media_value = array_sum($medias)/count($medias);
+                $pa_media_value = array_sum($medias) / count($medias);
                 $pa_max_value = max($maximos);
 
             } else {
@@ -370,7 +377,7 @@ class UserMutrikuController extends AbstractController
                 $DateWithoutFormat = substr($fileName, 4, 8);
 
                 // En base a la fecha de la cadena del nombre del archivo genero un array con las fechas en las que buscar
-                $datetime = \DateTime::createFromFormat("Ymd",$DateWithoutFormat);
+                $datetime = \DateTime::createFromFormat("Ymd", $DateWithoutFormat);
                 $selectedDates[] = $datetime->format('Y/m/d');
 
             }
@@ -381,21 +388,21 @@ class UserMutrikuController extends AbstractController
             $datesStr = implode("', '", $selectedDates);
 
             // Gereno la ruta de a donde exportar el archivo desde el propio MySql
-            $mysqExportTmpCsvFile = $this->getParameter('mysql_export_csv_folder').$this->getParameter('mysql_export_csv_file');
+            $mysqExportTmpCsvFile = $this->getParameter('mysql_export_csv_folder') . $this->getParameter('mysql_export_csv_file');
 
             // Genero la cabecera del CSV en la propia consulta de MySql
-            $fieldsArray = explode(",",$fields);
+            $fieldsArray = explode(",", $fields);
             $fieldsTxt = implode("', '", $fieldsArray);
-            $fieldsHeaser = "SELECT 'tuebine_name','date','hour','".$fieldsTxt."' UNION ALL ";
-            $RAW_QUERY = $fieldsHeaser."SELECT '$turbines' AS tuebine_name, date, hour, $fields INTO OUTFILE '".$mysqExportTmpCsvFile."' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' FROM turbines_datas WHERE turbines_id = ".$turbinesId." AND date IN ('$datesStr')  ";
- //           $RAW_QUERY = "SELECT '$turbines' AS tuebine_name, date, hour, $fields  FROM turbines_datas WHERE turbines_id = ".$turbinesId." AND date IN ('$datesStr') ";
+            $fieldsHeaser = "SELECT 'tuebine_name','date','hour','" . $fieldsTxt . "' UNION ALL ";
+            $RAW_QUERY = $fieldsHeaser . "SELECT '$turbines' AS tuebine_name, date, hour, $fields INTO OUTFILE '" . $mysqExportTmpCsvFile . "' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' FROM turbines_datas WHERE turbines_id = " . $turbinesId . " AND date IN ('$datesStr')  ";
+            //           $RAW_QUERY = "SELECT '$turbines' AS tuebine_name, date, hour, $fields  FROM turbines_datas WHERE turbines_id = ".$turbinesId." AND date IN ('$datesStr') ";
 
             //echo $RAW_QUERY;
             $statement = $em->getConnection()->prepare($RAW_QUERY);
             $statement->execute();
 
             // Una vez generado el archivo lo muevo para reaignarle el propietario
-            $mysqExportTmpCsvFile2 = $this->getParameter('mysql_export_csv_folder')."tmpcsv.csv";
+            $mysqExportTmpCsvFile2 = $this->getParameter('mysql_export_csv_folder') . "tmpcsv.csv";
             copy($mysqExportTmpCsvFile, $mysqExportTmpCsvFile2);
             @unlink($mysqExportTmpCsvFile);
             rename($mysqExportTmpCsvFile2, $mysqExportTmpCsvFile);
@@ -436,7 +443,7 @@ class UserMutrikuController extends AbstractController
             $zipName = 'CustomFieldsCsv.zip';
             $zip->open($zipName, ZipArchive::CREATE);
             $filesPath = $this->getParameter('mysql_export_csv_folder');
-                $zip->addFromString(basename($mysqExportTmpCsvFile), file_get_contents($mysqExportTmpCsvFile));
+            $zip->addFromString(basename($mysqExportTmpCsvFile), file_get_contents($mysqExportTmpCsvFile));
             $zip->close();
             $response = new Response(file_get_contents($zipName));
             $response = new Response(file_get_contents($zipName));
@@ -451,10 +458,9 @@ class UserMutrikuController extends AbstractController
             $response->setContent(file_get_contents($zipName));
 
             @unlink($zipName);
-            @unlink($this->getParameter('mysql_export_csv_folder')."turbine.csv");
+            @unlink($this->getParameter('mysql_export_csv_folder') . "turbine.csv");
 
             return $response;
-
 
 
         } else {
