@@ -111,6 +111,18 @@ class UserMutrikuController extends AbstractController
             $numPresiones = count($presiones);
 
 
+            foreach ($presiones as $item) {
+                //$hora = substr($item['hora'], 0, -3);
+                $hora = new \DateTime($item['fecha'] . ' ' . $item['hora']);
+                $hora = $hora->format($dateFormat);
+                $media_pa = $item['media'];
+                $max_pa = $item['maximo'];
+
+                $horas[] = $hora;
+                $medias[] = intval($media_pa);
+                $maximos[] = intval($max_pa);
+            }
+
 
 
             if ($presiones != null) {
@@ -129,8 +141,11 @@ class UserMutrikuController extends AbstractController
                 'selectedFieldType' => $fieldType,
                 'selectedDaterange' => $daterange,
                 'showCharts' => $showCharts,
-                'numPresiones' => $numPresiones,
-                'presiones' => $presiones
+                'horas' => $horas,
+                'medias' => $medias,
+                'maximos' => $maximos,
+                'average' => $medias,
+                'numPresiones' => $numPresiones
             ]);
 
 
