@@ -88,7 +88,6 @@
                     <div class="chart_left">
                         <div class="chart_detail p-4 text-center border-bottom align-middle">
                             <p class="title" style="color: #F03861; border-color: #F03861;">MAX</p>
-                            <p class="date presure-max">000000 Pa</p>
                         </div>
                     </div>
 
@@ -114,7 +113,6 @@
                     <div class="chart_left">
                         <div class="chart_detail_solo p-4 text-center align-middle">
                             <p class="title" style="color: #6D42C7; border-color: #6D42C7;">MEDIA</p>
-                            <p class="date sound-average">000000 Pa</p>
                         </div>
                     </div>
                     <div class="chart_right">
@@ -235,14 +233,10 @@
         var pressure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var maxPressureArray = [{{ maximos|join(', ') }}];
         var minPressureArray = [{{ medias|join(', ') }}];
-        var maxPressure = {{ pa_max_value }};
-        var minPressure = {{ pa_min_value }};
         {% else %}
         var pressure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var maxPressureArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var minPressureArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        var maxPressure = 0;
-        var minPressure = 0;
         {% endif %}
 
 
