@@ -27,6 +27,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\Time;
 use ZipArchive;
 use Doctrine\ORM\Query\Expr;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 class UserMutrikuController extends AbstractController
@@ -36,7 +37,7 @@ class UserMutrikuController extends AbstractController
     /**
      * @Route("/user/dashboard/mutriku", name="user_mutriku")
      */
-    public function index(Request $request)
+    public function index(Request $request, TranslatorInterface $translator)
     {
 
         /** @var \App\Entity\User $user */
@@ -77,12 +78,14 @@ class UserMutrikuController extends AbstractController
                 } else {
                     $fields = " power_k_w_media AS media, power_k_w_max AS maximo, ";
                 }
+                $fieldTXT = $translator->trans('Potencia activa');
             } else {
                 if ($dDiff->format("%a") > 1) {
                     $fields = " AVG(rmspressure_pa_media) AS media, MAX(rmspressure_pa_max) AS maximo, ";
                 } else {
                     $fields = " rmspressure_pa_media AS media, rmspressure_pa_max AS maximo, ";
                 }
+                $fieldTXT = $translator->trans('Presión media');
             }
 
             // Si el número de dias es mayor de 1 ejecuto una consulta y lo ordeno por dias
