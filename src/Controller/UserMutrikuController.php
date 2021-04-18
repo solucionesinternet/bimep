@@ -71,6 +71,9 @@ class UserMutrikuController extends AbstractController
             $dStart = new \DateTime($dateStart);
             $dEnd = new \DateTime($dateEnd);
             $dDiff = $dStart->diff($dEnd);
+            $horas = null;
+            $medias = null;
+            $maximos = null;
 
             if ($fieldType == 'power_k_w') {
                 if ($dDiff->format("%a") > 1) {
