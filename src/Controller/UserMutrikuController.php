@@ -96,7 +96,7 @@ class UserMutrikuController extends AbstractController
 //            }
 
             if ($dDiff->format("%a") > 1) {
-                $RAW_QUERY = 'SELECT hour AS hora,  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . '  ORDER BY date ASC';
+                $RAW_QUERY = 'SELECT hour AS hora,  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' GROUP BY date  ORDER BY date ASC';
                 $dateFormat = 'd/m/Y';
             } else {
                 $RAW_QUERY = 'SELECT hour AS hora,  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' ORDER BY hour ASC ';
