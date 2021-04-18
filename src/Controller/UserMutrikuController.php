@@ -73,15 +73,15 @@ class UserMutrikuController extends AbstractController
 
             if ($fieldType == 'power_k_w') {
                 if ($dDiff->format("%a") > 1) {
-                    $fields = " AVG(power_k_w_media) AS media, MAX(power_k_w_max) AS maximo, ";
-                } else {
                     $fields = " power_k_w_media AS media, power_k_w_max AS maximo, ";
+                } else {
+                    $fields = " AVG(power_k_w_media) AS media, MAX(power_k_w_max) AS maximo, ";
                 }
             } else {
                 if ($dDiff->format("%a") > 1) {
-                    $fields = " AVG(rmspressure_pa_media) AS media, MAX(rmspressure_pa_max) AS maximo, ";
-                } else {
                     $fields = " rmspressure_pa_media AS media, rmspressure_pa_max AS maximo, ";
+                } else {
+                    $fields = " AVG(rmspressure_pa_media) AS media, MAX(rmspressure_pa_max) AS maximo, ";
                 }
             }
 
@@ -96,11 +96,11 @@ class UserMutrikuController extends AbstractController
 //            }
 
             if ($dDiff->format("%a") > 1) {
-                $RAW_QUERY = 'SELECT hour AS hora,  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' ORDER BY date, hour ASC ';
-                $dateFormat = 'd/m/Y';
-            } else {
                 $RAW_QUERY = 'SELECT hour AS hora,  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . '  ORDER BY hour ASC';
                 $dateFormat = 'd/m/Y H:i';
+            } else {
+                $RAW_QUERY = 'SELECT hour AS hora,  ' . $fields . ' date(date) AS fecha FROM turbines_medias  WHERE date(date) BETWEEN \'' . $dateStart . '\' AND \'' . $dateEnd . '\'  AND turbines_id = ' . $turbinesId . ' ORDER BY date ASC ';
+                $dateFormat = 'd/m/Y';
             }
             echo $RAW_QUERY;
 //            die();
