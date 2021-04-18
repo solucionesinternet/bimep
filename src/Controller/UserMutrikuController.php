@@ -149,7 +149,8 @@ class UserMutrikuController extends AbstractController
                 'maximos' => $maximos,
                 'average' => $medias,
                 'numPresiones' => $numPresiones,
-                'fieldTXT' => $fieldTXT
+                'fieldTXT' => $fieldTXT,
+                'dateFormat' => $dateFormat
             ]);
 
 
@@ -275,7 +276,8 @@ class UserMutrikuController extends AbstractController
                 'numPresiones' => $numPresiones,
                 'selectedFieldType' => '',
                 'selectedDaterange' => '',
-                'fieldTXT' => $fieldTXT
+                'fieldTXT' => $fieldTXT,
+                'dateFormat' => $dateFormat
             ]);
 
 

@@ -272,7 +272,7 @@
                     },
 
                     title: {
-                        text: ''
+                        text: '{{ fieldTXT|capitalize }}'
                     },
 
                     subtitle: {
@@ -301,7 +301,7 @@
                     tooltip: {
                         formatter: function () {
                             return '<b>' + this.series.name + '</b><br/>' +
-                                Highcharts.dateFormat('%e. %b', this.x) + ': ' + this.y + ' Pa';
+                                Highcharts.dateFormat('{{ dateFormat }}', this.x) + ': ' + this.y + ' Pa';
                         }
                     },
 
@@ -384,7 +384,7 @@
                     },
 
                     title: {
-                        text: ''
+                        text: '{{ fieldTXT|capitalize }}'
                     },
 
                     subtitle: {
