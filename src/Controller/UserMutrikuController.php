@@ -194,6 +194,9 @@ class UserMutrikuController extends AbstractController
                     break;
             }
 
+            // Defino el primer elemento del select por defecto en modo texto
+            $fieldTXT = $translator->trans('Potencia activa');
+
 
             $statement = $em->getConnection()->prepare($RAW_QUERY);
             $statement->execute();
@@ -271,7 +274,8 @@ class UserMutrikuController extends AbstractController
                 'arrayAverage' => $linea_medias,
                 'numPresiones' => $numPresiones,
                 'selectedFieldType' => '',
-                'selectedDaterange' => ''
+                'selectedDaterange' => '',
+                'fieldTXT' => $fieldTXT
             ]);
 
 
