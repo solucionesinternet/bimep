@@ -543,11 +543,25 @@ class UserMutrikuController extends AbstractController
     public function historicsDownloader(Request $request, PaginatorInterface $paginator)
     {
 
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+        $profileId = $user->getProfile();
+
         $em = $this->getDoctrine()->getManager();
 
-        // Obtenermos el listado de turbinas activas
-        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
-        $turbine = end($turbines);
+        // Obtenemos el listado de turbinas a las que tiene acceso este prfil
+//        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1), array('number' => 'ASC'));
+        $turbinesToProfile = $em->getRepository(TurbineToProfile::class)->findBy(array('profile' => $profileId));
+        $turbinesList = array();
+        foreach ($turbinesToProfile as $data) {
+            $currentTurbine = $data->getTurbines();
+            $currentTurbinesArray[] = $data->getTurbines();
+            $currentTurbineId = $currentTurbine->getId();
+            array_push($turbinesList, $currentTurbineId);
+        }
+
+        $turbines = $em->getRepository(Turbines::class)->findBy(array('active' => 1, 'id' => $turbinesList), array('number' => 'ASC'));
+        $turbine = reset($currentTurbinesArray);
 
         // Compruebo si han solicitado ver alguna turbina en concreto y algun periodo en concreto
         if ($request->query->get('view')) {
