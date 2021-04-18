@@ -241,9 +241,9 @@
 
 
         {% if numPresiones > 0 %}
-        var soundPressureArray = [{{ average|join(', ') }}];
-        var aveSoundPressureArray = [{{ arrayAverage|join(', ') }}];
-        var aveSoundPressure = {{ totalAverage }};
+        var soundPressureArray = [{{ maximos|join(', ') }}];
+        var aveSoundPressureArray = [{{ maximos|join(', ') }}];
+        var aveSoundPressure = {{ maximos }};
         {% else %}
         var soundPressureArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var aveSoundPressureArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -287,7 +287,7 @@
                     },
 
                     title: {
-                        text: ''
+                        text: 'Max'
                     },
 
                     subtitle: {
