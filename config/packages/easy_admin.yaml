@@ -28,7 +28,7 @@ easy_admin:
                   - {entity: Inverters, label: 'Listar Inversores', icon: 'th-list'}
                   - {entity: Inverters, label: 'Alta Inversores', icon: 'plus', params: {action: 'new'}}
             - {entity: HistoricSearches, label: 'Descargas por usuario', icon: 'download'}
-            - {entity: Queries, label: 'Descargar por archivo', icon: 'download'}
+            - {entity: Queries, label: 'Descargas por archivo', icon: 'download'}
             - label: 'BIMEP'
             - label: 'Boyas'
               children:
