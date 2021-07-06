@@ -39,8 +39,8 @@ easy_admin:
                   - {entity: FilesCategories, label: 'Listar Categorías', icon: 'th-list'}
                   - {entity: FilesCategories, label: 'Alta Categorías', icon: 'plus', params: {action: 'new'}}
             - {label: 'Importar', route: 'import', icon: 'upload'}
-            - {entity: BuoysFilesUsers, label: 'Nº Descargas por usuario', icon: 'download'}
-            - {entity: BuoysFiles, label: 'Nº Descargas', icon: 'download'}
+            - {entity: BuoysFilesUsers, label: 'Número Descargas por usuario', icon: 'download'}
+            - {entity: BuoysFiles, label: 'Número Descargas', icon: 'download'}
             - label: 'Idioma'
             - { label: 'Español', url: '?_locale=es', rel: 'index', icon: 'flag' }
             - { label: 'Euskera', url: '?_locale=eu', rel: 'index', icon: 'flag' }
@@ -87,7 +87,7 @@ easy_admin:
                 fields:
                     - {property: 'name', label: 'Nombre de la turbina'}
                     - {property: 'position', label: 'Posición'}
-                    - {property: 'number', label: 'Nº de la turbina', type: 'number', help: 'Debe ser 1, 2, 3...'}
+                    - {property: 'number', label: 'Número de la turbina', type: 'number', help: 'Debe ser 1, 2, 3...'}
                     - {property: 'active', label: 'Activa'}
                     - {property: 'theMappings', label: 'Perfiles con permisos',  type_options: { class: 'App\Entity\Profile', expanded: true, multiple: true,  by_reference: false, mapped: false }}
             edit:
@@ -95,7 +95,7 @@ easy_admin:
                 fields:
                     - {property: 'name', label: 'Nombre de la turbina'}
                     - {property: 'position', label: 'Posición'}
-                    - {property: 'number', label: 'Nº de la turbina', type: 'number', help: 'Debe ser 1, 2, 3...'}
+                    - {property: 'number', label: 'Número de la turbina', type: 'number', help: 'Debe ser 1, 2, 3...'}
                     - {property: 'active', label: 'Activa'}
                     - {property: 'theMappings', label: 'Perfiles con permisos',  type_options: { class: 'App\Entity\Profile', expanded: true, multiple: true,  by_reference: false, mapped: false, required: true }}
             list:
@@ -114,7 +114,7 @@ easy_admin:
                 fields:
                     - {property: 'name', label: 'Nombre del Inversor Regenerativo'}
                     - {property: 'position', label: 'Posición'}
-                    - {property: 'number', label: 'Nº del Inversor Regenerativo', type: 'number', help: 'Debe ser 1, 2, 3...'}
+                    - {property: 'number', label: 'Número del Inversor Regenerativo', type: 'number', help: 'Debe ser 1, 2, 3...'}
                     - {property: 'active', label: 'Activo'}
                     - {property: 'theMappings', label: 'Perfiles con permisos',  type_options: { class: 'App\Entity\Profile', expanded: true, multiple: true,  by_reference: false, mapped: false }}
             edit:
@@ -122,7 +122,7 @@ easy_admin:
                 fields:
                     - {property: 'name', label: 'Nombre del Inversor Regenerativo'}
                     - {property: 'position', label: 'Posición'}
-                    - {property: 'number', label: 'Nº del Inversor Regenerativo', type: 'number', help: 'Debe ser 1, 2, 3...'}
+                    - {property: 'number', label: 'Número del Inversor Regenerativo', type: 'number', help: 'Debe ser 1, 2, 3...'}
                     - {property: 'active', label: 'Activo'}
                     - {property: 'theMappings', label: 'Perfiles con permisos',  type_options: { class: 'App\Entity\Profile', expanded: true, multiple: true,  by_reference: false, mapped: false, required: true }}
             list:
@@ -192,7 +192,7 @@ easy_admin:
                     - {property: 'name_surnames', label: 'Nombre y Apellidos'}
                     - {property: 'profile', label: 'Cuenta'}
                     - {property: 'created', label: 'Fecha de alta', format: 'd/m/Y'}
-                    - {property: 'num_access', label: 'Nº Accesos'}
+                    - {property: 'num_access', label: 'Número Accesos'}
                     - {property: 'last_conection', label: 'Última conexión'}
 
         Profile:
@@ -202,34 +202,34 @@ easy_admin:
                 title: 'Alta de perfil'
                 fields:
                     - {property: 'name', label: 'Nombre del perfil'}
-                    - {property: 'num_downloads', label: 'Nº de descargas', type: 'integer'}
-                    - {property: 'num_turbines_to_view', label: 'Nº de turbinas a visualizar', type: 'integer'}
-                    - {property: 'num_buoys_to_view', label: 'Nº de boyas a visualizar', type: 'integer'}
-                    - {property: 'num_inverters_to_view', label: 'Nº de inversores a visualizar', type: 'integer'}
+                    - {property: 'num_downloads', label: 'Número de descargas', type: 'integer'}
+                    - {property: 'num_turbines_to_view', label: 'Número de turbinas a visualizar', type: 'integer'}
+                    - {property: 'num_buoys_to_view', label: 'Número de boyas a visualizar', type: 'integer'}
+                    - {property: 'num_inverters_to_view', label: 'Número de inversores a visualizar', type: 'integer'}
             edit:
                 title: 'Editar perfil'
                 fields:
                     - {property: 'name', label: 'Nombre del perfil'}
-                    - {property: 'num_downloads', label: 'Nº de descargas', type: 'integer'}
-                    - {property: 'num_turbines_to_view', label: 'Nº de turbinas a visualizar', type: 'integer'}
-                    - {property: 'num_buoys_to_view', label: 'Nº de boyas a visualizar', type: 'integer'}
-                    - {property: 'num_inverters_to_view', label: 'Nº de inversores a visualizar', type: 'integer'}
+                    - {property: 'num_downloads', label: 'Número de descargas', type: 'integer'}
+                    - {property: 'num_turbines_to_view', label: 'Número de turbinas a visualizar', type: 'integer'}
+                    - {property: 'num_buoys_to_view', label: 'Número de boyas a visualizar', type: 'integer'}
+                    - {property: 'num_inverters_to_view', label: 'Número de inversores a visualizar', type: 'integer'}
             show:
                 title: 'Editar perfil'
                 fields:
                     - {property: 'name', label: 'Nombre del perfil'}
-                    - {property: 'num_downloads', label: 'Nº de descargas', type: 'integer'}
-                    - {property: 'num_turbines_to_view', label: 'Nº de turbinas a visualizar', type: 'integer'}
-                    - {property: 'num_buoys_to_view', label: 'Nº de boyas a visualizar', type: 'integer'}
-                    - {property: 'num_inverters_to_view', label: 'Nº de inversores a visualizar', type: 'integer'}
+                    - {property: 'num_downloads', label: 'Número de descargas', type: 'integer'}
+                    - {property: 'num_turbines_to_view', label: 'Número de turbinas a visualizar', type: 'integer'}
+                    - {property: 'num_buoys_to_view', label: 'Número de boyas a visualizar', type: 'integer'}
+                    - {property: 'num_inverters_to_view', label: 'Número de inversores a visualizar', type: 'integer'}
             list:
                 title: 'Listado de Perfiles'
                 fields:
                     - {property: 'name', label: 'Perfil'}
-                    - {property: 'num_downloads', label: 'Nº de descargas'}
-                    - {property: 'num_turbines_to_view', label: 'Nº de turbinas'}
-                    - {property: 'num_buoys_to_view', label: 'Nº de boyas'}
-                    - {property: 'num_inverters_to_view', label: 'Nº de inversores'}
+                    - {property: 'num_downloads', label: 'Número de descargas'}
+                    - {property: 'num_turbines_to_view', label: 'Número de turbinas'}
+                    - {property: 'num_buoys_to_view', label: 'Número de boyas'}
+                    - {property: 'num_inverters_to_view', label: 'Número de inversores'}
 
         HistoricSearches:
             class: App\Entity\HistoricSearches
