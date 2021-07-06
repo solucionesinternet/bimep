@@ -282,4 +282,3 @@ easy_admin:
                     - {property: 'modified', label: 'Fecha última descarga', format: 'd/m/Y H:i'}
 
 
-
