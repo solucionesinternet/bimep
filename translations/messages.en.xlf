@@ -401,7 +401,7 @@
             </trans-unit>
             <trans-unit id="listar_usuarios">
                 <source>Listar usuarios</source>
-                <target>List users</target>
+                <target>List of users</target>
             </trans-unit>
             <trans-unit id="perfil:">
                 <source>Perfil:</source>
