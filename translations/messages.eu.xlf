@@ -4,620 +4,620 @@
         <body>
             <trans-unit id="fechas">
                 <source>Fechas</source>
-                <target>Dates</target>
+                <target>Datak</target>
             </trans-unit>
             <trans-unit id="fecha">
                 <source>Fecha</source>
-                <target>Date</target>
+                <target>Data</target>
             </trans-unit>
             <trans-unit id="FECHA">
                 <source>FECHA</source>
-                <target>DATE</target>
+                <target>DATA</target>
             </trans-unit>
             <trans-unit id="buqueda_inicio">
-                <source>Búsqueda inicio</source>
-                <target>Date start</target>
+                <source>Fecha de inicio</source>
+                <target>Hasierako data</target>
             </trans-unit>
             <trans-unit id="busqueda_fin">
-                <source>Búsqueda fin</source>
-                <target>Date end</target>
+                <source>Fecha final</source>
+                <target>Bukaerako data</target>
             </trans-unit>
             <trans-unit id="motivo">
                 <source>Motivo</source>
-                <target>Reason</target>
+                <target>Zergatia</target>
             </trans-unit>
             <trans-unit id="fichero">
                 <source>Fichero</source>
-                <target>File</target>
+                <target>Fitxategia</target>
             </trans-unit>
             <trans-unit id="fecha_ultima_descarga">
                 <source>Fecha última descarga</source>
-                <target>Last download date</target>
+                <target>Azken deskarga data</target>
             </trans-unit>
             <trans-unit id="ultimos_datos_de">
                 <source>Últimos datos de:</source>
-                <target>Last info about:</target>
+                <target>Azken datuak:</target>
             </trans-unit>
             <trans-unit id="presion">
                 <source>Presión</source>
-                <target>Pression</target>
+                <target>Presioa</target>
             </trans-unit>
             <trans-unit id="corriente_activa">
                 <source>Corriente activa</source>
-                <target>Active current</target>
+                <target>Korronte aktiboa</target>
             </trans-unit>
             <trans-unit id="modo_funcionamiento">
-                <source>Modo funcionamiento</source>
-                <target>Status code</target>
+                <source>Modo de funcionamiento</source>
+                <target>Funtzionamendu modua</target>
             </trans-unit>
             <trans-unit id="potencia_media_1_minuto">
                 <source>Potencia media 1 min</source>
-                <target>1 min average power</target>
+                <target>1 min batezbesteko potentzia</target>
             </trans-unit>
             <trans-unit id="potencia_media_5_minuto">
                 <source>Potencia media 5 min</source>
-                <target>5 min average power</target>
+                <target>5 min batezbesteko potentzia</target>
             </trans-unit>
             <trans-unit id="posicion_valvula">
                 <source>Posición válvula</source>
-                <target>Damper position</target>
+                <target>Balbularen posizioa</target>
             </trans-unit>
             <trans-unit id="good_bad">
-                <source>Disponible / operativo</source>
-                <target>Good / Bad</target>
+                <source>Disponible / Fuera de servicio</source>
+                <target>Erabilgarri / Zerbitzuz kanpo</target>
             </trans-unit>
             <trans-unit id="corriente_reactiva">
                 <source>Corriente reactiva</source>
-                <target>Corriente reactiva</target>
+                <target>Korronte erreaktiboa</target>
              </trans-unit>
             <trans-unit id="velocidad_de_giro">
                 <source>Velocidad de giro</source>
-                <target>Rotational speed</target>
+                <target>Biraketa abiadura</target>
             </trans-unit>
             <trans-unit id="tension">
                 <source>Tensión</source>
-                <target>Voltage</target>
+                <target>Tentsioa</target>
             </trans-unit>
             <trans-unit id="frecuencia">
                 <source>Frecuencia</source>
-                <target>Frequency</target>
+                <target>Maiztasuna</target>
             </trans-unit>
             <trans-unit id="potencia_activa">
                 <source>Potencia activa</source>
-                <target>Active power</target>
+                <target>Potentzia aktiboa</target>
             </trans-unit>
             <trans-unit id="presion_camara">
-                <source>Presión cámara</source>
-                <target>Chamber pressure</target>
+                <source>Presión en cámara</source>
+                <target>Kamerako presioa</target>
             </trans-unit>
             <trans-unit id="vibraciones">
                 <source>Vibraciones</source>
-                <target>Vibration</target>
+                <target>Bibrazioak</target>
             </trans-unit>
             <trans-unit id="caida_de_presion">
-                <source>Caída de presión</source>
-                <target>Pressure drop</target>
+                <source>Caí­da de presión</source>
+                <target>Presio galera</target>
             </trans-unit>
             <trans-unit id="presion_de_salida">
                 <source>Presión de salida</source>
-                <target>Outflow pressure</target>
+                <target>Irteerako presioa</target>
             </trans-unit>
             <trans-unit id="temperatura_generador">
                 <source>Temperatura generador</source>
-                <target>Generator temperature</target>
+                <target>Sorgailuaren tenperatura</target>
             </trans-unit>
             <trans-unit id="nivel_de_agua">
                 <source>Nivel de agua</source>
-                <target>Water Level</target>
+                <target>Ur maila</target>
             </trans-unit>
             <trans-unit id="datos_de_usuario">
                 <source>Datos de usuario</source>
-                <target>User info</target>
+                <target>Erabiltzailearen datuak</target>
             </trans-unit>
             <trans-unit id="legal_advise">
                 <source>Aviso Legal</source>
-                <target>Legal advise</target>
+                <target>Lege oharra</target>
             </trans-unit>
             <trans-unit id="politica_de_privacidad">
-                <source>Política de Privacidad</source>
-                <target>Privacy policy</target>
+                <source>Polí­tica de Privacidad</source>
+                <target>Pribatutasun-politika</target>
             </trans-unit>
             <trans-unit id="cookie_policy">
-                <source>Política de Cookies</source>
-                <target>Cokkie policy</target>
+                <source>Polí­tica de Cookies</source>
+                <target>Cookien doikuntzak</target>
             </trans-unit>
             <trans-unit id="cerrar_sesion">
                 <source>Cerrar Sesión</source>
-                <target>Logout</target>
+                <target>Saioa itxi</target>
             </trans-unit>
             <trans-unit id="panel_de_control">
                 <source>Panel de control</source>
-                <target>Control panel</target>
+                <target>Kontrol-panela</target>
             </trans-unit>
             <trans-unit id="gracias_por_registrarse_en_nuestro_sistema">
                 <source>Gracias por registrarse en nuestro sistema.</source>
-                <target>Thnx for registering</target>
+                <target>Eskerrik asko zure erregistroagatik</target>
             </trans-unit>
             <trans-unit id="para_acceder_a_la_pagina">
                 <source>Para acceder a la página de identificación pulse en el siguiente</source>
-                <target>For accesing the site click on the next</target>
+                <target>Identifikazio orrira joateko klikatu hurrengo</target>
             </trans-unit>
             <trans-unit id="enlace">
                 <source>enlace</source>
-                <target>link</target>
+                <target>loturan</target>
             </trans-unit>
             <trans-unit id="un_saludo">
                 <source>Un saludo</source>
-                <target>Greeting</target>
+                <target>Ondo izan</target>
             </trans-unit>
             <trans-unit id="registro">
                 <source>Registro</source>
-                <target>Registration</target>
+                <target>Erregistroa</target>
              </trans-unit>
-            <trans-unit id="identificacion">
+            <trans-unit id="Identificación">
                 <source>Identificación</source>
-                <target>Login</target>
+                <target>Identifikazioa</target>
             </trans-unit>
             <trans-unit id="recuperacion_de_contrasena">
-                <source>Recuperación de contraseña</source>
-                <target>Password recovery</target>
+                <source>Recuperación de la contraseña</source>
+                <target>Pasahitza berreskuratzea</target>
             </trans-unit>
             <trans-unit id="se_le_ha_enviado_un_email_recuperacion_clave">
-                <source>Se le ha enviado un email con un enlace para resetear la contraseña de acceso. Este enlace caducara en </source>
-                <target>An email has been sent to you with a link to reset the access password. This link will expire in</target>
+                <source>Se le ha enviado un email con un enlace para restablecer la contraseña de acceso. Este enlace caducará en </source>
+                <target>Korreo elektroniko bat bidali da pasahitza berrezartzeko loturarekin. Loturaren iraungitze denbora</target>
             </trans-unit>
             <trans-unit id="horas">
                 <source>horas</source>
-                <target>hours</target>
+                <target>ordu</target>
             </trans-unit>
             <trans-unit id="si_no_recibe_este_email">
-                <source>Si no recibe este email compruebe su bandeja de spam o vuelva a</source>
-                <target>If you don't receive this email check your spam tray or go back to</target>
+                <source>Si no recibe este email compruebe su bandeja de correo no deseado o vuelva a</source>
+                <target>Korreo hau jaso ez baduzu egiaztatu zabor-posta edo joan zaitez</target>
             </trans-unit>
             <trans-unit id="solicitarlo_de_nuevo">
                 <source>solicitarlo de nuevo</source>
-                <target>request it again</target>
+                <target>berriro eskatu</target>
             </trans-unit>
             <trans-unit id="volver_a_la_pagina_de">
                 <source>Volver a la página de</source>
-                <target>Back to the page </target>
+                <target>Itzuli</target>
             </trans-unit>
             <trans-unit id="estimado_usuario">
                 <source>Estimado usuario</source>
-                <target>Dear user</target>
+                <target>Erabiltzaile agurgarria</target>
             </trans-unit>
             <trans-unit id="para_reasignar_contrasena">
                 <source>Para reasignar su contraseña pulse</source>
-                <target>To reassign your password press</target>
+                <target>Zure pasahitza berresleitzeko klikatu</target>
             </trans-unit>
             <trans-unit id="aqui">
                 <source>aquí</source>
-                <target>here</target>
+                <target>hemen</target>
             </trans-unit>
             <trans-unit id="este_enlace_caduca_en">
                 <source>Este enlace caduca en</source>
-                <target>This link expires in</target>
+                <target>Loturaren iraungitze denbora:</target>
             </trans-unit>
             <trans-unit id="introduzca_email_contraena">
                 <source>Introduzca su dirección de email y se le enviará un enlace para recuperar su contraseña</source>
-                <target>Enter your email address and a link will be sent to recover your password</target>
+                <target>Sar ezazu zure korreo helbidea. Lotura bat bidaliko dizugu zure pasahitza berreskuratzeko</target>
             </trans-unit>
             <trans-unit id="crear_usuario">
                 <source>Crear usuario</source>
-                <target>Create user</target>
+                <target>Erabiltzailea sortu</target>
             </trans-unit>
             <trans-unit id="contraena">
                 <source>contraseña</source>
-                <target>password</target>
+                <target>pasahitza</target>
             </trans-unit>
             <trans-unit id="cargando">
                 <source>CARGANDO</source>
-                <target>LOADING</target>
+                <target>KARGATZEN</target>
             </trans-unit>
             <trans-unit id="dicgeros">
                 <source>Ficheros</source>
-                <target>Files</target>
+                <target>Fitxategiak</target>
             </trans-unit>
             <trans-unit id="bienvenido">
                 <source>Bienvenido</source>
-                <target>Wellcome</target>
+                <target>Ongi etorri</target>
             </trans-unit>
             <trans-unit id="enviar">
                 <source>Enviar</source>
-                <target>Submit</target>
+                <target>Bidali</target>
             </trans-unit>
             <trans-unit id="grafica">
                 <source>Gráfica</source>
-                <target>Graph</target>
+                <target>Grafikoa</target>
             </trans-unit>
             <trans-unit id="historico">
                 <source>Histórico</source>
-                <target>Historical</target>
+                <target>Jarduera</target>
             </trans-unit>
             <trans-unit id="no_hay_datos_para_esta_turbina">
                 <source>NO HAY DATOS PARA ESTA TURBINA Y PERIODO</source>
-                <target>NO DATA FOR THIS TURBINE AND PERIOD</target>
+                <target>TURBINA ETA DENBORA TARTE HORRENTZAT EZ DAGO DATURIK</target>
             </trans-unit>
             <trans-unit id="dia">
-                <source>Día</source>
-                <target>Day</target>
+                <source>Dí­a</source>
+                <target>Eguna</target>
             </trans-unit>
             <trans-unit id="mes">
                 <source>Mes</source>
-                <target>Month</target>
+                <target>Hilabetea</target>
             </trans-unit>
             <trans-unit id="ano">
                 <source>Año</source>
-                <target>Year</target>
+                <target>Urtea</target>
             </trans-unit>
             <trans-unit id="vaciar">
                 <source>Vaciar</source>
-                <target>Empty</target>
+                <target>Hustu</target>
             </trans-unit>
             <trans-unit id="aplicar">
                 <source>Aplicar</source>
-                <target>Apply</target>
+                <target>Ezarri</target>
             </trans-unit>
             <trans-unit id="desde">
                 <source>Desde</source>
-                <target>From</target>
+                <target>Nondik</target>
             </trans-unit>
             <trans-unit id="hasta">
                 <source>Hasta</source>
-                <target>To</target>
+                <target>Nora</target>
             </trans-unit>
             <trans-unit id="personalizado">
                 <source>Personalizado</source>
-                <target>Custom</target>
+                <target>Egokitua</target>
             </trans-unit>
             <trans-unit id="Do">
                 <source>Do</source>
-                <target>Su</target>
+                <target>Ig</target>
             </trans-unit>
             <trans-unit id="Lu">
                 <source>Lu</source>
-                <target>Mo</target>
+                <target>Al</target>
             </trans-unit>
             <trans-unit id="Ma">
                 <source>Ma</source>
-                <target>Tu</target>
+                <target>Ar</target>
             </trans-unit>
             <trans-unit id="Mi">
                 <source>Mi</source>
-                <target>We</target>
+                <target>Az</target>
             </trans-unit>
             <trans-unit id="Ju">
                 <source>Ju</source>
-                <target>Th</target>
+                <target>Og</target>
             </trans-unit>
             <trans-unit id="Vi">
                 <source>Vi</source>
-                <target>Fr</target>
+                <target>Or</target>
             </trans-unit>
             <trans-unit id="Sa">
                 <source>Sa</source>
-                <target>Sa</target>
+                <target>Lr</target>
             </trans-unit>
             <trans-unit id="Enero">
                 <source>Enero</source>
-                <target>January</target>
+                <target>Urtarrila</target>
             </trans-unit>
             <trans-unit id="Febrero">
                 <source>Febrero</source>
-                <target>Febrary</target>
+                <target>Otsaila</target>
             </trans-unit>
             <trans-unit id="Marzo">
                 <source>Marzo</source>
-                <target>March</target>
+                <target>Martxoa</target>
             </trans-unit>
             <trans-unit id="Abil">
-                <source>Abil</source>
-                <target>April</target>
+                <source>Abril</source>
+                <target>Apirila</target>
             </trans-unit>
             <trans-unit id="Mayo">
                 <source>Mayo</source>
-                <target>May</target>
+                <target>Maiatza</target>
             </trans-unit>
             <trans-unit id="Junio">
                 <source>Junio</source>
-                <target>June</target>
+                <target>Ekaina</target>
             </trans-unit>
             <trans-unit id="Julio">
                 <source>Julio</source>
-                <target>Jly</target>
+                <target>Uztaila</target>
             </trans-unit>
             <trans-unit id="Agosto">
                 <source>Agosto</source>
-                <target>August</target>
+                <target>Abuztua</target>
             </trans-unit>
             <trans-unit id="Septiembre">
                 <source>Septiembre</source>
-                <target>September</target>
+                <target>Iraila</target>
             </trans-unit>
             <trans-unit id="Octubre">
                 <source>Octubre</source>
-                <target>October</target>
+                <target>Urria</target>
             </trans-unit>
             <trans-unit id="Noviembre">
                 <source>Noviembre</source>
-                <target>November</target>
+                <target>Azaroa</target>
             </trans-unit>
             <trans-unit id="Diciembre">
                 <source>Diciembre</source>
-                <target>December</target>
+                <target>Abendua</target>
             </trans-unit>
             <trans-unit id="presion_media">
-                <source>Presión Media</source>
-                <target>Medium pressure</target>
+                <source>Presión</source>
+                <target>Presioa</target>
             </trans-unit>
             <trans-unit id="media">
                 <source>MEDIA</source>
-                <target>Half</target>
+                <target>BATEZBESTEKOA</target>
             </trans-unit>
             <trans-unit id="nombre_fichero">
-                <source>NOMBRE FICHERO</source>
-                <target>FILE NAME</target>
+                <source>NOMBRE DEL FICHERO</source>
+                <target>FITXATEGIAREN IZENA</target>
             </trans-unit>
             <trans-unit id="nombre_fichero_minusculas">
-                <source>Nombre Fichero</source>
-                <target>Filename</target>
+                <source>Nombre del Fichero</source>
+                <target>Fitxategiaren izena</target>
             </trans-unit>
             <trans-unit id="turbina">
                 <source>TURBINA</source>
-                <target>TURBINE</target>
+                <target>TURBINA</target>
             </trans-unit>
             <trans-unit id="turbina_minusculas">
                 <source>Turbina</source>
-                <target>Turbine</target>
+                <target>Turbina</target>
             </trans-unit>
             <trans-unit id="tamano">
                 <source>TAMAÑO</source>
-                <target>SIZE</target>
+                <target>TAMAINA</target>
             </trans-unit>
             <trans-unit id="descargas">
                 <source>DESCARGAS</source>
-                <target>DOWNLOADS</target>
+                <target>DESKARGAK</target>
             </trans-unit>
             <trans-unit id="cerrar">
                 <source>Cerrar</source>
-                <target>Close</target>
+                <target>Itxi</target>
             </trans-unit>
             <trans-unit id="listado_de_descargas">
                 <source>Listado de decargas</source>
-                <target>List of downloads</target>
+                <target>Deskargen zerrenda</target>
             </trans-unit>
             <trans-unit id="gestion_de_usuarios">
                 <source>Gestión de usuarios</source>
-                <target>Users control</target>
+                <target>Erabiltzaileen kudeaketa</target>
             </trans-unit>
             <trans-unit id="usuarios">
                 <source>Usuarios</source>
-                <target>Users</target>
+                <target>Erabiltzaileak</target>
             </trans-unit>
             <trans-unit id="usuario">
                 <source>Usuario</source>
-                <target>User</target>
+                <target>Erabiltzailea</target>
             </trans-unit>
             <trans-unit id="listar_usuarios">
                 <source>Listar usuarios</source>
-                <target>List users</target>
+                <target>Erabiltzaileak zerrendatu</target>
             </trans-unit>
             <trans-unit id="perfil:">
                 <source>Perfil:</source>
-                <target>Profile:</target>
+                <target>Profila:</target>
             </trans-unit>
             <trans-unit id="perfiles">
                 <source>Perfiles</source>
-                <target>Profiles</target>
+                <target>Profilak</target>
             </trans-unit>
             <trans-unit id="turbines">
                 <source>Turbinas</source>
-                <target>Turbines</target>
+                <target>Turbinak</target>
             </trans-unit>
             <trans-unit id="listar_turbinas">
                 <source>Listar Turbinas</source>
-                <target>List Turbines</target>
+                <target>Turbinak zerrendatu</target>
             </trans-unit>
             <trans-unit id="alta_turbinas">
                 <source>Alta Turbinas</source>
-                <target>Add Turbines</target>
+                <target>Turbina gehitu</target>
             </trans-unit>
             <trans-unit id="descargas_por_usuario">
                 <source>Descargas por usuario</source>
-                <target>Downloads per user</target>
+                <target>Erabiltzaileen deskargak</target>
             </trans-unit>
             <trans-unit id="descargas_por_archivo">
-                <source>Descargar por archivo</source>
-                <target>Downloads per file</target>
+                <source>Descargas por archivo</source>
+                <target>Fitxategien deskargak</target>
             </trans-unit>
             <trans-unit id="boyas">
                 <source>Boyas</source>
-                <target>Buoys</target>
+                <target>Buiak</target>
             </trans-unit>
             <trans-unit id="listar_boyas">
                 <source>Listar Boyas</source>
-                <target>List Buoys</target>
+                <target>Buiak zerrendatu</target>
             </trans-unit>
             <trans-unit id="alta_boyas">
                 <source>Alta Boyas</source>
-                <target>Add Buoy</target>
+                <target>Buia gehitu</target>
             </trans-unit>
             <trans-unit id="categoria">
                 <source>Categoría</source>
-                <target>Category</target>
+                <target>Maila</target>
             </trans-unit>
             <trans-unit id="categorias">
                 <source>Categorías</source>
-                <target>Categories</target>
+                <target>Mailak</target>
             </trans-unit>
             <trans-unit id="listar_categorias">
                 <source>Listar Categorías</source>
-                <target>List Categories</target>
+                <target>Mailak zerrendatu</target>
             </trans-unit>
             <trans-unit id="alta_categorias">
-                <source>Alta Categorías</source>
-                <target>Add Categories</target>
+                <source>Alta Categorí­as</source>
+                <target>Maila gehitu</target>
             </trans-unit>
             <trans-unit id="importar">
                 <source>Importar</source>
-                <target>Import</target>
+                <target>Inportatu</target>
             </trans-unit>
             <trans-unit id="num_descargas_usuario">
-                <source>Nº Descargas por usuario</source>
-                <target>Downloads per user</target>
+                <source>Número de descargas por usuario</source>
+                <target>Erabiltzaileen deskarga kopurua</target>
             </trans-unit>
             <trans-unit id="num_descargas">
-                <source>Nº Descargas</source>
-                <target>Downloads</target>
+                <source>Número de descargas</source>
+                <target>Deskarga kopurua</target>
             </trans-unit>
             <trans-unit id="alta_de_boyas">
                 <source>Alta de Boyas</source>
-                <target>Buoys Add</target>
+                <target>Buiari alta</target>
             </trans-unit>
             <trans-unit id="datos_de_la_boya">
                 <source>Datos de la Boya</source>
-                <target>Buoys Data</target>
+                <target>Buiaren datuak</target>
             </trans-unit>
             <trans-unit id="nombre_de_la_boya">
                 <source>Nombre de la boya:</source>
-                <target>Buoys name:</target>
+                <target>Buiaren izena:</target>
             </trans-unit>
             <trans-unit id="activada">
                 <source>Activada</source>
-                <target>Active</target>
+                <target>Aktibatua</target>
             </trans-unit>
             <trans-unit id="direccion">
                 <source>Dirección:</source>
-                <target>Direction:</target>
+                <target>Norabidea:</target>
             </trans-unit>
             <trans-unit id="velocidad">
                 <source>Velocidad:</source>
-                <target>Speed:</target>
+                <target>Abiadura:</target>
             </trans-unit>
             <trans-unit id="nombre_de_la_boya_sin_dospuntos">
                 <source>Nombre de la boya</source>
-                <target>Buoys name</target>
+                <target>Buiaren izena</target>
             </trans-unit>
             <trans-unit id="alta_de_turbinas">
                 <source>Alta de turbinas</source>
-                <target>Turbine registration</target>
+                <target>Turbinari alta</target>
             </trans-unit>
             <trans-unit id="nombre_de_la_turbina">
                 <source>Nombre de la turbina</source>
-                <target>Turbine name</target>
+                <target>Turbinaren izena</target>
             </trans-unit>
             <trans-unit id="posicion">
                 <source>Posición</source>
-                <target>Position</target>
+                <target>Posizioa</target>
             </trans-unit>
             <trans-unit id="num_turbina">
-                <source>Nº de la turbina</source>
-                <target>Turbine number</target>
+                <source>Número de la turbina</source>
+                <target>Turbinaren zenbakia</target>
             </trans-unit>
             <trans-unit id="activa">
                 <source>Activa</source>
-                <target>Active</target>
+                <target>Aktibatua</target>
             </trans-unit>
             <trans-unit id="must be">
                 <source>Debe ser 1, 2, 3...</source>
-                <target>Must be 1, 2, 3...</target>
+                <target>1, 2, 3... izan behar da</target>
             </trans-unit>
             <trans-unit id="perfines_con_permisos">
                 <source>Perfiles con permisos</source>
-                <target>Profiles with permissions</target>
+                <target>Baimendutako profilak</target>
             </trans-unit>
             <trans-unit id="editar_turbinas">
                 <source>Editar turbinas</source>
-                <target>Turbines edit</target>
+                <target>Turbinak editatu</target>
             </trans-unit>
             <trans-unit id="listado_de_turbinas">
                 <source>Listado de turbinas</source>
-                <target>Turbines list</target>
+                <target>Turbinen zerrenda</target>
             </trans-unit>
             <trans-unit id="nombre">
                 <source>Nombre</source>
-                <target>Name</target>
+                <target>Izena</target>
             </trans-unit>
             <trans-unit id="datos_categoria">
-                <source>Datos de la categoría</source>
-                <target>Categories Data</target>
+                <source>Datos de la categorí­a</source>
+                <target>Mailaren datuak</target>
             </trans-unit>
             <trans-unit id="nombre_categoria">
                 <source>Nombre de la categoría</source>
-                <target>Category name</target>
+                <target>Mailaren izena</target>
             </trans-unit>
             <trans-unit id="editar_categoria">
-                <source>Editar Categoría</source>
-                <target>Edit Category</target>
+                <source>Editar categoría</source>
+                <target>Maila editatu</target>
             </trans-unit>
             <trans-unit id="alta_de_usuarios">
                 <source>Alta de usuarios</source>
-                <target>User registration</target>
+                <target>Erabiltzaileari alta</target>
             </trans-unit>
             <trans-unit id="rellene_los_siguientes">
-                <source>Rellene los siguientes campos para dar de alta un nuevo usuario.</source>
-                <target>Fill in the following fields to register a new user.</target>
+                <source>Rellene los siguientes campos para dar de alta a un nuevo usuario.</source>
+                <target>Ondorengo eremuak bete itzazu erabiltzaile berri bati alta emateko.</target>
             </trans-unit>
             <trans-unit id="datos_Personales">
                 <source>Datos Personales</source>
-                <target>Personal information</target>
+                <target>Datu Pertsonalak</target>
             </trans-unit>
             <trans-unit id="datos_personales">
                 <source>Datos personales</source>
-                <target>Personal information</target>
+                <target>Datu pertsonalak</target>
             </trans-unit>
             <trans-unit id="datos_empresa">
                 <source>Datos empresa</source>
-                <target>Company information</target>
+                <target>Enpresaren datuak</target>
             </trans-unit>
 
             <trans-unit id="empresa">
                 <source>Empresa:</source>
-                <target>Company:</target>
+                <target>Enpresa:</target>
             </trans-unit>
             <trans-unit id="nombre_y_apellido">
                 <source>Nombre y Apellidos:</source>
-                <target>Name and surname:</target>
+                <target>Izen abizenak:</target>
             </trans-unit>
             <trans-unit id="telefono">
                 <source>Teléfono:</source>
-                <target>Phone:</target>
+                <target>Telefonoa:</target>
             </trans-unit>
             <trans-unit id="perfil">
                 <source>Perfil</source>
-                <target>Profile</target>
+                <target>Profila</target>
             </trans-unit>
             <trans-unit id="soy_particular">
                 <source>Soy un particular</source>
-                <target>I am private</target>
+                <target>Partikularra</target>
             </trans-unit>
             <trans-unit id="direccion_postal">
                 <source>Dirección:</source>
-                <target>Address:</target>
+                <target>Helbidea:</target>
             </trans-unit>
             <trans-unit id="cif">
                 <source>C.I.F.</source>
-                <target>VAT</target>
+                <target>I.F.K.</target>
             </trans-unit>
             <trans-unit id="Cif">
                 <source>Cif:</source>
-                <target>Vat:</target>
+                <target>Ifk:</target>
             </trans-unit>
             <trans-unit id="cambiar_contrasena">
                 <source>Cambiar contraseña</source>
-                <target>Change password</target>
+                <target>Pasahitza aldatu</target>
             </trans-unit>
             <trans-unit id="contrasena">
                 <source>Contraseña:</source>
-                <target>Password:</target>
+                <target>Pasahitza:</target>
             </trans-unit>
             <trans-unit id="confirmar_contrasena">
                 <source>Confirmar Contraseña:</source>
-                <target>Confirm Password:</target>
+                <target>Pasahitza berretsi:</target>
             </trans-unit>
             <trans-unit id="passwords_must">
                 <source>Las dos contraseñas deben coincidir</source>
-                <target>The two passwords must match</target>
+                <target>Bi pasahitzak berdinak izan behar dira</target>
             </trans-unit>
             <trans-unit id="listado_de_usuarios">
                 <source>Listado de usuarios</source>
@@ -625,137 +625,137 @@
             </trans-unit>
             <trans-unit id="nombre_y_apellidos">
                 <source>Nombre y Apellidos</source>
-                <target>Name and surname</target>
+                <target>Izen abizenak</target>
             </trans-unit>
             <trans-unit id="cuenta">
                 <source>Cuenta</source>
-                <target>Profile</target>
+                <target>Kontua</target>
             </trans-unit>
             <trans-unit id="fecha_de_alta">
                 <source>Fecha de alta</source>
-                <target>Discharge date</target>
+                <target>Alta eguna</target>
             </trans-unit>
             <trans-unit id="numero_de_accesos">
-                <source>Nº Accesos</source>
-                <target>Accesses</target>
+                <source>Número de Accesos</source>
+                <target>Sarrera kopurua</target>
             </trans-unit>
             <trans-unit id="ultima_conexion">
                 <source>Última conexión</source>
-                <target>Last conection</target>
+                <target>Azken sarrera</target>
             </trans-unit>
             <trans-unit id="alta_de_perfil">
                 <source>Alta de perfil</source>
-                <target>Profile registration</target>
+                <target>Profilari alta</target>
             </trans-unit>
             <trans-unit id="nombre_del_perfil">
                 <source>Nombre del perfil</source>
-                <target>Profile name</target>
+                <target>Profilaren izena</target>
             </trans-unit>
             <trans-unit id="numero_de_descargar">
-                <source>Nº de descargas</source>
-                <target>Number of downloads</target>
+                <source>Número de descargas</source>
+                <target>Deskarga kopurua</target>
             </trans-unit>
             <trans-unit id="editar_perfil">
                 <source>Editar perfil</source>
-                <target>Edit Profile</target>
+                <target>Profila editatu</target>
             </trans-unit>
             <trans-unit id="listado_de_perfiles">
                 <source>Listado de Perfiles</source>
-                <target>List of Profiles</target>
+                <target>Profilen zerrenda</target>
             </trans-unit>
             <trans-unit id="numero_descargas_por_archivo">
-                <source>Nº Descargas por archivo</source>
-                <target>Downloads per file</target>
+                <source>Número de descargas por archivo</source>
+                <target>Fitxategien deskarga kopurua</target>
             </trans-unit>
             <trans-unit id="numero_turbinas_ver">
-                <source>Nº de turbinas a visualizar</source>
-                <target>Number of turbines to show</target>
+                <source>Número de turbinas a visualizar</source>
+                <target>Bistaratzeko turbina kopurua</target>
             </trans-unit>
             <trans-unit id="numero_turbinas">
-                <source>Nº de turbinas</source>
-                <target>Turbines number</target>
+                <source>Número de turbinas</source>
+                <target>Turbina kopurua</target>
             </trans-unit>
             <trans-unit id="numero_boyas_ver">
-                <source>Nº de boyas a visualizar</source>
-                <target>Number of buoys to show</target>
+                <source>Número de boyas a visualizar</source>
+                <target>Bistaratzeko buia kopurua</target>
             </trans-unit>
             <trans-unit id="numero_boyas">
-                <source>Nº de boyas</source>
-                <target>Buoys number</target>
+                <source>Número de boyas</source>
+                <target>Buia kopurua</target>
             </trans-unit>
             <trans-unit id="numero_inversores_ver">
-                <source>Nº de inversores a visualizar</source>
-                <target>Number of inverters to show</target>
+                <source>Número de inversores a visualizar</source>
+                <target>Bistaratzeko inbertsore kopurua</target>
             </trans-unit>
             <trans-unit id="numero_inversores">
-                <source>Nº de inversores</source>
-                <target>Inverters number</target>
+                <source>Número de inversores</source>
+                <target>Inbertsore kopurua</target>
             </trans-unit>
             <trans-unit id="inversores">
                 <source>Inversores</source>
-                <target>Inverters</target>
+                <target>Inbertsoreak</target>
             </trans-unit>
             <trans-unit id="listar_inversores">
                 <source>Listar Inversores</source>
-                <target>List Inverters</target>
+                <target>Inbertsoreak zerrendatu</target>
             </trans-unit>
             <trans-unit id="alta_inversores">
                 <source>Alta Inversores</source>
-                <target>Inverters registration</target>
+                <target>Inbertsoreei alta</target>
             </trans-unit>
             <trans-unit id="alta_de_inversores">
                 <source>Alta de inversor</source>
-                <target>Inverters registration</target>
+                <target>Inbertsoreari alta</target>
             </trans-unit>
             <trans-unit id="nombre_inversor">
                 <source>Nombre del Inversor Regenerativo</source>
-                <target>Regenerative Investor Name</target>
+                <target>Inbertsorearen izena</target>
             </trans-unit>
             <trans-unit id="numero_inveersor">
-                <source>Nº del Inversor Regenerativo</source>
-                <target>Regenerative Investor number</target>
+                <source>Número del Inversor Regenerativo</source>
+                <target>Inbertsorearen zenbakia</target>
             </trans-unit>
             <trans-unit id="activo">
                 <source>Activo</source>
-                <target>Active</target>
+                <target>Aktibo</target>
             </trans-unit>
             <trans-unit id="Guardar">
                 <source>Guardar</source>
-                <target>Save</target>
+                <target>Gorde</target>
             </trans-unit>
              <trans-unit id="repetir_contrasena">
                 <source>Repetir contraseña:</source>
-                <target>Confirm password:</target>
+                <target>Pasahitza berretsi:</target>
             </trans-unit>
              <trans-unit id="acepto_condiciones">
-                <source>Acepto las Política de Cookies ,  Aviso legal  y  Política de privacidad</source>
-                <target>I accept the Cookies Policy, Legal Notice and Privacy Policy</target>
+                <source>Acepto el Aviso Legal y la Política de Privacidad y Cookies</source>
+                <target>Lege oharra, pribatutasun-politika eta Cookien doikuntzak onartzen ditut</target>
             </trans-unit>
 
              <trans-unit id="registrarse">
                 <source>Registrarse</source>
-                <target>Check in</target>
+                <target>Erregistratu</target>
             </trans-unit>
 
              <trans-unit id="fecha_inicio">
                 <source>Fecha Inicio</source>
-                <target>Date Start</target>
+                <target>Hasierako data</target>
             </trans-unit>
              <trans-unit id="fecha_fin">
                 <source>Fecha Fin</source>
-                <target>Date End</target>
+                <target>Bukaerako data</target>
             </trans-unit>
              <trans-unit id="magnitud_actual">
-                <source>Magnitud Actual</source>
-                <target>Current Magnitude</target>
+                <source>Corriente total</source>
+                <target>Korronte osoa</target>
             </trans-unit>
              <trans-unit id="User">
                 <source>Usuario</source>
-                <target>User</target>
+                <target>Erabiltzailea</target>
             </trans-unit>
              <trans-unit id="debe_seleccionar_al_menos_un_archivo">
                 <source>Debe seleccionar al menos un archivo para descargar</source>
-                <target>You must choose at least one file to download</target>
+                <target>Gutxienez artxibo bat aukeratu behar duzu deskargatzeko</target>
             </trans-unit>
         </body>
     </file>
