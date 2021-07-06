@@ -280,4 +280,3 @@ easy_admin:
                     - {property: 'filename', label: 'Fichero', type: 'raw'}
                     - {property: 'downloads', label: 'Número de descargas', type: 'raw'}
                     - {property: 'modified', label: 'Fecha última descarga', format: 'd/m/Y H:i'}
-                    -
