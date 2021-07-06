@@ -259,26 +259,26 @@ easy_admin:
 
         BuoysFilesUsers:
             class: App\Entity\BuoysFilesUsers
-            label: 'Nº Descargas por archivo'
+            label: 'Descargas por archivo'
             list:
-                title: 'Nº Descargas por usuario'
+                title: 'Descargas por usuario'
                 actions: ['-new', '-edit', '-delete']
                 fields:
                     - {property: 'user', label: 'Usuario', type: 'raw'}
                     - {property: 'buoys_files', label: 'Fichero', type: 'raw'}
-                    - {property: 'downloads', label: 'Nº de descargas', type: 'raw'}
+                    - {property: 'downloads', label: 'Número de descargas', type: 'raw'}
                     - {property: 'modified', label: 'Fecha última descarga', format: 'd/m/Y H:i'}
 
 
         BuoysFiles:
             class: App\Entity\BuoysFiles
-            label: 'Nº Descargas'
+            label: 'Descargas'
             list:
-                title: 'Nº Descargas por archivo'
+                title: 'Descargas por archivo'
                 actions: ['-new', '-edit', '-delete']
                 fields:
                     - {property: 'filename', label: 'Fichero', type: 'raw'}
-                    - {property: 'downloads', label: 'Nº de descargas', type: 'raw'}
+                    - {property: 'downloads', label: 'Número de descargas', type: 'raw'}
                     - {property: 'modified', label: 'Fecha última descarga', format: 'd/m/Y H:i'}
 
 
