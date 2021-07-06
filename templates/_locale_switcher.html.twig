@@ -5,7 +5,7 @@
 {% set locales = 'es|en|eu' %}
 {% set applocales=locales|split('|') %}
 {% for locale in applocales %}
-    <a class="" href="{{ path(route, params|merge({ _locale: locale })) }}">
+    <a class="" style="padding-left: 3px" href="{{ path(route, params|merge({ _locale: locale })) }}">
         {{ locale }}
     </a>
 {% endfor %}
