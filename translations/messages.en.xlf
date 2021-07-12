@@ -464,11 +464,11 @@
                 <target>Import</target>
             </trans-unit>
             <trans-unit id="num_descargas_usuario">
-                <source>Número de descargas por usuario</source>
+                <source>Número Descargas por usuario</source>
                 <target>Downloads per user</target>
             </trans-unit>
             <trans-unit id="num_descargas">
-                <source>Número de descargas</source>
+                <source>Número Descargas</source>
                 <target>Downloads</target>
             </trans-unit>
             <trans-unit id="alta_de_boyas">

@@ -345,10 +345,10 @@
                 <source>Importar</source>
             </trans-unit>
             <trans-unit id="num_descargas_usuario">
-                <source>Número de descargas por usuario</source>
+                <source>Número Descargas por usuario</source>
             </trans-unit>
             <trans-unit id="num_descargas">
-                <source>Número de descargas</source>
+                <source>Número Descargas</source>
             </trans-unit>
             <trans-unit id="alta_de_boyas">
                 <source>Alta de Boyas</source>

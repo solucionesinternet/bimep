@@ -463,11 +463,11 @@
                 <target>Inportatu</target>
             </trans-unit>
             <trans-unit id="num_descargas_usuario">
-                <source>Número de descargas por usuario</source>
+                <source>Número Descargas por usuario</source>
                 <target>Erabiltzaileen deskarga kopurua</target>
             </trans-unit>
             <trans-unit id="num_descargas">
-                <source>Número de descargas</source>
+                <source>Número Descargas</source>
                 <target>Deskarga kopurua</target>
             </trans-unit>
             <trans-unit id="alta_de_boyas">
