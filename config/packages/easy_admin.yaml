@@ -269,7 +269,6 @@ easy_admin:
                     - {property: 'downloads', label: 'Número de descargas', type: 'raw'}
                     - {property: 'modified', label: 'Fecha última descarga', format: 'd/m/Y H:i'}
 
-
         BuoysFiles:
             class: App\Entity\BuoysFiles
             label: 'Descargas'
