@@ -635,7 +635,7 @@
                 <source>Fecha de alta</source>
                 <target>Alta eguna</target>
             </trans-unit>
-            <trans-unit id="numero_de_accesos">
+            <trans-unit id="numeronum_descargas_usuario_de_accesos">
                 <source>Número de Accesos</source>
                 <target>Sarrera kopurua</target>
             </trans-unit>
